@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+
+Tournament.create(name: 'myTournament')
+Tournament.create(name: 'myTournament1')
+Tournament.create(name: 'myTournament2')
+
+
