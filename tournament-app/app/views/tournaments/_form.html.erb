@@ -1,0 +1,9 @@
+<!-- Don't use "form_for :tournament", that got routing problems  -->
+<%= form_for(@tournament) do |t| %>
+    <div>
+        <%= t.label :tournament_name %>
+        <%= t.text_field :name %>
+        <br />
+    </div>
+    <%= t.submit %>
+<% end %>
