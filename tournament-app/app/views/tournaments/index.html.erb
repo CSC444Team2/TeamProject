@@ -1,8 +1,11 @@
 <html>
     <h1>Tournaments</h1>
-    <div>
-        <% @tournaments.each do |t| %>
-            <p> <%= t.name%> </p>
-        <% end %>
-    </div>
+    <% @tournaments.each do |t| %>
+        <p> 
+            <%= t.name %>
+            <%= link_to "Show Details", tournament_path(t) %>
+            <%= link_to "Edit", edit_tournament_path(t) %>
+        </p>
+    <% end %>
+    <%= link_to 'New Tournament', "/tournaments/new" %>
 </html>
