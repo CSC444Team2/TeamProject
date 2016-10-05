@@ -4,7 +4,11 @@ Rails.application.routes.draw do
     #post 'tournaments/new' => 'tournaments#create'
     #post 'tournaments/:id/edit' => 'tournaments#create'
     #!!!!
-    resources :tournaments
+    resources :tournaments do 
+      resources :player_groups
+    end
+
+    resources :users
     
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
