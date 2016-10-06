@@ -7,7 +7,7 @@ html
 
 body
 { font: normal 85% Arial, Helvetica, sans-serif;
-  background: #FFF url(../images/pattern.png) repeat;
+ /* background: #FFF url(../images/pattern.png) repeat;*/
   color: #000;
 }
 
@@ -17,7 +17,8 @@ p
   font-size: 100% }
 
 img
-{ border: 0;}
+{ border: 0;
+}
 
 h1, h2, h3, h4, h5, h6
 { font: normal 175% Arial, Helvetica, sans-serif;
@@ -77,8 +78,8 @@ ol li
 { background: transparent;}
 
 #menubar
-{ width: 920px;
-  height: 50px;
+{ width: 80%;
+  height: 55px;
   border-bottom: 2px solid;}
 
 #welcome
@@ -289,22 +290,22 @@ ul#menu li.current a, ul#menu li:hover a
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;}
 
 #banner_image {
-	width: 920px;
-	height: 430px;
+	width: 80%;
+	height: 20%;
 	float: left;
 	margin: 20px 0 0 0;
 	padding: 0 0 0 0;
 }
 #slider-wrapper {
-    height: 400px;
+    height: 300px;
 	background: transparent;
-	width: 920px;
+	width: 90%;
 }
 #slider {
     background: url("../images/loading.gif") no-repeat scroll 50% 50% transparent;
-    height: 400px;
+    height: 300px;
     position: relative;
-    width: 920px;
+    width: 90%;
 }
 #slider img {
     display: none;
@@ -405,7 +406,7 @@ a.nivo-nextNav {
     cursor: pointer;
     float: left;
     height: 22px;
-    margin-top: 350px;
+    margin-top: 0px;
     position: relative;
     text-indent: -9999px;
     width: 22px;
