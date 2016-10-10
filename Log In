@@ -1,0 +1,7 @@
+<form action="action_page.php">
+<h1 class="imgcontainer"><strong>CSC444 Golf Tournament</strong></h1>
+<h3 class="imgcontainer"><strong>Please Enter Log-In information below</strong></h3>
+<div class="imgcontainer"><label><strong>Username</strong></label> <input name="uname" required="" type="text" placeholder="Enter username" /></div>
+<div class="imgcontainer"><label><strong>Password</strong></label> <input name="psw" required="" type="password" placeholder="Enter Password" /></div>
+<div class="imgcontainer"><button type="submit">Login</button> <button class="cancelbtn" type="button">Cancel</button></div>
+</form>
