@@ -1,3 +1,3 @@
 class Tournament < ActiveRecord::Base
-	has_one :player_group
+	has_one :player_groups
 end
