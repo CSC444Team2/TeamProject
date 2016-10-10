@@ -1,6 +1,7 @@
 <body>
     <b>Tournament name: </b><%= @tournament.name %> <br />
     <b>Tournament id: </b> <%= @tournament.id %> <br />
-    <%= link_to 'Players', articles_path %>
+    <h2>Players</h2>
+		<%= render @tournament.player_groups %>
     <%= link_to "All tournaments", "/tournaments" %>
 </body>
