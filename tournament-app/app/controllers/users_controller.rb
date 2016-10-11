@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	http_basic_authenticate_with name: "admin", password: "admin", except: [:index, :show]
+	#http_basic_authenticate_with name: "admin", password: "admin", except: [:index, :show]
 
 	def index
 		@users = User.all
@@ -46,6 +46,6 @@ class UsersController < ApplicationController
 
 	private
 		def user_params
-			params.require(:user).permit(:first_name, :last_name)
+			params.require(:user).permit(:first_name, :last_name, :email, :password_digest)
 		end
 end
