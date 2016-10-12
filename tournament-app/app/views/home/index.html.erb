@@ -1,4 +1,11 @@
 <html>
+	<% if logged_in? %>
+		<%= link_to "Profile", @current_user %>
+		<%= link_to "Logout", logout_path, method: "delete" %>
+	<% else %>
+		<%= link_to "Login", login_path%>
+	<% end %>
+	<br/>
     <%= link_to "Tournaments", "/tournaments" %>
     <%= link_to "Users", "/users" %><br/>
     THIS IS THE HOME PAGE!!!!!!!!

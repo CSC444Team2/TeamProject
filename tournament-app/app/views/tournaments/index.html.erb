@@ -6,6 +6,8 @@
             <%= t.name %>
             <%= link_to "Show Details", tournament_path(t) %>
             <%= link_to "Edit", edit_tournament_path(t) %>
+            <%= link_to 'Destroy', tournament_path(t), method: :delete, 
+            data: { confirm: 'Are you sure?' }  %>
         </p>
     <% end %>
     <%= link_to 'New Tournament', "/tournaments/new" %>
