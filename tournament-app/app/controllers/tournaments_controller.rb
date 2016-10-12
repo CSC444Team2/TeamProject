@@ -1,4 +1,5 @@
 class TournamentsController < ApplicationController
+    before_action :require_user, only: [:new, :create, :edit, :update, :destroy]#!!!!!
     def index
         @tournaments = Tournament.all
     end
@@ -27,6 +28,12 @@ class TournamentsController < ApplicationController
         else
             render 'new'
         end
+    end
+
+    def destroy
+        @tournament = Tournament.find(params[:id])
+        @tournament.destroy
+        redirect_to tournaments_path
     end
     
     private
