@@ -157,7 +157,8 @@ ul#menu li.current a, ul#menu li:hover a
 
 .content_item
 { width: 580px;
-  margin-bottom: 20px;}
+  margin-bottom: 20px;
+}
 
 .content_container
 { width: 270px;
@@ -205,6 +206,17 @@ ul#menu li.current a, ul#menu li:hover a
   border-radius: 7px 7px 7px 7px;
   -moz-border-radius: 7px 7px 7px 7px;
   -webkit-border: 7px 7px 7px 7px;}
+
+.content_blue_container_box
+{
+  width: 140px;
+  padding: 10px 5px 15px 5px;
+  text-align: center;
+  margin: 10px 0 10px 0;
+  float: left;
+  border-radius: 7px 7px 7px 7px;
+  background: #1BE1F1;
+}
 
 #footer
 { width: 960px;
@@ -290,16 +302,16 @@ ul#menu li.current a, ul#menu li:hover a
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;}
 
 #banner_image {
-	width: 80%;
-	height: 20%;
-	float: left;
-	margin: 20px 0 0 0;
-	padding: 0 0 0 0;
+  width: 80%;
+  height: 20%;
+  float: left;
+  margin: 20px 0 0 0;
+  padding: 0 0 0 0;
 }
 #slider-wrapper {
     height: 300px;
-	background: transparent;
-	width: 90%;
+  background: transparent;
+  width: 90%;
 }
 #slider {
     background: url("../images/loading.gif") no-repeat scroll 50% 50% transparent;
@@ -414,4 +426,16 @@ a.nivo-nextNav {
 }
 .nivo-controlNav a.active {
     background-position: 0 -22px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
 }
