@@ -1,12 +1,159 @@
 <html>
-    <h1>Tourna</h1>
-    <%= link_to "Home", "/home/index" %><br />
-    <% @tournaments.each do |t| %>
-        <p> 
-            <%= t.name %>
-            <%= link_to "Show Details", tournament_path(t) %>
-            <%= link_to "Edit", edit_tournament_path(t) %>
-        </p>
-    <% end %>
-    <%= link_to 'New Tournament', "/tournaments/new" %>
+<%= link_to "Home", "/home/index" %><br />
+<% @tournaments.each do |t| %>
+<p> 
+    <%= t.name %>
+    <%= link_to "Show Details", tournament_path(t) %>
+    <%= link_to "Edit", edit_tournament_path(t) %>
+    <%= link_to 'Destroy', tournament_path(t), method: :delete, 
+    data: { confirm: 'Are you sure?' }  %>
+</p>
+<% end %>
+<%= link_to 'New Tournament', "/tournaments/new" %>
+<head>
+  <title>Tournaments</title>
+  <meta name="description" content="free website template" />
+  <meta name="keywords" content="enter your keywords here" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+  <script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider();
+    });
+</script>
+
+</head>
+
+<body>
+  <div id="main">
+
+    <div id="menubar">
+
+      <div id="welcome">
+        <h1><a href="#">Golf Stuff</a></h1>
+    </div><!--close welcome-->
+
+    <div id="menu_items">
+        <ul id="menu">
+        <li><a href="/home/index.html">Home</a></li>
+          <li class="current"><a href="tournaments.html">Tournaments</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="ourStory.html">Our Story</a></li>
+          <li><a href="termsOfService.html">Terms of Service</a></li>
+          <li><%= link_to "Login", login_path%></li>
+      </ul>
+  </div><!--close menu-->
+
+</div><!--close menubar-->
+
+<div id="site_content">
+
+  <div id="banner_image">
+    <div id="slider-wrapper">
+      <div id="slider" class="nivoSlider">
+        <img src="images/home_1.jpg" alt="" />
+        <img src="images/home_2.jpg" alt="" />
+    </div><!--close slider-->
+</div><!--close slider_wrapper-->
+</div><!--close banner_image-->
+
+<div class="sidebar_container">
+
+    <div class="sidebar">
+      <div class="sidebar_item">
+        <a href="/tournaments/new"><h2>New Tournament</h2></a>
+    </div><!--close sidebar_item-->
+</div><!--close sidebar-->
+
+<div class="sidebar">
+  <div class="sidebar_item">
+    <h2>Latest Update</h2>
+    <h3>April 2013</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque cursus tempor enim.</p>
+</div><!--close sidebar_item-->
+</div><!--close sidebar-->
+
+<div class="sidebar">
+  <div class="sidebar_item">
+    <h3>March 2013</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque cursus tempor enim.</p>
+</div><!--close sidebar_item-->
+</div><!--close sidebar-->
+
+<div class="sidebar">
+  <div class="sidebar_item">
+    <h3>February 2013</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque cursus tempor enim.</p>
+</div><!--close sidebar_item-->
+</div><!--close sidebar-->
+
+</div><!--close sidebar_container-->
+
+<div id="content">
+
+    <div class="content_item">
+        <h1>Current Tournaments</h1>
+        <p>See below for all of our current tournaments.</p>
+
+        <table style="width:100%">
+            <tr>
+                <th>Tournament name</th>
+                <th>Tournament location</th>
+            </tr>
+            <tr>
+                <td>UofT Open</td>
+                <td>Toronto, Ontario</td>
+                <tr>
+                    <tr>
+                        <td>The Masters</td>
+                        <td>Augusta, Georgia</td>
+                    </tr>
+                    <tr>
+                        <td>RBC Canadian Open</td>
+                        <td>Vancouver, British Columbia</td>
+                    </tr>        
+                </table>          
+
+            </div><!--close content_item-->
+
+        </div><!--close content-->
+
+        <div id="content_green">
+
+            <div class="content_green_container_box">
+              <h4>Latest Blog Post</h4>
+              <p> Phasellus laoreet feugiat risus. Ut tincidunt, ante vel fermentum iaculis.</p>
+              <a href="#">Read more</a>
+          </div><!--close content_green_container_box-->
+
+          <div class="content_green_container_box">
+           <h4>Latest News</h4>
+           <p> Phasellus laoreet feugiat risus. Ut tincidunt, ante vel fermentum iaculis.</p>
+           <a href="#">Read more</a>
+       </div><!--close content_green_container_box-->
+
+       <div class="content_green_container_boxl">
+          <h4>Latest Projects</h4>
+          <p> Phasellus laoreet feugiat risus. Ut tincidunt, ante vel fermentum iaculis.</p>
+          <a href="#">Read more</a>
+      </div><!--close content_green_container_box1-->
+
+  </div><!--close content_green-->
+
+</div><!--close site_content-->
+
+</div><!--close main-->
+
+<div id="footer">
+
+</div><!--close footer-->
+
+</body>
+
+
+
 </html>

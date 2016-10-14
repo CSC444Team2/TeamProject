@@ -1,7 +1,9 @@
 <html>
-    <%= link_to "Tournaments", "/tournaments" %>
+	<% if logged_in? %>
+		<%= link_to "Profile", @current_user %>
+		<%= link_to "Logout", logout_path, method: "delete" %>
+	<% end %>
     <%= link_to "Users", "/users" %><br/>
-    THIS IS THE HOME PAGE!!!!!!!!
     <head>
   <title>Welcome</title>
   <meta name="keywords" content="golf tournament" />
@@ -31,7 +33,7 @@
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="ourStory.html">Our Story</a></li>
           <li><a href="termsOfService.html">Terms of Service</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><%= link_to "Login", login_path%></li>
         </ul>
       </div><!--close menu-->
 
@@ -41,7 +43,7 @@
 
 	  <div id="banner_image">
 	    <div id="slider-wrapper">
-            <img src="images/ball.jpg" alt="" />
+            <img src="/images/ball.jpg" alt="" />
 		</div><!--close slider_wrapper-->
 	  </div><!--close banner_image-->
 
@@ -148,3 +150,6 @@
 
 </body>
 </html>
+=======
+</html>
+>>>>>>> ddb49752bfcf72b0a6ea75bbff05f8859b9a0cd9
