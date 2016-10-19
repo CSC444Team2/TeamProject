@@ -5,12 +5,16 @@
 <br>
 <br>
 <div id="login_div">
-<h1 id="loginHeader">Please Login</h1>
-<%= form_for(:session, url:login_path, :class => "login_form") do |f| %>
-	 <%= f.email_field :email, :placeholder => "Email", :class => "form_input" %>
-	 <%= f.password_field :password, :placeholder => "Password", :class => "form_input" %>
-	 <%= f.submit "Log in", :class => "login_button" %>
-	 <p id="login_message">New user? <%= link_to "Sign up!", signup_path, :class => "sign_up" %></p>
-<% end %>
+	<%= form_for(:session, url: login_path, :class => "login_form") do |f| %>
+		<% if flash[:danger] %>
+	    	<div class="notice"><%= flash.now[:danger] %></div>
+	    <% end %>
+		<h1 id="loginHeader">Please Login</h1>
+		 <%= f.email_field :email, :placeholder => "Email", :class => "login_input" %>
+		 <%= f.password_field :password, :placeholder => "Password", :class => "login_input" %>
+		 <%= f.submit "Log in", :class => "login_button" %>
+		 <p id="login_message">New user? <%= link_to "Sign up!", signup_path, :class => "sign_up" %></p>
+	<% end %>
 </div>
 </html>
+
