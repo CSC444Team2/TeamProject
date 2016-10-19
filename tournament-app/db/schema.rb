@@ -10,11 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010151104) do
+ActiveRecord::Schema.define(version: 20161019131237) do
 
-  create_table "player_groups", force: :cascade do |t|
+  create_table "organizes", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id", "person_id"], name: "index_organizes_on_event_id_and_person_id", unique: true
+    t.index ["event_id"], name: "index_organizes_on_event_id"
+    t.index ["person_id"], name: "index_organizes_on_person_id"
+  end
+
+  create_table "plays", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id", "person_id"], name: "index_plays_on_event_id_and_person_id", unique: true
+    t.index ["event_id"], name: "index_plays_on_event_id"
+    t.index ["person_id"], name: "index_plays_on_person_id"
+  end
+
+  create_table "sponsors", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id", "person_id"], name: "index_sponsors_on_event_id_and_person_id", unique: true
+    t.index ["event_id"], name: "index_sponsors_on_event_id"
+    t.index ["person_id"], name: "index_sponsors_on_person_id"
   end
 
   create_table "tournaments", force: :cascade do |t|

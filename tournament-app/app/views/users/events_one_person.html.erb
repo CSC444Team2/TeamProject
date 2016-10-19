@@ -1,0 +1,13 @@
+<%= provide(:title, @title) %>
+<% if @events.any? %>
+<table>
+  <tr>
+    <th>Event Name</th>
+  </tr>
+	<% @events.each do |e| %>
+    <tr>
+      <td><%= e.name %></td>
+    </tr>
+  	<% end %>
+</table>
+<% end %>

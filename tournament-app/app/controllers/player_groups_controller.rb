@@ -1,4 +1,5 @@
 class PlayerGroupsController < ApplicationController
+	#!!!!!!!!!!!!!!!!!!!!!This file is to be deleted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	def create
 		@player_group = Player_group.find(params[:player_group_id])
 		@user = @player_group.users.create(user_params)
