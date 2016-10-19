@@ -35,6 +35,27 @@ class TournamentsController < ApplicationController
         @tournament.destroy
         redirect_to tournaments_path
     end
+
+    def players
+        @title = "Players"
+        @event = Tournament.find(params[:id])
+        @persons = @event.players#.paginate(page: params[:page])
+        render "persons_one_event"
+    end
+
+    def organizers
+        @title = "Organizers"
+        @event = Tournament.find(params[:id])
+        @persons = @event.organizers#.paginate(page: params[:page])
+        render "persons_one_event"
+    end
+
+    def sponsors
+        @title = "Sponsors"
+        @event = Tournament.find(params[:id])
+        @persons = @event.sponsors#.paginate(page: params[:page])
+        render "persons_one_event"
+    end
     
     private
     def tournament_params

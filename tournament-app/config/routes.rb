@@ -14,8 +14,19 @@ Rails.application.routes.draw do
 	delete 'logout' => 'sessions#destroy'
 
 	resources :tournaments do 
+	  member do
+	  	get :players, :organizers, :sponsors
+	  end
 	  resources :player_groups
 	end
 
-	resources :users
+	resources :users do
+		member do
+			get :played_events, :organized_events, :sponsored_events
+		end
+	end
+
+	resources :plays, only: [:create, :destroy]
+	resources :organizes, only: [:create, :destroy]
+	resources :sponsors, only: [:create, :destroy]
 end
