@@ -12,4 +12,9 @@ Tournament.create(name: 'myTournament')
 Tournament.create(name: 'myTournament1')
 Tournament.create(name: 'myTournament2')
 
-
+User.create(first_name: 'aasdfadf', last_name: 'a', email: 'aasdf@aasdf.com', 
+	password:'1234567', password_confirmation:'1234567')
+User.create(first_name: 'b', last_name: 'b', email: 'b@b.com', 
+	password:'1234567', password_confirmation:'1234567')
+User.create(first_name: 'c', last_name: 'c', email: 'c@c.com', 
+	password:'1234567', password_confirmation:'1234567')

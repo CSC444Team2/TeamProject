@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 
 		if @user.save
+			log_in(@user)
 			redirect_to @user
 		else
 			render 'new'
@@ -42,6 +43,27 @@ class UsersController < ApplicationController
   		@user.destroy
  
   		redirect_to users_path
+	end
+
+	def played_events
+		@title = "Played Events"
+		@person = User.find(params[:id])
+		@events = @person.played_events#.paginate(page: params[:page])
+		render "events_one_person"
+	end
+
+	def organized_events
+		@title = "Organized Events"
+		@person = User.find(params[:id])
+		@events = @person.organized_events#.paginate(page: params[:page])
+		render "events_one_person"
+	end
+
+	def sponsored_events
+		@title = "Sponsored Events"
+		@person = User.find(params[:id])
+		@events = @person.sponsored_events#.paginate(page: params[:page])
+		render "events_one_person"
 	end
 
 	private
