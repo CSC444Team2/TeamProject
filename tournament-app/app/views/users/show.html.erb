@@ -1,18 +1,27 @@
-<p>
-  <strong>First Name:</strong>
-  <%= @user.first_name %>
-</p>
- 
-<p>
-  <strong>Last Name:</strong>
-  <%= @user.last_name %>
-</p>
+<p><strong>Welcome to your personal profile page!</strong></p>
+<p>&nbsp;</p>
+<p><strong>General Information</strong></p>
+<p><strong>First Name:</strong><%= @user.first_name %></p>
+<p><strong>Last Name:</strong><%= @user.last_name %></p>
+<p><strong><img src="Desktop" alt="profile" width="214" height="214" /></strong></p>
+<p><strong>Gender:</strong></p>
+<p><strong>Age:</strong></p>
+<p><strong>Birthdate:</strong></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
- 
+<p>&nbsp;</p>
+
+<p><strong>Contact Information</strong></p>
+<p><strong>Email:</strong><%= @user.email %></p>
+<p><strong>Phone Number:</strong></p>
+<p><strong>Address:</strong></p>
+<p>&nbsp;</p>
+<p><strong>Addition Information</strong></p>
+<p><strong>Education:</strong></p>
+<p><strong>Personal Message:</strong></p>
+<p>I love Golf. Golf is life.</p>
+<p>&nbsp;</p>
+
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Users', users_path %>
 <%= link_to 'Home', '/home/index' %>
