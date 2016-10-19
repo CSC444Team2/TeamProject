@@ -1,46 +1,50 @@
+<html>
+</script>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<div id="login_div">
+<h1>Create User</h1>
 <%= form_for @user do |f| %>
+  <p id="create_user">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name, :class =>"form_input",:required => true%>
+  </p>
  
-  <% if @user.errors.any? %>
+  <p id="create_user">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name, :class =>"form_input", :required => true%>
+  </p>
+
+  <p id="create_user">
+    <%= f.label :email %><br>
+    <%= f.email_field :email, :class =>"form_input", :required => true%>
+  </p>
+
+  <p id="create_user">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, :class =>"form_input", :required => true, :minlength => 6 %>
+  </p>
+
+  <p id="create_user">
+    <%= f.label :confirm_password %><br>
+    <%= f.password_field :password_confirmation, :class =>"form_input", :required => true%>
+  </p>
+ 
+  <p id="create_user">
+    <%= f.submit "Create Account", :class => "login_button"%>
+  </p>
+
+    <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2>
-        <%= pluralize(@user.errors.count, "error") %> prohibited
-        this user from being saved:
-      </h2>
       <ul>
         <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+          <li id="errors"><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
- 
-  <p>
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </p>
- 
-  <p>
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </p>
-
-  <p>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </p>
-
-  <p>
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </p>
-
-  <p>
-    <%= f.label :confirm_password %><br>
-    <%= f.password_field :password_confirmation %>
-  </p>
- 
-  <p>
-    <%= f.submit "Create my account", class: "btn btn-primary" %>
-  </p>
+  </div>
  
 <% end %>
+</html>
