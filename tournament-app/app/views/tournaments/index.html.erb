@@ -1,5 +1,5 @@
 <html>
-<%= link_to "Home", "/home/index" %><br />
+<!--
 <% @tournaments.each do |t| %>
 <p> 
     <%= t.name %>
@@ -10,6 +10,7 @@
 </p>
 <% end %>
 <%= link_to 'New Tournament', "/tournaments/new" %>
+-->
 <head>
   <title>Tournaments</title>
   <meta name="description" content="free website template" />
@@ -38,7 +39,7 @@
 
     <div id="menu_items">
         <ul id="menu">
-        <li><a href="/home/index.html">Home</a></li>
+          <li><%= link_to "Home", "/home/index" %><!--a href="/home/index.html">Home</a--></li>
           <li class="current"><a href="tournaments.html">Tournaments</a></li>
           <li><a href="features.html">Features</a></li>
           <li><a href="faq.html">FAQ</a></li>
@@ -102,16 +103,28 @@
             <tr>
                 <td>UofT Open</td>
                 <td>Toronto, Ontario</td>
-                <tr>
-                    <tr>
-                        <td>The Masters</td>
-                        <td>Augusta, Georgia</td>
-                    </tr>
-                    <tr>
-                        <td>RBC Canadian Open</td>
-                        <td>Vancouver, British Columbia</td>
-                    </tr>        
-                </table>          
+            </tr>
+            <tr>
+                <td>The Masters</td>
+                <td>Augusta, Georgia</td>
+            </tr>
+            <tr>
+                <td>RBC Canadian Open</td>
+                <td>Vancouver, British Columbia</td>
+            </tr>
+            <% @tournaments.each do |t| %>
+            <tr> 
+                <td><%= t.name %></td>
+                <td>Some Place</td>
+                <td><%= link_to "Show Details", tournament_path(t) %></td>
+                <td><%= link_to "Edit", edit_tournament_path(t) %></td>
+                <td><%= link_to 'Destroy', tournament_path(t), method: :delete, 
+                data: { confirm: 'Are you sure?' }  %></td>
+            </tr>
+            <% end %>
+                 
+          </table>  
+          <%= link_to 'New Tournament', "/tournaments/new" %>
 
             </div><!--close content_item-->
 
