@@ -1,18 +1,18 @@
-<p>
-  <strong>First Name:</strong>
-  <%= @user.first_name %>
-</p>
- 
-<p>
-  <strong>Last Name:</strong>
-  <%= @user.last_name %>
-</p>
+<p><strong>Welcome to your personal profile page!</strong></p>
+<p>&nbsp;</p>
+<p><strong>First Name:</strong><%= @user.first_name %></p>
+<p><strong>Last Name:</strong><%= @user.last_name %></p>
+<p>&nbsp;</p>
+<p><strong>Contact Information</strong></p>
+<p><strong>Email:</strong><%= @user.email %></p>
+<p><strong>Phone Number:</strong></p>
+<p><strong>Address:</strong></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
- 
+
+
+
+
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Users', users_path %>
 <%= link_to 'Home', '/home/index' %>
