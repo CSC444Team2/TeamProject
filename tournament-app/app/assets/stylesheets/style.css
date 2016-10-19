@@ -442,7 +442,7 @@ td, th {
 
 div#login_div {
   width: 40%;
-  padding: 8% 0 0;
+  padding: 5% 0 0;
   margin: auto;
 }
 
@@ -456,7 +456,7 @@ div#login_div {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.login_input {
+.form_input {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #ffffff;
@@ -496,4 +496,11 @@ p#login_message {
 .sign_up {
   color: #4CAF50;
   text-decoration: none;
+}
+
+p#create_user {
+  padding-bottom: 0;
+}
+li#errors {
+  color: red;
 }
