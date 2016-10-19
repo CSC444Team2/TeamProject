@@ -1,6 +1,16 @@
-<%= form_for(:session, url:login_path) do |f| %>
-	 <%= f.email_field :email, :placeholder => "Email" %>
-	 <%= f.password_field :password, :placeholder => "Password" %>
-	 <%= f.submit "Log in" %>
-	 <p>New user? <%= link_to "Sign up!", signup_path %></p>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<br>
+<br>
+<div id="login_div">
+<h1 id="loginHeader">Please Login</h1>
+<%= form_for(:session, url:login_path, :class => "login_form") do |f| %>
+	 <%= f.email_field :email, :placeholder => "Email", :class => "login_input" %>
+	 <%= f.password_field :password, :placeholder => "Password", :class => "login_input" %>
+	 <%= f.submit "Log in", :class => "login_button" %>
+	 <p id="login_message">New user? <%= link_to "Sign up!", signup_path, :class => "sign_up" %></p>
 <% end %>
+</div>
+</html>
