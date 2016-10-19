@@ -44,8 +44,12 @@
           <li><a href="features.html">Features</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="ourStory.html">Our Story</a></li>
-          <li><a href="termsOfService.html">Terms of Service</a></li>
+          <% if logged_in? %>
+          <li><%= link_to "Profile", @current_user %></li>
+          <li><%= link_to "Logout", logout_path, method: "delete" %></li>
+          <% else %>
           <li><%= link_to "Login", login_path%></li>
+          <% end %>
       </ul>
   </div><!--close menu-->
 
