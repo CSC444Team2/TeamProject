@@ -16,7 +16,7 @@
     <% if current_user.nil? || !current_user.sponsored_a?(@tournament) %>
       <%= button_to "Sponsor!", :controller => "sponsor", :action => "create", :method=> :post, :params=> {event_id: @tournament.id} %>
     <% else %>
-      <td><%= link_to "Stop sponsoring...", play_path(@tournament.id), :method=> :delete, data: { confirm: 'Are you sure?' } %>
+      <td><%= link_to "Stop sponsoring...", sponsor_path(@tournament.id), :method=> :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
     <!--:((((((((-->
 
