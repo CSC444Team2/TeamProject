@@ -21,6 +21,68 @@
 <p>I love Golf. Golf is life.</p>
 <p>&nbsp;</p>
 
+<!--!!!!!Does not work for some reason...!!!!-->
+<%= render partial: "show_events_for_one_person", locals: { title: "Played Tournaments", events: @user.played_events } %>
+
+<!--:(-->
+<p><strong> Played Tournaments </strong></p>
+<% if @user.played_events.any?%>
+	<table>
+		<tr>
+			<th>Tournament ID</th>
+			<th>Tournament Name</th>
+		</tr>
+		<% @user.played_events.each do |e| %>
+			<tr>
+				<td><%= e.id %></td>
+				<td><%= e.name %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	No played events
+<% end %>
+<p>&nbsp;</p>
+
+<p><strong> Organized Tournaments </strong></p>
+<% if @user.organized_events.any?%>
+	<table>
+		<tr>
+			<th>Tournament ID</th>
+			<th>Tournament Name</th>
+		</tr>
+		<% @user.organized_events.each do |e| %>
+			<tr>
+				<td><%= e.id %></td>
+				<td><%= e.name %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	No organized events
+<% end %>
+<p>&nbsp;</p>
+
+
+<p><strong> Sponsored Tournaments </strong></p>
+<% if @user.sponsored_events.any?%>
+	<table>
+		<tr>
+			<th>Tournament ID</th>
+			<th>Tournament Name</th>
+		</tr>
+		<% @user.sponsored_events.each do |e| %>
+			<tr>
+				<td><%= e.id %></td>
+				<td><%= e.name %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	No sponsored events
+<% end %>
+<p>&nbsp;</p>
+<!--:(-->
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Users', users_path %>
