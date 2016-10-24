@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	#http_basic_authenticate_with name: "admin", password: "admin", except: [:index, :show]
+	http_basic_authenticate_with name: "admin", password: "admin"#, except: [:index, :show]
 	#before_action :require_user, only: [:index, :show]
 	def index
 		@users = User.all
@@ -40,30 +40,31 @@ class UsersController < ApplicationController
 
 	def destroy
   		@user = User.find(params[:id])
+  		log_out(@user)
   		@user.destroy
  
   		redirect_to users_path
 	end
 
 	def played_events
-		@title = "Played Events"
+		@title = "Played Tournaments"
 		@person = User.find(params[:id])
 		@events = @person.played_events#.paginate(page: params[:page])
-		render "events_one_person"
+		render "_show_events_for_one_person"
 	end
 
 	def organized_events
-		@title = "Organized Events"
+		@title = "Organized Tournaments"
 		@person = User.find(params[:id])
 		@events = @person.organized_events#.paginate(page: params[:page])
-		render "events_one_person"
+		render "_show_events_for_one_person"
 	end
 
 	def sponsored_events
-		@title = "Sponsored Events"
+		@title = "Sponsored Tournaments"
 		@person = User.find(params[:id])
 		@events = @person.sponsored_events#.paginate(page: params[:page])
-		render "events_one_person"
+		render "_show_events_for_one_person"
 	end
 
 	private

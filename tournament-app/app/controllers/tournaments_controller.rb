@@ -1,5 +1,7 @@
 class TournamentsController < ApplicationController
-    before_action :require_user, only: [:new, :create, :edit, :update, :destroy]#!!!!!
+    before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_organizer, only: [:edit, :update, :destroy]
+    
     def index
         @tournaments = Tournament.all
     end
@@ -19,11 +21,15 @@ class TournamentsController < ApplicationController
     end
     def new
         @tournament = Tournament.new
+        @organizer = current_user
+        @organizer.organize_a(@tournament)
     end
     
     def create
         @tournament=Tournament.new(tournament_params)
-        if @tournament.save
+        @curr_user = current_user
+        if !@curr_user.nil? && @tournament.save
+            @curr_user.organize_a(@tournament)
             redirect_to tournament_path(@tournament) #may change later '/tournaments'
         else
             render 'new'
@@ -40,21 +46,21 @@ class TournamentsController < ApplicationController
         @title = "Players"
         @event = Tournament.find(params[:id])
         @persons = @event.players#.paginate(page: params[:page])
-        render "persons_one_event"
+        render "_show_persons_for_one_event"
     end
 
     def organizers
         @title = "Organizers"
         @event = Tournament.find(params[:id])
         @persons = @event.organizers#.paginate(page: params[:page])
-        render "persons_one_event"
+        render "_show_persons_for_one_event"
     end
 
     def sponsors
         @title = "Sponsors"
         @event = Tournament.find(params[:id])
         @persons = @event.sponsors#.paginate(page: params[:page])
-        render "persons_one_event"
+        render "_show_persons_for_one_event"
     end
     
     private
