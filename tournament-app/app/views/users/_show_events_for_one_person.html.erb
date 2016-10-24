@@ -1,0 +1,18 @@
+<p><strong><%= @title %></strong></p>
+<% if @events && @events.any? %>
+<table>
+	<tr>
+		<th>Tournament ID</th>
+		<th>Tournament Name</th>
+	</tr>
+	<% @events.each do |e| %>
+    <tr>
+      <td><%= e.id %></td>
+      <td><%= e.name %></td>
+      <td><%= link_to "Show Details", tournament_path(e) %></td>
+    </tr>
+  	<% end %>
+</table>
+<% elsif @events%>
+	None
+<% end %>

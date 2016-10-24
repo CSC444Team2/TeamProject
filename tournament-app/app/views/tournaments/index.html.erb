@@ -101,33 +101,45 @@
 
         <table style="width:100%">
             <tr>
+                <th>ID</th>
                 <th>Tournament name</th>
                 <th>Tournament location</th>
             </tr>
             <tr>
+                <td>-</td>
                 <td>UofT Open</td>
                 <td>Toronto, Ontario</td>
             </tr>
             <tr>
+                <td>-</td>
                 <td>The Masters</td>
                 <td>Augusta, Georgia</td>
             </tr>
             <tr>
+                <td>-</td>
                 <td>RBC Canadian Open</td>
                 <td>Vancouver, British Columbia</td>
             </tr>
             <% @tournaments.each do |t| %>
             <tr> 
+                <td><%= t.id %></td>
                 <td><%= t.name %></td>
                 <td>Some Place</td>
                 <td><%= link_to "Show Details", tournament_path(t) %></td>
-                <td><%= link_to "Edit", edit_tournament_path(t) %></td>
-                <td><%= link_to 'Destroy', tournament_path(t), method: :delete, 
-                data: { confirm: 'Are you sure?' }  %></td>
+                <% if current_user.nil? || !current_user.played_in?(t) %>
+                  <td><%= button_to "PLAY!", :controller => "play", :action => "create", :method=> :post, :params=> {event_id: t.id} %></td>
+                <% else %>
+                  <td><%= link_to "Stop playing...", play_path(t.id), :method=> :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end %>
+
+                <% if !current_user.nil? && current_user.organized_a?(t) %>
+                  <td><%= link_to "Edit", edit_tournament_path(t) %></td>
+                  <td><%= link_to 'Destroy', tournament_path(t), method: :delete, 
+                  data: { confirm: 'Are you sure?' }  %></td>
+                <% end %>
             </tr>
             <% end %>
-                 
-          </table>  
+          </table>
           <%= link_to 'New Tournament', "/tournaments/new" %>
 
             </div><!--close content_item-->

@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 	  member do
 	  	get :players, :organizers, :sponsors
 	  end
-	  resources :player_groups
 	end
 
 	resources :users do
@@ -26,7 +25,7 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resources :plays, only: [:create, :destroy]
-	resources :organizes, only: [:create, :destroy]
-	resources :sponsors, only: [:create, :destroy]
+	resources :play, only: [:create, :destroy]
+	resources :organize, only: [:create, :destroy]
+	resources :sponsor, only: [:create, :destroy]
 end

@@ -1,7 +1,86 @@
 <body>
     <b>Tournament name: </b><%= @tournament.name %> <br />
     <b>Tournament id: </b> <%= @tournament.id %> <br />
+
+	<!--:((((((((-->
+	<% if current_user.nil? || !current_user.played_in?(@tournament) %>
+      <%= button_to "PLAY!", :controller => "play", :action => "create", :method=> :post, :params=> {event_id: @tournament.id} %>
+    <% else %>
+      <td><%= link_to "Stop playing...", play_path(@tournament.id), :method=> :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    <% if current_user.nil? || !current_user.organized_a?(@tournament) %>
+      <%= button_to "Organize!", :controller => "organize", :action => "create", :method=> :post, :params=> {event_id: @tournament.id} %>
+    <% else %>
+      <td><%= link_to "Stop organizing...", organize_path(@tournament.id), :method=> :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    <% if current_user.nil? || !current_user.sponsored_a?(@tournament) %>
+      <%= button_to "Sponsor!", :controller => "sponsor", :action => "create", :method=> :post, :params=> {event_id: @tournament.id} %>
+    <% else %>
+      <td><%= link_to "Stop sponsoring...", play_path(@tournament.id), :method=> :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    <!--:((((((((-->
+
+	<!--!!!!!!!!Does NOT work for some reason!!!!!!!!! NOOO!!!!!!-->
+	<%= render partial: "show_persons_for_one_event", 
+	locals: {
+		title: "Organizers",
+		persons: @tournament.organizers } %>
+	
+	<!--:((((((((-->
     <h2>Players</h2>
-		<!--%= render @tournament.player_groups %-->
+	<% if @tournament.players && @tournament.players.any? %>
+	  <table>
+	    <tr>
+	      <th>First Name</th>
+	      <th>Last Name</th>
+	    </tr>
+	  	<% @tournament.players.each do |p| %>
+	      <tr>
+	        <td><%= p.first_name %></td>
+	        <td><%= p.last_name %></td>
+	      </tr>
+	    <% end %>
+	  </table>
+	<% elsif @tournament.players %>
+	  None
+	<% end %>
+
+	<h2>Organizers</h2>
+	<% if @tournament.organizers && @tournament.organizers.any? %>
+	  <table>
+	    <tr>
+	      <th>First Name</th>
+	      <th>Last Name</th>
+	    </tr>
+	  	<% @tournament.organizers.each do |p| %>
+	      <tr>
+	        <td><%= p.first_name %></td>
+	        <td><%= p.last_name %></td>
+	      </tr>
+	    <% end %>
+	  </table>
+	<% elsif @tournament.organizers %>
+	  None
+	<% end %>
+	
+	<h2>Sponsors</h2>
+	<% if @tournament.sponsors && @tournament.sponsors.any? %>
+	  <table>
+	    <tr>
+	      <th>First Name</th>
+	      <th>Last Name</th>
+	    </tr>
+	  	<% @tournament.sponsors.each do |p| %>
+	      <tr>
+	        <td><%= p.first_name %></td>
+	        <td><%= p.last_name %></td>
+	      </tr>
+	    <% end %>
+	  </table>
+	<% elsif @tournament.sponsors %>
+	  None
+	<% end %>
+	<!--:((((((((-->
+	<br/>
     <%= link_to "All tournaments", "/tournaments" %>
 </body>
