@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 		sponsor_involvements.create(event_id: some_event.id)
 	end
 	def not_sponsor(some_event)
-		sponsor_involvements.create(event_id: some_event.id).destroy
+		sponsor_involvements.find_by(event_id: some_event.id).destroy
 	end
 	def sponsored_a?(some_event)
 		sponsored_events.include?(some_event)
