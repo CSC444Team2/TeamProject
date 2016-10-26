@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	http_basic_authenticate_with name: "admin", password: "admin", only: [:index]
-	#before_action :require_user, only: [:index, :show]
+	before_action :is_user_profile, except: [:index, :new, :create, :destroy]
+
 	def index
 		@users = User.all
 	end
@@ -70,5 +71,11 @@ class UsersController < ApplicationController
 	private
 		def user_params
 			params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+		end
+		def is_user_profile
+			@user = User.find(params[:id])
+			if !current_user || @user.id!=session[:user_id]
+				redirect_to "/"
+			end
 		end
 end
