@@ -11,6 +11,7 @@
 Tournament.create(name: 'myTournament')
 Tournament.create(name: 'myTournament1')
 Tournament.create(name: 'myTournament2')
+Tournament.create(name: 'hello', location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
 
 User.create(first_name: 'aasdfadf', last_name: 'a', email: 'aasdf@aasdf.com', 
 	password:'1234567', password_confirmation:'1234567')
