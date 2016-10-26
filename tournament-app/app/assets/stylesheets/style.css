@@ -155,6 +155,13 @@ ul#menu li.current a, ul#menu li:hover a
   padding-top: 5px;
   float: right;}
 
+#tournament_content
+{ width: 580px;
+  margin-bottom: 20px;
+  padding-top: 5px;
+  
+}
+
 .content_item
 { width: 580px;
   margin-bottom: 20px;
@@ -503,4 +510,10 @@ p#create_user {
 }
 li#errors {
   color: red;
+}
+
+div#tournament_div {
+  width: 40%;
+  padding: 5% 0 0;
+  margin: auto;
 }

@@ -61,70 +61,22 @@
   <%= image_tag("ball.jpg", :alt => "golf ball") %>
   </div><!--close slider_wrapper-->
 
-<div class="sidebar_container">
 
-    <div class="sidebar">
-      <div class="sidebar_item">
-        <a href="/tournaments/new"><h2>New Tournament</h2></a>
-    </div><!--close sidebar_item-->
-</div><!--close sidebar-->
 
-<div class="sidebar">
-  <div class="sidebar_item">
-    <h2>Latest Update</h2>
-    <h3>April 2013</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque cursus tempor enim.</p>
-</div><!--close sidebar_item-->
-</div><!--close sidebar-->
-
-<div class="sidebar">
-  <div class="sidebar_item">
-    <h3>March 2013</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque cursus tempor enim.</p>
-</div><!--close sidebar_item-->
-</div><!--close sidebar-->
-
-<div class="sidebar">
-  <div class="sidebar_item">
-    <h3>February 2013</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque cursus tempor enim.</p>
-</div><!--close sidebar_item-->
-</div><!--close sidebar-->
-
-</div><!--close sidebar_container-->
-
-<div id="content">
+<div id="tournament_content">
 
     <div class="content_item">
         <h1>Current Tournaments</h1>
         <p>See below for all of our current tournaments.</p>
 
         <table style="width:100%">
-            <tr>
-                <th>ID</th>
-                <th>Tournament name</th>
-                <th>Tournament location</th>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>UofT Open</td>
-                <td>Toronto, Ontario</td>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>The Masters</td>
-                <td>Augusta, Georgia</td>
-            </tr>
-            <tr>
-                <td>-</td>
-                <td>RBC Canadian Open</td>
-                <td>Vancouver, British Columbia</td>
-            </tr>
             <% @tournaments.each do |t| %>
             <tr> 
                 <td><%= t.id %></td>
                 <td><%= t.name %></td>
-                <td>Some Place</td>
+                <td><%= t.location %></td>
+                <td><%= t.date %></td>
+                <td><%= t.contact_email %></td>
                 <td><%= link_to "Show Details", tournament_path(t) %></td>
                 <% if current_user.nil? || !current_user.played_in?(t) %>
                   <td><%= button_to "PLAY!", :controller => "play", :action => "create", :method=> :post, :params=> {event_id: t.id} %></td>

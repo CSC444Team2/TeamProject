@@ -1,9 +1,22 @@
 <!-- Don't use "form_for :tournament", that got routing problems  -->
-<%= form_for(@tournament) do |t| %>
-    <div>
-        <%= t.label :tournament_name %>
-        <%= t.text_field :name %>
-        <br />
-    </div>
-    <%= t.submit %>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<div id="tournament_div">
+	<h1 id="tournamentHeader">New Tournament</h1>
+	<%= form_for(@tournament) do |t| %>    
+        <%= t.text_field :name, :placeholder => "Tournament Name", :class => "form_input" %>
+        <%= t.text_field :location, :placeholder => "Location", :class => "form_input" %>
+      	<%= t.label :date %><br />
+      	<%= t.datetime_select :date, :include_blank => true %>
+        <%= t.text_field :contact_email, :placeholder => "Email", :class => "form_input" %>
+        <%= t.text_field :contact_name, :placeholder => "Name", :class => "form_input" %>
+        
+       	 
+   		<%= t.submit "Create Tournament", :class => "login_button" %>
 <% end %>
+</div>
+</html>
+
