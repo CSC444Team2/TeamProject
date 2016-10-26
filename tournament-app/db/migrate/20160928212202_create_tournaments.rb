@@ -3,6 +3,7 @@ class CreateTournaments < ActiveRecord::Migration
     create_table :tournaments do |t|
         t.text :name
         t.timestamps null: false
+        t.text :adf
     end
   end
 end
