@@ -27,6 +27,132 @@
 <br />
 <%= render partial: "show_events_for_one_person", locals: { :@title => "Sponsored Tournaments", :@events => @user.sponsored_events } %>
 <br />
+
+
+
+
+
+
+
+<!--!!!!!Does not work for some reason...!!!!-->
+<%= render partial: "show_events_for_one_person", locals: { title: "Played Tournaments", events: @user.played_events } %>
+
+<!--:(-->
+<p><strong> Played Tournaments </strong></p>
+<% if @user.played_events.any?%>
+	<table>
+		<tr>
+			<th>Tournament ID</th>
+			<th>Tournament Name</th>
+		</tr>
+		<% @user.played_events.each do |e| %>
+			<tr>
+				<td><%= e.id %></td>
+				<td><%= e.name %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	No played events
+<% end %>
+<p>&nbsp;</p>
+
+<p><strong> Organized Tournaments </strong></p>
+<% if @user.organized_events.any?%>
+	<table>
+		<tr>
+			<th>Tournament ID</th>
+			<th>Tournament Name</th>
+		</tr>
+		<% @user.organized_events.each do |e| %>
+			<tr>
+				<td><%= e.id %></td>
+				<td><%= e.name %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	No organized events
+<% end %>
+<p>&nbsp;</p>
+
+
+<table>
+<tbody>
+<tr>
+<td>Tournament ID</td>
+<td>Tournament Title</td>
+<td>Date of Tournament</td>
+<td>Registered Players</td>
+<td>Venue</td>
+</tr>
+<tr>
+<td>xxx</td>
+<td>Tournament ABC</td>
+<td>27-09-2016</td>
+<td>
+<p>Tom</p>
+<p>Jerry</p>
+<p>John</p>
+</td>
+</tr>
+<tr>
+<td>xxx</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong> Sponsored Tournaments </strong></p>
+<% if @user.sponsored_events.any?%>
+	<table>
+		<tr>
+			<th>Tournament ID</th>
+			<th>Tournament Name</th>
+		</tr>
+		<% @user.sponsored_events.each do |e| %>
+			<tr>
+				<td><%= e.id %></td>
+				<td><%= e.name %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	No sponsored events
+<% end %>
+<p>&nbsp;</p>
+
+
+<table>
+<tbody>
+<tr>
+<td>Tournament ID</td>
+<td>Tournament Title</td>
+<td>Date of Tournament</td>
+<td>Registered Players</td>
+</tr>
+<tr>
+<td>xxx</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>xxx</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+<!--:(-->
+
+>>>>>>> bc0beccf0a67262fc748b6ac4e8e55b70f3e2c91
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Users', users_path %>
 <%= link_to 'Home', '/home/index' %>
