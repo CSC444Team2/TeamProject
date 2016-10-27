@@ -1,2 +1,0 @@
-module OrganizeHelper
-end
