@@ -20,8 +20,6 @@ Rails.application.routes.draw do
 			get :played_events, :organized_events, :sponsored_events
 		end
 	end
-
-	resources :play, only: [:create, :destroy]
-	resources :organize, only: [:create, :destroy]
-	resources :sponsor, only: [:create, :destroy]
+	
+	resources :join, only: [:create, :destroy]
 end
