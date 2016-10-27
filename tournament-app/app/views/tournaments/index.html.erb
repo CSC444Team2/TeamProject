@@ -79,9 +79,13 @@
                 <td><%= t.contact_email %></td>
                 <td><%= link_to "Show Details", tournament_path(t) %></td>
                 <% if current_user.nil? || !current_user.played_in?(t) %>
-                  <td><%= button_to "PLAY!", :controller => "play", :action => "create", :method=> :post, :params=> {event_id: t.id} %></td>
+                    <td>
+                      <%= button_to "PLAY!", :controller => "join", :action => "create", :method=> :post, :params=> {event_id: t.id, join: 0} %>
+                    </td>
                 <% else %>
-                  <td><%= link_to "Stop playing...", play_path(t.id), :method=> :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td>
+                      <%= link_to "Stop playing...", join_path(:id => t.id, :params => {:event_id => t.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure?' } %>
+                    </td>
                 <% end %>
 
                 <% if !current_user.nil? && current_user.organized_a?(t) %>
