@@ -558,3 +558,13 @@ table.tournament_table tr:nth-child(even) {
     margin-bottom: 10px;
     border-bottom: solid 1px black;
 }
+
+.description_box {
+  width: 100%;
+  padding: 0 0 100px 0;
+  margin: 0 0 15px;
+}
+
+div#date_dropdown {
+  margin: 0 0 15px;
+}
