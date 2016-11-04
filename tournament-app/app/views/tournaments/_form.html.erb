@@ -9,11 +9,15 @@
 	<%= form_for(@tournament) do |t| %>    
         <%= t.text_field :name, :placeholder => "Tournament Name", :class => "form_input" %>
         <%= t.text_field :location, :placeholder => "Location", :class => "form_input" %>
-      	<%= t.label :date %><br />
-      	<%= t.datetime_select :date, :include_blank => true %>
+
+        <div id="date_dropdown">
+      		<h4>Date</h4>
+      		<%= t.datetime_select :date, :include_blank => true %>
+      	</div>
         <%= t.text_field :contact_email, :placeholder => "Email", :class => "form_input" %>
         <%= t.text_field :contact_name, :placeholder => "Name", :class => "form_input" %>
         
+        <%= t.text_field :description, :class => "description_box" %>
        	 
    		<%= t.submit "Create Tournament", :class => "login_button" %>
 <% end %>
