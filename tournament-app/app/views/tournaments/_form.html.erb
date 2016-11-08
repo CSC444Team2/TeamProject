@@ -17,10 +17,11 @@
         <%= t.text_field :contact_email, :placeholder => "Email", :class => "form_input" %>
         <%= t.text_field :contact_name, :placeholder => "Name", :class => "form_input" %>
         
-        <%= t.text_field :description, :class => "description_box" %>
+        <%= t.text_area :description, cols: "58", rows: "10", :maxlength => 500, :placeholder => "Type your tournament description here..."%>
+        
        	 
    		<%= t.submit "Create Tournament", :class => "login_button" %>
-<% end %>
+  <% end %>
 </div>
 </html>
 
