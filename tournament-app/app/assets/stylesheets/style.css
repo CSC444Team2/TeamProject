@@ -261,7 +261,7 @@ ul#menu li.current a, ul#menu li:hover a
 
 .button_small a
 { padding-left: 5px;
-  color: #FFF;
+  color: #FFFFFF;
   text-shadow: 0px 1px 0px #000;}
 
 .form_settings
@@ -512,7 +512,6 @@ div#login_div {
   cursor: pointer;
   margin: auto;
   width: 100%;
-
 }
 
 p#login_message {
@@ -563,7 +562,7 @@ a.button_tour, .form_tour {
 
 .tournament_table {
     margin-bottom: 13px;
-    overflow: scroll;
+    overflow: scroll; 
 }
 
 .tournament_table td, .tournament_table th{
