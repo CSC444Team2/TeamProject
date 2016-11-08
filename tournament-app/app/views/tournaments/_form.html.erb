@@ -12,7 +12,7 @@
 
         <div id="date_dropdown">
       		<h4>Date</h4>
-      		<%= t.datetime_select :date, :include_blank => true %>
+      		<%= t.datetime_select :date, start_year: Date.current.year %>
       	</div>
         <%= t.text_field :contact_email, :placeholder => "Email", :class => "form_input" %>
         <%= t.text_field :contact_name, :placeholder => "Name", :class => "form_input" %>
