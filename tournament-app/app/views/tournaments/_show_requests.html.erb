@@ -1,0 +1,24 @@
+<% if !requests.nil? %>
+    <h1> <%= title %> </h1>
+    <table>
+    <% requests.each do |r| %>
+    	<% request_sender=User.find(r.sender_id) %>
+		<tr>
+			<td>
+			<% request_sender=User.find(r.sender_id) %>
+			<% request_tournament = Tournament.find(r.receiver_id) %>
+			
+			<%= link_to request_sender.first_name, user_path(request_sender) %> 
+			<%= link_to request_sender.last_name, user_path(request_sender) %> 
+			(<%= link_to request_sender.email, user_path(request_sender) %>) 
+			wants to organize 
+			<%= link_to request_tournament.name, tournament_path(request_tournament) %>:
+			<i><%= request.message %></i>
+			</td>
+
+			<td><%= button_to "Approve", :controller=> "requests", :params => {:request_id => r.id}, :method=>:create, :class=> "button_small button_tour" %></td>
+			<td><%= button_to "Reject", :controller=> "requests", :params => {:request_id => r.id}, :method=>:create, :class=> "button_small button_tour" %></td>
+      	</tr>
+    <% end %>
+    </table>
+<% end %>

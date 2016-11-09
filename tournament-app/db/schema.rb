@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026210506) do
+ActiveRecord::Schema.define(version: 20161109151525) do
 
   create_table "organizes", force: :cascade do |t|
     t.integer  "event_id"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 20161026210506) do
     t.index ["person_id"], name: "index_plays_on_person_id"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.string   "message"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "sponsors", force: :cascade do |t|
     t.integer  "event_id"
     t.integer  "person_id"
@@ -44,14 +52,16 @@ ActiveRecord::Schema.define(version: 20161026210506) do
 
   create_table "tournaments", force: :cascade do |t|
     t.text     "name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.text     "adf"
     t.string   "location"
     t.datetime "date"
     t.string   "contact_email"
     t.string   "contact_name"
     t.boolean  "type"
+    t.text     "description",     limit: 500
+    t.integer  "tournament_type"
   end
 
   create_table "users", force: :cascade do |t|

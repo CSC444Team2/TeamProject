@@ -1,3 +1,6 @@
+<%= render partial: "tournaments/show_requests", locals: {title: "Sent Requests", requests: @user.sent_requests} %>
+<%= render partial: "tournaments/show_requests", locals: {title: "Received Requests", requests: @user.received_requests} %>
+
 <p><strong>Welcome to your personal profile page!</strong></p>
 <p>&nbsp;</p>
 <p><strong>General Information</strong></p>

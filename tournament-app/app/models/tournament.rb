@@ -1,5 +1,5 @@
 class Tournament < ActiveRecord::Base
-	#has_one :player_group
+	#Players/Organizers/Sponsors Roles
 	has_many :player_attendings, class_name: "Play", foreign_key: "event_id",
 									dependent: :destroy
 	has_many :players, through: :player_attendings, source: :person
@@ -20,4 +20,8 @@ class Tournament < ActiveRecord::Base
 	def got_sponsor?(some_sponsor)
 		sponsors.include?(some_sponsor)
 	end
+
+	#Request
+	has_many :received_requests, class_name: "Request", foreign_key: "receiver_id",
+			dependent: :destroy
 end
