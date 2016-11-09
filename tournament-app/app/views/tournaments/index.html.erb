@@ -75,7 +75,6 @@
               <th>Location</th>
               <th>Date</th>
               <th>Contact e-mail</th>
-              <th>Description</th>
               <th>Action</th>
             </tr>
             <% @tournaments.each do |t| %>
@@ -85,7 +84,6 @@
                 <td><%= t.location %></td>
                 <td><%= t.date %></td>
                 <td><%= t.contact_email %></td>
-                <td><%= t.description %></td>
                 <td>
                   <%= link_to "Details", tournament_path(t), :class=>"button_small button_tour" %>
                   <% if current_user.nil? || !current_user.played_in?(t) %>
