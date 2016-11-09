@@ -76,6 +76,9 @@ class UsersController < ApplicationController
 			@user = User.find(params[:id])
 			if !current_user || @user.id!=session[:user_id]
 				redirect_to "/"
+				return false
+			else
+				return true
 			end
 		end
 end
