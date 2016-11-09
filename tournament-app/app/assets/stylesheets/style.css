@@ -531,6 +531,9 @@ p#create_user {
 li#errors {
   color: red;
 }
+p#create_tournament {
+  padding-bottom: 0;
+}
 
 div#tournament_div {
   width: 40%;
