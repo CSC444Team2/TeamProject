@@ -27,6 +27,9 @@
 	<%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players", :@persons => @tournament.players } %>
 	<%= render partial: "show_persons_for_one_event", :locals => { :@title => "Organizers", :@persons => @tournament.organizers } %>
 	<%= render partial: "show_persons_for_one_event", :locals => { :@title => "Sponsors", :@persons => @tournament.sponsors } %>
+  <br/>
+  <h1>Description</h1>
+  <%= @tournament.description %>
 	
 	<br/>
     <%= link_to "All tournaments", "/tournaments" %>

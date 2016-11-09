@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109151525) do
+ActiveRecord::Schema.define(version: 20161109215140) do
 
   create_table "organizes", force: :cascade do |t|
     t.integer  "event_id"
@@ -52,16 +52,13 @@ ActiveRecord::Schema.define(version: 20161109151525) do
 
   create_table "tournaments", force: :cascade do |t|
     t.text     "name"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.text     "adf"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "location"
     t.datetime "date"
     t.string   "contact_email"
     t.string   "contact_name"
-    t.boolean  "type"
-    t.text     "description",     limit: 500
-    t.integer  "tournament_type"
+    t.text     "description",   limit: 500
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,6 +70,10 @@ ActiveRecord::Schema.define(version: 20161109151525) do
     t.string   "password_digest"
     t.string   "reset_digest"
     t.time     "reset_sent_at"
+    t.date     "date_of_birth"
+    t.string   "gender"
+    t.string   "address"
+    t.string   "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
