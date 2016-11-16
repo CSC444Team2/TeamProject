@@ -21,16 +21,17 @@
 			</div>
 			
 			<div class="profile">	
-			<p><strong>Contact Information</strong></p>
-			<p><strong>Email:</strong><%= @user.email %></p>
-			<p><strong>Phone Number:</strong></p>
-			<p><strong>Address:</strong></p>
+			<p class="info"><strong>Contact Information</strong></p>
+			<p class="info"><strong>Email:</strong><%= @user.email %></p>
+			<p class="info"><strong>Phone Number:</strong></p>
+			<p class="info"><strong>Address:</strong></p>
 			<p>&nbsp;</p>
-			<p><strong>Personal Message:</strong></p>
-			<p>I love Golf. Golf is life.</p>
+			<p class="info"><strong>Personal Message:</strong></p>
+			<p class="info">I love Golf. Golf is life.</p>
 			<p>&nbsp;</p>
 			</div>
 
+			<div class="profile">
 			<%= render partial: "show_events_for_one_person", locals: { :@title => "Played Tournaments", :@events => @user.played_events } %>
 			<br />
 			<%= render partial: "show_events_for_one_person", locals: { :@title => "Organized Tournaments", :@events => @user.organized_events } %>
@@ -38,6 +39,7 @@
 			<%= render partial: "show_events_for_one_person", locals: { :@title => "Sponsored Tournaments", :@events => @user.sponsored_events } %>
 			<br />
 			<p><%= link_to 'Edit', edit_user_path(@user) %></p>
+			</div>
 		</div>
 	</div>
 </body>
