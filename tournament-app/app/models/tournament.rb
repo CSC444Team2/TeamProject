@@ -3,7 +3,6 @@ class Tournament < ActiveRecord::Base
 	has_many :player_attendings, class_name: "Play", foreign_key: "event_id",
 									dependent: :destroy
 	has_many :players, through: :player_attendings, source: :person
-
 	def got_player?(some_player)
 		players.include?(some_player)
 	end
