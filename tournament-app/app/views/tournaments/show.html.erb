@@ -4,10 +4,10 @@
 
   <!--Show requests-->
   <% if !(current_user.nil?) && current_user.organized_a?(@tournament)%>
-    <%= render partial: "show_requests", locals: {title: "Pending Requests for This Tournament", requests: received_requests} %>
+    <%= render partial: "show_requests", locals: {title: "Pending Requests for This Tournament", requests: @tournament.received_requests} %>
   <% end %>
-  
 
+  <!--Play/Sponsor/Organize options-->
   <% if current_user.nil? || !current_user.played_in?(@tournament) %>
       <%= button_to "PLAY!", :controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 0} %>
   <% else %>
