@@ -55,12 +55,17 @@ class User < ActiveRecord::Base
 	#Requests
 	has_many :sent_requests, class_name: "Request", foreign_key: "sender_id",
 			dependent: :destroy
-	has_many :pending_events, through: :sent_requests, source: :receiver
+	has_many :wanted_events, through: :sent_requests, source: :receiver
 	def send_request(some_event, some_message)
 		request = sent_requests.create(receiver_id: some_event.id, message: some_message)
 	end
-	def resolve_request(some_event, some_user)
-		some_user.sent_requests.find_by(receiver_id: some_event.id).destroy
+	def received_requests
+		requests=[]
+		organized_events.each do |e|
+			e.received_requests.each do |new_request|
+				requests << new_request
+			end
+		end
+		return requests
 	end
-	
 end

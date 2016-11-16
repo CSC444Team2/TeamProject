@@ -22,5 +22,5 @@ Rails.application.routes.draw do
 	end
 	
 	resources :join, only: [:create, :destroy]
-	resources :request, only: [:destroy]
+	resources :requests, only: [:new, :create, :destroy]
 end

@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20161109215140) do
     t.text     "name"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.text     "adf"
     t.string   "location"
     t.datetime "date"
     t.string   "contact_email"
