@@ -5,26 +5,7 @@
 </head>
 <body>
   	<div id="main">
-		<div id="menubar">
-	 		 <div id="welcome">
-	    		<h1><%= link_to "Welcome", "/home/index" %></h1>
-	  		</div><!--close welcome-->
-
-	  		<div id="menu_items">
-	    		<ul id="menu">
-         		<li><%= link_to "Home", "/home/index" %></li>
-		        <li><a href="/tournaments">Tournaments</a></li>
-		        <li><a href="features.html">Features</a></li>
-		        <li><a href="faq.html">FAQ</a></li>
-		        <li><a href="ourStory.html">Our Story</a></li>
-		        <li><a href="termsOfService.html">Terms of Service</a></li>
-		        <li class="current"><%= link_to "Login", login_path%></li>
-        		</ul>
-      		</div><!--close menu-->
-
-    	</div><!--close menubar-->
-
-
+		<%=render "header_menu"%>
     	<div id="site_content">
 			<%= render "form"%>
 		</div>
