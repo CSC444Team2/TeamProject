@@ -1,33 +1,46 @@
-<%= render partial: "tournaments/show_requests", locals: {title: "Sent Requests", requests: @user.sent_requests} %>
-<%= render partial: "tournaments/show_requests", locals: {title: "Received Requests", requests: @user.received_requests} %>
+<html>
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+	<div id="main">
+		<%=render "header_menu"%>
+		<div id="site_content">
+			<p>&nbsp;</p>
+			<%= render partial: "tournaments/show_requests", locals: {title: "Sent Requests", requests: @user.sent_requests} %>
+			<%= render partial: "tournaments/show_requests", locals: {title: "Received Requests", requests: @user.received_requests} %>
+			
+			<p>&nbsp;</p>
+			<h2 class="page_header">Welcome to your personal profile, <%= @user.first_name %></h2>
+			<br>
+			<div class="profile">
+				<div class="general_inf">
+					<%= image_tag("avatar.png", :alt => "golf ball")%>
+				</div>
+				<div class="general_inf">
+					<p class="info"><strong>First Name:</strong><%= @user.first_name %></p>
+					<p class="info"><strong>Last Name:</strong><%= @user.last_name %></p>
+					<p class="info"><strong>Birthdate:</strong></p>
+				</div>
+			</div>
 
-<p><strong>Welcome to your personal profile page!</strong></p>
-<p>&nbsp;</p>
-<p><strong>General Information</strong></p>
-<p><strong>First Name:</strong><%= @user.first_name %></p>
-<p><strong>Last Name:</strong><%= @user.last_name %></p>
-<p><strong><img src="Desktop" alt="profile" width="214" height="214" /></strong></p>
-<p><strong>Gender:</strong></p>
-<p><strong>Age:</strong></p>
-<p><strong>Birthdate:</strong></p>
+			<div class="profile">	
+			<p class="info"><strong>Contact Information</strong></p>
+			<p class="info"><strong>Email:</strong><%= @user.email %></p>
+			<p class="info"><strong>Phone Number:</strong></p>
+			<p class="info"><strong>Address:</strong></p>
+			<p>&nbsp;</p>
+			</div>
 
-<p>&nbsp;</p>
-
-<p><strong>Contact Information</strong></p>
-<p><strong>Email:</strong><%= @user.email %></p>
-<p><strong>Phone Number:</strong></p>
-<p><strong>Address:</strong></p>
-<p>&nbsp;</p>
-<p><strong>Personal Message:</strong></p>
-<p>I love Golf. Golf is life.</p>
-<p>&nbsp;</p>
-
-<%= render partial: "show_events_for_one_person", locals: { :@title => "Played Tournaments", :@events => @user.played_events } %>
-<br />
-<%= render partial: "show_events_for_one_person", locals: { :@title => "Organized Tournaments", :@events => @user.organized_events } %>
-<br />
-<%= render partial: "show_events_for_one_person", locals: { :@title => "Sponsored Tournaments", :@events => @user.sponsored_events } %>
-<br />
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Home', '/home/index' %>
+			<!--div class="profile"--><!--!!!!!Bug if added this!!!!!-->
+			<%= render partial: "show_events_for_one_person", locals: { :@title => "Organized Tournaments", :@events => @user.organized_events } %>
+			<p>&nbsp;</p>
+			<%= render partial: "show_events_for_one_person", locals: { :@title => "Played Tournaments", :@events => @user.played_events } %>
+			<p>&nbsp;</p>
+			<%= render partial: "show_events_for_one_person", locals: { :@title => "Sponsored Tournaments", :@events => @user.sponsored_events } %>
+			<p>&nbsp;</p>
+			<%= link_to 'Edit', edit_user_path(@user), :class => "button_small"%> 
+			<!--/div-->
+		</div>
+	</div>
+</body>

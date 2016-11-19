@@ -4,47 +4,16 @@
   	<meta name="keywords" content="golf tournament" />
   	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
   	<link rel="stylesheet" type="text/css" href="css/style.css" />
-  	<script type="text/javascript" src="js/jquery.min.js"></script>
-  	<script type="text/javascript" src="js/jquery.easing.min.js"></script>
-  	<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
   	<script type="text/javascript"></script>
 </head>
 
 <body>
   <div id="main">
-
-	<div id="menubar">
-
-	  <div id="welcome">
-	    <h1><a href="#">Golf Stuff</a></h1>
-	  </div><!--close welcome-->
-
-	  <div id="menu_items">
-	    <ul id="menu">
-          <li class="current"><a href="#">Home</a></li>
-          <li><a href="/tournaments">Tournaments</a></li>
-          <li><a href="features.html">Features</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="ourStory.html">Our Story</a></li>
-          <% if logged_in? %>
-		  <li><%= link_to "Profile", @current_user %></li>
-		  <li><%= link_to "Logout", logout_path, method: "delete" %></li>
-		  <% else %>
-		  <li><%= link_to "Login", login_path%></li>
-	      <% end %>
-          
-        </ul>
-      </div><!--close menu-->
-
-    </div><!--close menubar-->
-
+    <%= render "header_menu"%>
 	<div id="site_content">
-
 	  <div id="banner_image">
-	    <div id="slider-wrapper">
             <%= image_tag("ball.jpg", :alt => "golf ball") %>
-		</div><!--close slider_wrapper-->
-	  </div><!--close banner_image-->
+	  </div>
 
 	  <div class="sidebar_container">
 
