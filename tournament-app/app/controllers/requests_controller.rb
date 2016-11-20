@@ -3,6 +3,18 @@ class RequestsController < ApplicationController
 		@request=Request.new
 		if current_user.nil?
 			redirect_to login_path
+		else
+			@candidate_events = Tournament.all
+			#Do not include events that the user already organizes
+			@candidate_events = @candidate_events.reject do |t|
+				t.got_organizer?(current_user)
+			end
+
+			#Default selection
+			@selected_event=params[:selected_event]
+			if @selected_event.nil? && !@candidate_events.empty?
+				@selected_event=1
+			end
 		end
 	end
 	def create
@@ -19,11 +31,11 @@ class RequestsController < ApplicationController
 		end
 	end
 	def destroy
-		@request = Request.find(params[:request_id])
+		@request = Request.find(params[:id])
 		if(!(@request.nil?))
 			@sender=User.find(@request.sender_id)
 			@event=Tournament.find(@request.receiver_id)
-			if(params[:approve]==true)
+			if(params[:approval]=="1")
 				@sender.organize_a(@event)
 			end
 			@request.destroy

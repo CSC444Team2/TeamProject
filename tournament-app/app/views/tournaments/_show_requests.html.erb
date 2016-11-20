@@ -17,8 +17,8 @@
 			<i><%= r.message %></i>
 			</td>
 			<% if current_user.organized_a?(request_tournament) %>
-				<td><%= link_to 'Approve', request_path(r, request_id: r.id, approve: true), method: :delete, data: { confirm: 'Confirm that you approve?' }, :class=>"button_small button_tour"  %></td>
-				<td><%= link_to 'Reject', request_path(r, request_id: r.id, approve: false), method: :delete, data: { confirm: 'Confirm that you reject?' }, :class=>"button_small button_tour"  %></td>
+				<td><%= link_to 'Approve', request_path(:id => r.id, :approval => 1), method: :delete, data: { :confirm => 'Confirm that you approve?' }, :class=>"button_small button_tour"  %></td>
+				<td><%= link_to 'Reject', request_path(:id => r.id, :approval => 0), method: :delete, data: { :confirm => 'Confirm that you reject?' }, :class=>"button_small button_tour"  %></td>
 			<% end %>
       	</tr>
     <% end %>
