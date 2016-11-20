@@ -40,7 +40,8 @@ class User < ActiveRecord::Base
 		organized_events.include?(some_event)
 	end
 
-	has_many :sponsor_involvements, class_name: "Sponsor", foreign_key: "person_id"
+	has_many :sponsor_involvements, class_name: "Sponsor", foreign_key: "person_id",
+									dependent: :destroy
 	has_many :sponsored_events, through: :sponsor_involvements, source: :event
 	def sponsor_a(some_event)
 		sponsor_involvements.create(event_id: some_event.id)
@@ -55,10 +56,7 @@ class User < ActiveRecord::Base
 	#Requests
 	has_many :sent_requests, class_name: "Request", foreign_key: "sender_id",
 			dependent: :destroy
-	has_many :wanted_events, through: :sent_requests, source: :receiver
-	def send_request(some_event, some_message)
-		request = sent_requests.create(receiver_id: some_event.id, message: some_message)
-	end
+	#has_many :wanted_events, through: :sent_requests, source: :receiver
 	def received_requests
 		requests=[]
 		organized_events.each do |e|
