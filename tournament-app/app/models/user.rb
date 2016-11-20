@@ -18,7 +18,9 @@ class User < ActiveRecord::Base
 	has_many :played_events, through: :player_involvements, source: :event
 
 	def play_in(some_event)
-		player_involvements.create(event_id: some_event.id)
+		if(!self.played_in?(some_event))
+			player_involvements.create(event_id: some_event.id)
+		end
 	end
 	def not_play(some_event)
 		player_involvements.find_by(event_id: some_event.id).destroy
@@ -31,7 +33,9 @@ class User < ActiveRecord::Base
 									dependent: :destroy
 	has_many :organized_events, through: :organizer_involvements, source: :event
 	def organize_a(some_event)
-		organizer_involvements.create(event_id: some_event.id)
+		if(!self.organized_a?(some_event))
+			organizer_involvements.create(event_id: some_event.id)
+		end
 	end
 	def not_organize(some_event)
 		organizer_involvements.find_by(event_id: some_event.id).destroy
@@ -44,7 +48,9 @@ class User < ActiveRecord::Base
 									dependent: :destroy
 	has_many :sponsored_events, through: :sponsor_involvements, source: :event
 	def sponsor_a(some_event)
-		sponsor_involvements.create(event_id: some_event.id)
+		if(!self.sponsored_a?(some_event))
+			sponsor_involvements.create(event_id: some_event.id)
+		end
 	end
 	def not_sponsor(some_event)
 		sponsor_involvements.find_by(event_id: some_event.id).destroy

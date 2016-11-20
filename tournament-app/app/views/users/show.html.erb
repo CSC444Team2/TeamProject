@@ -32,7 +32,7 @@
 			<p>&nbsp;</p>
 			</div>
 
-			<!--div class="profile"--><!--!!!!!Bug if added this!!!!!-->
+			<div class="profile">
 			<%= render partial: "show_events_for_one_person", locals: { :@title => "Organized Tournaments", :@events => @user.organized_events } %>
 			<p>&nbsp;</p>
 			<%= render partial: "show_events_for_one_person", locals: { :@title => "Played Tournaments", :@events => @user.played_events } %>
@@ -40,7 +40,7 @@
 			<%= render partial: "show_events_for_one_person", locals: { :@title => "Sponsored Tournaments", :@events => @user.sponsored_events } %>
 			<p>&nbsp;</p>
 			<%= link_to 'Edit', edit_user_path(@user), :class => "button_small"%> 
-			<!--/div-->
+			</div>
 		</div>
 	</div>
 </body>
