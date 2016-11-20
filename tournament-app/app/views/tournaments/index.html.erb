@@ -37,12 +37,12 @@
 
         <table class="tournament_table">
             <tr>
-              <th></th>
+              <th>ID</th>
               <th>Name</th>
               <th>Location</th>
               <th>Date</th>
               <th>Contact e-mail</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
             <% @tournaments.each do |t| %>
             <tr> 
@@ -53,16 +53,20 @@
                 <td><%= t.contact_email %></td>
                 <td>
                   <%= link_to "Details", tournament_path(t), :class=>"button_small button_tour" %>
+                </td>
+                <td>
                   <% if current_user.nil? || !current_user.played_in?(t) %>
                         <%= button_to "PLAY!", {:controller => "join", :action => "create", :method=> :post, :params=> {event_id: t.id, join: 0}}, {:form_class=>"button_small form_tour", :class=>"button_form_tour"} %>
                   <% else %>
                         <%= link_to "Stop playing", join_path(:id => t.id, :params => {:event_id => t.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure?' }, :class=>"button_small button_tour" %>
                   <% end %>
+                </td>
+                <td>
                   <% if !current_user.nil? && current_user.organized_a?(t) %>
                     <%= link_to "Edit", edit_tournament_path(t), :class=>"button_small button_tour" %>
                     <%= link_to 'Delete', tournament_path(t), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"button_small button_tour"  %>
+                  <% end %>
                 </td>
-                <% end %>
             </tr>
             <% end %>
           </table>
