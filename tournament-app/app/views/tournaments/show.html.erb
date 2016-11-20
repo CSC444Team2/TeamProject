@@ -6,22 +6,22 @@
   <% if !(current_user.nil?) && current_user.organized_a?(@tournament)%>
     <%= render partial: "show_requests", locals: {title: "Pending Requests for This Tournament", requests: @tournament.received_requests} %>
   <% end %>
-
+  
   <!--Play/Sponsor/Organize options-->
   <% if current_user.nil? || !current_user.played_in?(@tournament) %>
       <%= button_to "PLAY!", :controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 0} %>
   <% else %>
-      <%= link_to "Stop playing...", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "Stop playing...", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure you want to stop playing?' } %>
   <% end %>
   <% if current_user.nil? || !current_user.organized_a?(@tournament) %>
       <%= button_to "Organize!", :controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 1} %>
   <% else %>
-      <%= link_to "Stop organizing...", join_path(:params => {:event_id => @tournament.id, :join => 1}), :method=> :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "Stop organizing...", join_path(:params => {:event_id => @tournament.id, :join => 1}), :method=> :delete, data: { confirm: 'Are you sure you want to stop organizing?' } %>
   <% end %>
   <% if current_user.nil? || !current_user.sponsored_a?(@tournament) %>
       <%= button_to "Sponsor!", :controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 2} %>
   <% else %>
-      <%= link_to "Stop sponsoring...", join_path(:params => {:event_id => @tournament.id, :join => 2}), :method=> :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "Stop sponsoring...", join_path(:params => {:event_id => @tournament.id, :join => 2}), :method=> :delete, data: { confirm: 'Are you sure you want to stop sponsoring?' } %>
   <% end %>
 
 	<%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players", :@persons => @tournament.players } %>

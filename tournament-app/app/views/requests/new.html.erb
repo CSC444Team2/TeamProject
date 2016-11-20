@@ -15,7 +15,7 @@
           <%= form_for(@request) do |f| %>  
               <p id="create_request">
                 <%= f.label :tournament %><br>
-                <%= f.collection_select :receiver_id, Tournament.all, :id, :name, include_blank: false %>
+                <%= f.collection_select :receiver_id, @candidate_events, :id, :name, {selected: @selected_event}, include_blank: false %>
                 <!--http://stackoverflow.com/questions/8907867/can-someone-explain-collection-select-to-me-in-clear-simple-terms-->
               </p>
               <p id="create_request">
