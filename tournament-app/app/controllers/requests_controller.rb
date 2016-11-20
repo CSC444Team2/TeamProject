@@ -6,11 +6,12 @@ class RequestsController < ApplicationController
 		end
 	end
 	def create
-		@request=Request.new(sender_id: current_user.id, receiver_id: params[:receiver_id], message: params[:message])
+		@request=Request.new(request_params)
 		if !current_user.nil?
-			@tournament=Tounament.find_by(params[receiver_id])
-			if(!@tournament.nil)
-				current_user.sent_requests << @request
+			@request.sender_id=current_user.id
+			if(!@request.save)
+				render "new"
+			else
 				redirect_to tournament_path(@tournament)
 			end
 		else
@@ -20,7 +21,18 @@ class RequestsController < ApplicationController
 	def destroy
 		@request = Request.find(params[:request_id])
 		if(!(@request.nil?))
+			@sender=User.find(@request.sender_id)
+			@event=Tournament.find(@request.receiver_id)
+			if(params[:approve]==true)
+				@sender.organize_a(@event)
+			end
 			@request.destroy
+			redirect_to tournament_path(@event)
 		end
 	end
+
+	private
+    def request_params
+        params.require(:request).permit(:receiver_id, :message)
+    end
 end
