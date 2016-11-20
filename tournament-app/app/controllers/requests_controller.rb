@@ -24,6 +24,7 @@ class RequestsController < ApplicationController
 			if(!@request.save)
 				render "new"
 			else
+				@tournament=Tournament.find(@request.receiver_id)
 				redirect_to tournament_path(@tournament)
 			end
 		else
