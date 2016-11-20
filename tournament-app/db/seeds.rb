@@ -8,14 +8,23 @@
 
 
 
-Tournament.create(name: 'myTournament')
-Tournament.create(name: 'myTournament1')
-Tournament.create(name: 'myTournament2')
-Tournament.create(name: 'hello', location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
+t1=Tournament.create(name: 'myTournament')
+t2=Tournament.create(name: 'myTournament2')
+t3=Tournament.create(name: 'myTournament3')
+t4=Tournament.create(name: 'hello4', location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
 
-User.create(first_name: 'aasdfadf', last_name: 'a', email: 'aasdf@aasdf.com', 
+u1=User.create(first_name: 'aasdfadf', last_name: 'a', email: 'aasdf@aasdf.com', 
 	password:'1234567', password_confirmation:'1234567')
-User.create(first_name: 'b', last_name: 'b', email: 'b@b.com', 
+u2=User.create(first_name: 'b', last_name: 'b', email: 'b@b.com', 
 	password:'1234567', password_confirmation:'1234567')
-User.create(first_name: 'c', last_name: 'c', email: 'c@c.com', 
+u3=User.create(first_name: 'c', last_name: 'c', email: 'c@c.com', 
 	password:'1234567', password_confirmation:'1234567')
+
+u1.organize_a(t1)
+u2.organize_a(t2)
+u3.organize_a(t3)
+u3.organize_a(t4)
+
+r1=Request.create(sender_id: 1, receiver_id: 2)
+r2=Request.create(sender_id: 2, receiver_id: 3)
+

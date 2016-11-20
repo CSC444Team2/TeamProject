@@ -47,8 +47,6 @@ class UsersController < ApplicationController
   		redirect_to users_path
 	end
 
-	
-
 	def played_events
 		@title = "Played Tournaments"
 		@person = User.find(params[:id])

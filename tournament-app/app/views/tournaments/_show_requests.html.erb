@@ -1,5 +1,5 @@
-************************************************
 <% if requests.any? %>
+************************************************<br />
     <h1> <%= title %> </h1>
     <table>
     <% requests.each do |r| %>
@@ -14,11 +14,12 @@
 			(<%= link_to request_sender.email, user_path(request_sender) %>) 
 			wants to organize 
 			<%= link_to request_tournament.name, tournament_path(request_tournament) %>:
-			<i><%= request.message %></i>
+			<i><%= r.message %></i>
 			</td>
-
-			<td><%= button_to "Approve", :controller=> "requests", :params => {:request_id => r.id}, :method=>:create, :class=> "button_small button_tour" %></td>
-			<td><%= button_to "Reject", :controller=> "requests", :params => {:request_id => r.id}, :method=>:create, :class=> "button_small button_tour" %></td>
+			<% if current_user.organized_a?(request_tournament) %>
+				<td><%= link_to 'Approve', request_path(r, request_id: r.id, approve: true), method: :delete, data: { confirm: 'Confirm that you approve?' }, :class=>"button_small button_tour"  %></td>
+				<td><%= link_to 'Reject', request_path(r, request_id: r.id, approve: false), method: :delete, data: { confirm: 'Confirm that you reject?' }, :class=>"button_small button_tour"  %></td>
+			<% end %>
       	</tr>
     <% end %>
     </table>
