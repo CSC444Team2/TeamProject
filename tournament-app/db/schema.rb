@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109215140) do
+ActiveRecord::Schema.define(version: 20161120022510) do
+
+  create_table "golf_courses", force: :cascade do |t|
+    t.text     "name"
+    t.text     "overview"
+    t.text     "address"
+    t.text     "website"
+    t.text     "contact_info"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "organizes", force: :cascade do |t|
     t.integer  "event_id"
