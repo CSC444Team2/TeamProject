@@ -12,7 +12,7 @@ class JoinController < ApplicationController
     			end
     		when 1
     			if !current_user.organized_a?(@event)
-                    redirect_to new_request_path
+                    redirect_to new_request_path(selected_event: @event.id)
     			end
     		when 2
     			if !current_user.sponsored_a?(@event)
