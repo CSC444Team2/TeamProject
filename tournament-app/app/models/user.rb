@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 	validates :last_name, presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, length: { maximum: 255 },
-		format: { with: VALID_EMAIL_REGEX },
+		format: { with: VALID_EMAIL_REGEX, message: "Not appropriate e-mail address" },
 		uniqueness: { case_sensitive: false }
 
 	#Password
@@ -71,5 +71,22 @@ class User < ActiveRecord::Base
 			end
 		end
 		return requests
+  end
+
+  # draft method to redirect to PayPal payment
+	def paypal_url(return_path)
+		values = {
+				business: "csc444.toronto-merchant@gmail.com", #created an account on PayPal Developer and fake Sandbox email addresses
+				cmd: "_xclick",
+				upload: 1,
+				return: "#{Rails.application.secrets.app_host}#{return_path}",
+				invoice: id,
+				amount: 100,
+				item_name: "Sponsor a tournament",
+				# item_number: 2,
+				# quantity: '1'
+		}
+		"#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
 	end
+
 end

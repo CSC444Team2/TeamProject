@@ -17,7 +17,8 @@ class JoinController < ApplicationController
     		when 2
     			if !current_user.sponsored_a?(@event)
     				current_user.sponsor_a(@event)
-                    redirect_to tournament_path(@event)
+            redirect_to current_user.paypal_url(tournament_path(@event))
+            # redirect_to tournament_path(@event)
     			end
     		else
     			redirect_to tournament_path(@event)
