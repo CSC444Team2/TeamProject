@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 	post 'login' => 'sessions#create'
 	delete 'logout' => 'sessions#destroy'
 
+  # PayPal payment processing
+	post '/hook' => 'tournaments#hook'
+
 	resources :tournaments do 
 	  member do
 	  	get :players, :organizers, :sponsors
