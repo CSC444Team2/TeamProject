@@ -2,7 +2,7 @@
 <%= provide(:title, @title) %>
 <h1><%= @title %></h1>
 <% if @persons && @persons.any? %>
-  <table>
+  <table class="tournament_table">
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
@@ -11,7 +11,7 @@
       <tr>
         <td><%= p.first_name %></td>
         <td><%= p.last_name %></td>
-        <td><%= link_to 'Show Profile', user_path(p) %></td>
+        <td><%= link_to 'Show Profile', user_path(p), :class=>"button_small button_tour" %></td>
       </tr>
     <% end %>
   </table>

@@ -19,7 +19,11 @@
       <%= link_to "Stop organizing...", join_path(:params => {:event_id => @tournament.id, :join => 1}), :method=> :delete, data: { confirm: 'Are you sure you want to stop organizing?' } %>
   <% end %>
   <% if current_user.nil? || !current_user.sponsored_a?(@tournament) %>
-      <%= button_to "Sponsor!", :controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 2} %>
+      <%= form_tag :controller=> "join", :action => "create", :params=> {event_id: @tournament.id, join: 2, name: @tournament.name} do %>
+          <label for="sponsor_amount">Amount to donate</label>
+          <%= text_field_tag :sponsor_amount, nil, placeholder: "CAD" %>
+          <%= submit_tag "Sponsor" %>
+      <% end %>
   <% else %>
       <%= link_to "Stop sponsoring...", join_path(:params => {:event_id => @tournament.id, :join => 2}), :method=> :delete, data: { confirm: 'Are you sure you want to stop sponsoring?' } %>
   <% end %>

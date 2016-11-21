@@ -74,17 +74,14 @@ class User < ActiveRecord::Base
   end
 
   # draft method to redirect to PayPal payment
-	def paypal_url(return_path)
+	def paypal_url(return_path, sponsor_amount, name, event_id)
 		values = {
 				business: "csc444.toronto-merchant@gmail.com", #created an account on PayPal Developer and fake Sandbox email addresses
 				cmd: "_xclick",
-				upload: 1,
 				return: "#{Rails.application.secrets.app_host}#{return_path}",
-				invoice: id,
-				amount: 100,
-				item_name: "Sponsor a tournament",
-				# item_number: 2,
-				# quantity: '1'
+				amount: sponsor_amount,
+				item_name: "Sponsor a tournament #{name} (#{event_id})",
+        currency_code: "CAD"
 		}
 		"#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
 	end
