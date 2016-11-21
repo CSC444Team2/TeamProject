@@ -62,6 +62,19 @@ class TournamentsController < ApplicationController
         @persons = @event.sponsors#.paginate(page: params[:page])
         render "_show_persons_for_one_event"
     end
+
+    protect_from_forgery except: [:hook]
+    def hook
+      params.permit! # Permit all Paypal input params
+      status = params[:payment_status]
+      if status == "Completed"
+        @tournament = Tournament.find(params[:item_number])
+        current_user.sponsor_a(@tournament)
+        redirect_to(:action => 'show', :id => @tournament.id)
+      else
+        render nothing: true
+      end
+    end
     
     private
     def tournament_params
