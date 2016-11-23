@@ -61,15 +61,20 @@ ActiveRecord::Schema.define(version: 20161120022510) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "tournament_id"
+    t.integer  "user_id"
+    t.string   "type"
+    t.float    "price"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["tournament_id"], name: "index_tickets_on_tournament_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
   create_table "tournaments", force: :cascade do |t|
     t.text     "name"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.text     "adf"
     t.string   "location"
     t.datetime "date"
     t.string   "contact_email"
