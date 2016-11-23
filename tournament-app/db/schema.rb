@@ -60,6 +60,11 @@ ActiveRecord::Schema.define(version: 20161120022510) do
     t.index ["person_id"], name: "index_sponsors_on_person_id"
   end
 
+  create_table "tickets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tournaments", force: :cascade do |t|
     t.text     "name"
     t.datetime "created_at",                null: false
