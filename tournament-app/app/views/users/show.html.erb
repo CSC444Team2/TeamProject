@@ -9,8 +9,6 @@
 			<p>&nbsp;</p>
 			<%= render partial: "tournaments/show_requests", locals: {title: "Sent Requests", requests: @user.sent_requests} %>
 			<%= render partial: "tournaments/show_requests", locals: {title: "Received Requests", requests: @user.received_requests} %>
-			
-			<p>&nbsp;</p>
 			<h2 class="page_header">Welcome to your personal profile, <%= @user.first_name %></h2>
 			<br>
 			<div class="profile">

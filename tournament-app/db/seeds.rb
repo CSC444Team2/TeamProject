@@ -28,5 +28,3 @@ u3.organize_a(t4)
 
 r1=Request.create(sender_id: 1, receiver_id: 2)
 r2=Request.create(sender_id: 2, receiver_id: 3)
-
-
