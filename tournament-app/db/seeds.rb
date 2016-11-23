@@ -6,7 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
+g1=GolfCourse.create(name: 'course1', overview: 'Great course', address: '123 Main Street', website: 'www.google.com', contact_info: 'Anna')
+g2=GolfCourse.create(name: 'water', overview: 'Water Course', address: '123 Bay Street', website: 'www.baidu.com', contact_info: 'Anna')
 
 t1=Tournament.create(name: 'myTournament')
 t2=Tournament.create(name: 'myTournament2')
@@ -27,4 +28,5 @@ u3.organize_a(t4)
 
 r1=Request.create(sender_id: 1, receiver_id: 2)
 r2=Request.create(sender_id: 2, receiver_id: 3)
+
 
