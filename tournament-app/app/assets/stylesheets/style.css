@@ -139,12 +139,10 @@ ul#menu li.current a, ul#menu li:hover a
 
 .sidebar
 { float: left;
-  width: 320px;
-  margin-bottom: 10px;}
-
-.sidebar_item
-{ font: normal 100% Arial, Helvetica, sans-serif;
-  width: 320px;}
+  width: 100%;
+  margin-bottom: 10px;
+  font: normal 100% Arial, Helvetica, sans-serif;
+  }
 
 .sidebar h2
 { font: normal 180% Arial, Helvetica, sans-serif;}
