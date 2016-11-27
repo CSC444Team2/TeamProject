@@ -1,6 +1,8 @@
-
-<%= provide(:title, @title) %>
-<h1><%= @title %></h1>
+<% if !@is_player_group %>
+  <h1><%= @title %></h1>
+<% else %>
+  <i><%= @title %></i>
+<% end %>
 <% if @persons && @persons.any? %>
   <table class="tournament_table">
     <tr>
@@ -12,6 +14,9 @@
         <td><%= p.first_name %></td>
         <td><%= p.last_name %></td>
         <td><%= link_to 'Show Profile', user_path(p), :class=>"button_small button_tour" %></td>
+        <% if @is_player_group && @is_organizer%>
+          <td><%= link_to 'Remove user from group', "home", :class=>"button_small button_tour"%></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

@@ -1,13 +1,36 @@
 class TournamentsController < ApplicationController
     before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
     before_action :require_organizer, only: [:edit, :update, :destroy]
-    
+    protect_from_forgery except: [:hook]
+
     def index
         @tournaments = Tournament.all
     end
     def show
         @tournament = Tournament.find(params[:id])
+        @is_organizer = current_user && current_user.organized_a?(@tournament)
+        @unassigned_players = []
+        @group_of_groups = []
+        @group_id = []
+        if @tournament.players.any?
+            @tournament.players.each do |p|
+                @unassigned_players << p
+            end
+            @tournament.player_groups.each do |pg|
+                @players_in_group = []
+                @group_id << pg.id
+                pg.group_members.each do |usr_id|
+                    @user= User.find(usr_id)
+                    @players_in_group << @user
+                    @unassigned_players = @unassigned_players.reject do |p|
+                        p==@user
+                    end
+                end
+                @group_of_groups << @players_in_group
+            end
+        end #end if
     end
+
     def edit
         @tournament = Tournament.find(params[:id])
     end
@@ -62,8 +85,7 @@ class TournamentsController < ApplicationController
         @persons = @event.sponsors#.paginate(page: params[:page])
         render "_show_persons_for_one_event"
     end
-
-    protect_from_forgery except: [:hook]
+    
     def hook
       params.permit! # Permit all Paypal input params
       status = params[:payment_status]

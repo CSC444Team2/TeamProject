@@ -1,5 +1,7 @@
 class Tournament < ActiveRecord::Base
 	#Players/Organizers/Sponsors Roles
+	validates :name, presence: true, length: { maximum: 50 }
+
 	has_many :player_attendings, class_name: "Play", foreign_key: "event_id",
 									dependent: :destroy
 	has_many :players, through: :player_attendings, source: :person
@@ -23,4 +25,11 @@ class Tournament < ActiveRecord::Base
 	#Request
 	has_many :received_requests, class_name: "Request", foreign_key: "receiver_id",
 			dependent: :destroy
+
+	#Player groups
+	has_many :player_groups, class_name: "Playergroup", foreign_key: "tournament_id"
+	def new_group
+		pg = player_groups.create(tournament_id: self.id)
+		return pg
+	end
 end
