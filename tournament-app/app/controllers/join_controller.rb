@@ -31,6 +31,12 @@ class JoinController < ApplicationController
 			when 0
 				if current_user.played_in?(@event)
     				current_user.not_play(@event)
+                    Playergroup.all.each do |pg|
+                        if pg.tournament_id==@event.id && pg.has_member?(current_user)
+                            pg.remove_member(current_user)
+                            pg.save
+                        end
+                    end
     			end
     		when 1
     			if current_user.organized_a?(@event)

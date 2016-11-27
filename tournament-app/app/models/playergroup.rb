@@ -17,7 +17,7 @@ class Playergroup < ApplicationRecord
 			group_members.delete(user.id)
 		end
 	end
-	def has_member(user)
+	def has_member?(user)
 		if !user.nil?
 			return group_members.include?(user.id)
 		else

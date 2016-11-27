@@ -30,12 +30,12 @@ class PlayergroupTest < ActiveSupport::TestCase
   
     puts @pg1
     puts @u1
-  	puts @pg1.has_member(@u1)
-  	assert @pg1.has_member(@u1)
-  	assert @pg1.has_member(@u2)
-  	assert @pg1.has_member(@u3)
-  	assert_not @pg1.has_member(@u4)
-  	assert_not @pg1.has_member(@u5)
+  	puts @pg1.has_member?(@u1)
+  	assert @pg1.has_member?(@u1)
+  	assert @pg1.has_member?(@u2)
+  	assert @pg1.has_member?(@u3)
+  	assert_not @pg1.has_member?(@u4)
+  	assert_not @pg1.has_member?(@u5)
 
   	@pg1.save
   	assert_not @pg1.new_record?
@@ -51,11 +51,11 @@ class PlayergroupTest < ActiveSupport::TestCase
   	@pg1.save
 
   	assert_not @pg1.new_record?
-  	assert @pg1.has_member(@u1)
-  	assert_not @pg1.has_member(@u2)
-  	assert @pg1.has_member(@u3)
-  	assert_not @pg1.has_member(@u4)
-  	assert_not @pg1.has_member(@u5)
+  	assert @pg1.has_member?(@u1)
+  	assert_not @pg1.has_member?(@u2)
+  	assert @pg1.has_member?(@u3)
+  	assert_not @pg1.has_member?(@u4)
+  	assert_not @pg1.has_member?(@u5)
   end
 
   test "add invalid member to playergroup" do
