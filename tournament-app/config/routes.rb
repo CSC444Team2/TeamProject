@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 	resources :tournaments do 
 	  member do
 	  	get :players, :organizers, :sponsors
+	  	post :member_out_of_group, :add_member, :create_group
 	  end
 	end
 

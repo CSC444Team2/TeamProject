@@ -1,4 +1,4 @@
-<% if !@is_player_group %>
+<% if !@player_subgroup %>
   <h1><%= @title %></h1>
 <% else %>
   <i><%= @title %></i>
@@ -15,7 +15,7 @@
         <td><%= p.last_name %></td>
         <td><%= link_to 'Show Profile', user_path(p), :class=>"button_small button_tour" %></td>
         <% if @is_player_group && @is_organizer%>
-          <td><%= link_to 'Remove user from group', "home", :class=>"button_small button_tour"%></td>
+          <td><%= link_to 'Remove user from group', member_out_of_group_tournament_path(member: p), method: :post, class: "button_small button_tour"%></td>
         <% end %>
       </tr>
     <% end %>

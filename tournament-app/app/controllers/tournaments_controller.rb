@@ -65,6 +65,42 @@ class TournamentsController < ApplicationController
         redirect_to tournaments_path
     end
 
+    def create_group
+        @members = params[:members]
+        if !@members.nil?
+            @group=@tournament.new_group
+            @members.each do |m|
+                @group.add_member(m)
+            end
+        end
+    end
+
+    def add_member
+        @group = params[:group]
+        @member = params[:member]
+        if !@group.nil? && !@member.nil?
+            @group.add_member(@member)
+        end
+    end
+
+    def member_out_of_group
+        @member = User.find(params[:member].to_i)
+        @tournament = Tournament.find(params[:id].to_i)
+        if !@member.nil? && !@tournament.nil?
+            @tournament.player_groups.each do |pg|
+                if pg.has_member?(@member)
+                    pg.remove_member(@member)
+                    pg.save
+                    if pg.num_members == 0
+                        pg.destroy
+                    end
+                end
+            end
+            redirect_to tournament_path(@tournament)
+        end
+    end
+
+
     def players
         @title = "Players"
         @event = Tournament.find(params[:id])

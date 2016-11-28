@@ -24,6 +24,9 @@ class Playergroup < ApplicationRecord
 			return false
 		end
 	end
+	def num_members
+		return group_members.length
+	end
 
 	def members_exist
 		@all_user_ids=User.all.pluck(:id) #get all user ids

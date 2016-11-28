@@ -32,23 +32,26 @@
   <% if @tournament.players.any? %>
       <% i=0%>
       <% @group_of_groups.each do |pg| %>
-         <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Player Group (ID #{@group_id[i]})", :@persons => pg, :@is_player_group => true} %>
+         <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Player Group (ID #{@group_id[i]})", :@persons => pg, :@player_subgroup => true, :@is_player_group => true} %>
          <% i+=1 %>
       <% end %>
       
       <% if !@unassigned_players.empty? %>
-        <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@is_player_group => true, :is_organizer => @is_organizer} %>
+        <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@player_subgroup => true, :@is_player_group => false, :is_organizer => @is_organizer} %>
       <% end %>
   <% else %>
         None<br/>
   <% end %>
 
-	<%= render partial: "show_persons_for_one_event", :locals => { :@title => "Organizers", :@persons => @tournament.organizers, :@is_player_group => false, :is_organizer => @is_organizer} %>
-	<%= render partial: "show_persons_for_one_event", :locals => { :@title => "Sponsors", :@persons => @tournament.sponsors, :@is_player_group => false, :is_organizer => @is_organizer} %>
+	<%= render partial: "show_persons_for_one_event", :locals => { :@title => "Organizers", :@persons => @tournament.organizers, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
+	<%= render partial: "show_persons_for_one_event", :locals => { :@title => "Sponsors", :@persons => @tournament.sponsors, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
   <br/>
   <h1>Description</h1>
-  <%= @tournament.description %>
-	
-	<br/>
-    <%= link_to "All tournaments", "/tournaments" %>
+  <%if @tournament.description.nil?%>
+    None
+  <% else %>
+    <%= @tournament.description %>
+	<% end %>
+	<p>&nbsp;</p>
+  <%= link_to "All tournaments", "/tournaments", class: "button_small button_tour" %>
 </body>
