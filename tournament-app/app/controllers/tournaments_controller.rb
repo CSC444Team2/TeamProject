@@ -27,7 +27,7 @@ class TournamentsController < ApplicationController
                         p==@user
                     end
                 end
-                @group_of_groups << @players_in_group
+                @group_of_groups << { id: pg.id, players: @players_in_group }
             end
             @unassigned_players.each do |p|
                 @unassigned_dump << [p.id.to_s+". "+p.first_name+" "+p.last_name+"("+p.email+")", p.id]
@@ -65,33 +65,52 @@ class TournamentsController < ApplicationController
 
     def destroy
         @tournament = Tournament.find(params[:id])
-        @tournament.destroy
+        if !@tournament.nil?
+            @tournament.destroy
+        end
         redirect_to tournaments_path
     end
 
     def create_group
-        @members = params[:members]
-        if !@members.nil?
-            @group=@tournament.new_group
-            @members.each do |m|
-                @group.add_member(m)
+        if !params[:id].nil? && !params[:id].empty?
+            @tournament = Tournament.find(params[:id])
+            if !@tournament.nil? && current_user && current_user.organized_a?(@tournament)
+                Playergroup.create(tournament_id: @tournament.id)
+                redirect_to tournament_path(@tournament)
             end
-            redirect_to tournament_path(@tournament)
+        end
+    end
+
+    def delete_group
+        if !params[:group_id].nil? && !params[:group_id].empty? && !params[:id].nil? && !params[:id].empty?
+            @tournament = Tournament.find(params[:id])
+            if !@tournament.nil? && current_user && current_user.organized_a?(@tournament)
+                @pg = Playergroup.find(params[:group_id])
+                @pg.destroy
+                redirect_to tournament_path(@tournament)
+            end
         end
     end
 
     def add_member
-        @group = params[:group]
-        @member = params[:member]
-        if !@group.nil? && !@member.nil?
-            @group.add_member(@member)
+        if !params[:tournament_id].nil? && !params[:tournament_id].empty? && !params[:group_id].nil? && !params[:group_id].empty? && !params[:added_member].nil? && !params[:added_member].empty?
+            @tournament = Tournament.find(params[:id])
+            @group = Playergroup.find(params[:group_id])
+            @member = User.find(params[:added_member])
+            if !@tournament.nil? && !@group.nil? && !@member.nil?
+                if current_user && current_user.organized_a?(@tournament)
+                    @group.add_member(@member)
+                    @group.save
+                end
+                redirect_to tournament_path(@tournament)
+            end
         end
     end
 
     def member_out_of_group
-        @member = User.find(params[:member].to_i)
-        @tournament = Tournament.find(params[:id].to_i)
-        if !@member.nil? && !@tournament.nil?
+        @member = User.find(params[:member])
+        @tournament = Tournament.find(params[:id])
+        if !@member.nil? && !@tournament.nil? && current_user && current_user.organized_a?(@tournament)
             @tournament.player_groups.each do |pg|
                 if pg.has_member?(@member)
                     pg.remove_member(@member)

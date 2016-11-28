@@ -6,7 +6,7 @@
     <b>Tournament ID: </b> <%= @tournament.id %><br />
 
     <!--Show requests-->
-    <% if !(current_user.nil?) && current_user.organized_a?(@tournament)%>
+    <% if @is_organizer%>
       <%= render partial: "show_requests", locals: {title: "Pending Requests for This Tournament", requests: @tournament.received_requests} %>
     <% end %>
 
@@ -32,22 +32,43 @@
     <% end %>
     <p>&nbsp;</p>
 
-    <h1>Players</h1>
-    <p><b><i>Note: Organizers can put the players into groups. In golf games, there can be at most 4 members in every group.</i></b></p>
+    <h1>Players</h1> 
+    <% if @is_organizer %>
+          <%= button_to "Create Group", :controller => "tournaments", :action => "create_group", :class => "button_small button_tour" %>
+    <% end %>
+    <p><b><i>Note: Only organizers can put players into groups. In golf games, there can be at most 4 members in every group.</i></b></p>
     <% if @tournament.players.any? %>
+        <!--Display members in every group-->
         <% i=0%>
         <% @group_of_groups.each do |pg| %>
-           <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Player Group (ID #{@group_id[i]})", :@persons => pg, :@player_subgroup => true, :@is_player_group => true} %>
-           <% if pg.length<4 && current_user.organized_a?(@tournament) %>
-             <%= select_tag "add_member", options_for_select(@unassigned_dump), prompt: "<select a player to add to group>", include_blank: false %>
-             <%= button_to "Add Member to Group" %>
+           <hr />
+           <b><i><%= "Player Group (ID #{@group_id[i]})" %></i></b>
+           <% if !current_user.nil? && @is_organizer %>
+            <%= button_to "Delete Group", :controller => "tournaments", :action => "delete_group", :params => {:group_id => pg[:id]}, :class => "button_small button_tour" %>
            <% end %>
+
+           <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Player Group (ID #{@group_id[i]})", :@persons => pg[:players], :@player_subgroup => true, :@is_player_group => true} %>
+
+           <% if pg[:players].length<4 && @is_organizer && !@unassigned_players.empty? %>
+             <%= form_tag :controller => "tournaments", :action => "add_member", :params => {:group_id => pg[:id], :tournament_id => @tournament.id}  do %>
+               <%= select_tag :added_member, options_for_select(@unassigned_dump), :prompt => "<select a player to add to group>", :include_blank => false %>
+               <%= submit_tag "Add Member to Group" %>
+             <% end %>
+           <% elsif pg[:players].length==4 && @is_organizer %>
+              <i>4 members in group already (group full)</i>
+           <% end %>
+
            <p>&nbsp;</p>
            <% i+=1 %>
         <% end %>
-        
+
+        <% if @is_organizer %>
+          <%= button_to "Create Group", :controller => "tournaments", :action => "create_group", :class => "button_small button_tour" %>
+        <% end %>
+        <!--Show players without group-->
         <% if !@unassigned_players.empty? %>
           <hr />
+          <b><i><%= "Players without group" %></i></b>
           <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@player_subgroup => true, :@is_player_group => false, :is_organizer => @is_organizer} %>
           <p>&nbsp;</p>
         <% end %>

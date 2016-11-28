@@ -3,7 +3,7 @@ class Playergroup < ApplicationRecord
 	serialize :group_members, Array
 
 	validates :tournament_id, presence: true
-	validate :members_exist
+	validate :members_valid
 	validate :unique_members
 	validate :right_size
 
@@ -28,7 +28,7 @@ class Playergroup < ApplicationRecord
 		return group_members.length
 	end
 
-	def members_exist
+	def members_valid
 		@all_user_ids=User.all.pluck(:id) #get all user ids
 		if !group_members.is_a?(Array) || 
 			!(group_members.all? { |u| @all_user_ids.include?(u) })
