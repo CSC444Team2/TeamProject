@@ -1,57 +1,75 @@
 <body>
-    <b>Tournament name: </b><%= @tournament.name %> <br />
-    <b>Tournament id: </b> <%= @tournament.id %> <br />
+  <%=render "header_menu"%>
+  <div id="site_content">
+    <p>&nbsp;</p>
+    <h1><%= @tournament.name %></h1>
+    <b>Tournament ID: </b> <%= @tournament.id %><br />
 
-  <!--Show requests-->
-  <% if !(current_user.nil?) && current_user.organized_a?(@tournament)%>
-    <%= render partial: "show_requests", locals: {title: "Pending Requests for This Tournament", requests: @tournament.received_requests} %>
-  <% end %>
-  
-  <!--Play/Sponsor/Organize options-->
-  <% if current_user.nil? || !current_user.played_in?(@tournament) %>
-      <%= button_to "PLAY!", :controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 0} %>
-  <% else %>
-      <%= link_to "Stop playing...", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure you want to stop playing?' } %>
-  <% end %>
-  <% if current_user.nil? || !current_user.organized_a?(@tournament) %>
-      <%= button_to "Request to Organize!", :controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 1} %>
-  <% else %>
-      <%= link_to "Stop organizing...", join_path(:params => {:event_id => @tournament.id, :join => 1}), :method=> :delete, data: { confirm: 'Are you sure you want to stop organizing?' } %>
-  <% end %>
-  <% if current_user.nil? || !current_user.sponsored_a?(@tournament) %>
-      <%= form_tag :controller=> "join", :action => "create", :params=> {event_id: @tournament.id, join: 2, name: @tournament.name} do %>
-          <label for="sponsor_amount">Amount to donate</label>
-          <%= text_field_tag :sponsor_amount, nil, placeholder: "CAD" %>
-          <%= submit_tag "Sponsor" %>
-      <% end %>
-  <% else %>
-      <%= link_to "Stop sponsoring...", join_path(:params => {:event_id => @tournament.id, :join => 2}), :method=> :delete, data: { confirm: 'Are you sure you want to stop sponsoring?' } %>
-  <% end %>
+    <!--Show requests-->
+    <% if !(current_user.nil?) && current_user.organized_a?(@tournament)%>
+      <%= render partial: "show_requests", locals: {title: "Pending Requests for This Tournament", requests: @tournament.received_requests} %>
+    <% end %>
 
-  <h1>Players</h1>
-  <% if @tournament.players.any? %>
-      <% i=0%>
-      <% @group_of_groups.each do |pg| %>
-         <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Player Group (ID #{@group_id[i]})", :@persons => pg, :@player_subgroup => true, :@is_player_group => true} %>
-         <% i+=1 %>
-      <% end %>
-      
-      <% if !@unassigned_players.empty? %>
-        <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@player_subgroup => true, :@is_player_group => false, :is_organizer => @is_organizer} %>
-      <% end %>
-  <% else %>
-        None<br/>
-  <% end %>
+    <!--Play/Sponsor/Organize options-->
+    <% if current_user.nil? || !current_user.played_in?(@tournament) %>
+        <%= button_to "PLAY!", :controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 0} %>
+    <% else %>
+        <%= button_to "Stop playing...", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure you want to stop playing?' } %>
+    <% end %>
+    <% if current_user.nil? || !current_user.organized_a?(@tournament) %>
+        <%= button_to "Request to Organize!", :controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 1} %>
+    <% else %>
+        <%= button_to "Stop organizing...", join_path(:params => {:event_id => @tournament.id, :join => 1}), :method=> :delete, data: { confirm: 'Are you sure you want to stop organizing?' } %>
+    <% end %>
+    <% if current_user.nil? || !current_user.sponsored_a?(@tournament) %>
+        <%= form_tag :controller=> "join", :action => "create", :params=> {event_id: @tournament.id, join: 2, name: @tournament.name} do %>
+            <label for="sponsor_amount">Amount to donate</label>
+            <%= text_field_tag :sponsor_amount, nil, placeholder: "CAD" %>
+            <%= submit_tag "Sponsor" %>
+        <% end %>
+    <% else %>
+        <%= button_to "Stop sponsoring...", join_path(:params => {:event_id => @tournament.id, :join => 2}), :method=> :delete, data: { confirm: 'Are you sure you want to stop sponsoring?' } %>
+    <% end %>
+    <p>&nbsp;</p>
 
-	<%= render partial: "show_persons_for_one_event", :locals => { :@title => "Organizers", :@persons => @tournament.organizers, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
-	<%= render partial: "show_persons_for_one_event", :locals => { :@title => "Sponsors", :@persons => @tournament.sponsors, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
-  <br/>
-  <h1>Description</h1>
-  <%if @tournament.description.nil?%>
-    None
-  <% else %>
-    <%= @tournament.description %>
-	<% end %>
-	<p>&nbsp;</p>
-  <%= link_to "All tournaments", "/tournaments", class: "button_small button_tour" %>
+    <h1>Players</h1>
+    <p><b><i>Note: Organizers can put the players into groups. In golf games, there can be at most 4 members in every group.</i></b></p>
+    <% if @tournament.players.any? %>
+        <% i=0%>
+        <% @group_of_groups.each do |pg| %>
+           <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Player Group (ID #{@group_id[i]})", :@persons => pg, :@player_subgroup => true, :@is_player_group => true} %>
+           <% if pg.length<4 && current_user.organized_a?(@tournament) %>
+             <%= select_tag "add_member", options_for_select(@unassigned_dump), prompt: "<select a player to add to group>", include_blank: false %>
+             <%= button_to "Add Member to Group" %>
+           <% end %>
+           <p>&nbsp;</p>
+           <% i+=1 %>
+        <% end %>
+        
+        <% if !@unassigned_players.empty? %>
+          <hr />
+          <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@player_subgroup => true, :@is_player_group => false, :is_organizer => @is_organizer} %>
+          <p>&nbsp;</p>
+        <% end %>
+    <% else %>
+          None<br/>
+    <% end %>
+
+    <hr />
+    <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Organizers", :@persons => @tournament.organizers, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
+    <p>&nbsp;</p>
+
+    <hr />
+    <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Sponsors", :@persons => @tournament.sponsors, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
+    <p>&nbsp;</p>
+
+    <hr />
+    <h1>Description</h1>
+    <%if @tournament.description.nil?%>
+      None
+    <% else %>
+      <%= @tournament.description %>
+  	<% end %>
+  	<p>&nbsp;</p>
+  </div>
 </body>

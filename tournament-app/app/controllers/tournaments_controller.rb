@@ -10,6 +10,7 @@ class TournamentsController < ApplicationController
         @tournament = Tournament.find(params[:id])
         @is_organizer = current_user && current_user.organized_a?(@tournament)
         @unassigned_players = []
+        @unassigned_dump = []
         @group_of_groups = []
         @group_id = []
         if @tournament.players.any?
@@ -27,6 +28,9 @@ class TournamentsController < ApplicationController
                     end
                 end
                 @group_of_groups << @players_in_group
+            end
+            @unassigned_players.each do |p|
+                @unassigned_dump << [p.id.to_s+". "+p.first_name+" "+p.last_name+"("+p.email+")", p.id]
             end
         end #end if
     end
@@ -72,6 +76,7 @@ class TournamentsController < ApplicationController
             @members.each do |m|
                 @group.add_member(m)
             end
+            redirect_to tournament_path(@tournament)
         end
     end
 
