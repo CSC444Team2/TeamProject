@@ -12,6 +12,12 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }
 
+	#Tickets
+	#This ticket model will saved all the tickets for this user
+	#With tickets_type identify the type of tickets
+	has_many :tickets
+	has_many :tournaments, through: :tickets
+
 	#Involvements
 	has_many :player_involvements, class_name: "Play", foreign_key: "person_id",
 									dependent: :destroy
