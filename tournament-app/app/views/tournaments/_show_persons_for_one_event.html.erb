@@ -21,5 +21,9 @@
     <% end %>
   </table>
 <% elsif @persons %>
-  No members
+  <% if @is_player_group %>
+    No members
+  <% else %>
+    None
+  <% end %>
 <% end %>
