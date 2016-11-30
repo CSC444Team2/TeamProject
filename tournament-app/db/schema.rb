@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20161130215839) do
     t.integer  "tournament_id"
     t.integer  "user_id"
     t.string   "tickets_type"
-    t.float    "price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["tournament_id"], name: "index_tickets_on_tournament_id"
