@@ -33,8 +33,7 @@ ActiveRecord::Schema.define(version: 20161123211126) do
   end
 
   create_table "playergroups", force: :cascade do |t|
-    t.text     "group_members"
-    t.integer  "tournament_id"
+    t.integer  "group_members"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
