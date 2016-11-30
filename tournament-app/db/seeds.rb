@@ -12,8 +12,10 @@ t3=Tournament.create(name: 'myTournament3')
 t4=Tournament.create(name: 'hello4', location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
 
 
-u1=User.create(first_name: 'Alice', last_name: 'Aleena', email: 'aasdf@aasdf.com', 
+u1=User.new(first_name: 'Alice', last_name: 'Aleena', email: 'aasdf@aasdf.com', 
 	password:'1234567', password_confirmation:'1234567')
+u1.generate_token(:auth_token)
+u1.save
 u2=User.create(first_name: 'Ben', last_name: 'Bean', email: 'b@b.com', 
 	password:'1234567', password_confirmation:'1234567')
 u3=User.create(first_name: 'Cathy', last_name: 'Clark', email: 'c@c.com', 
