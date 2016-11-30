@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20161123211126) do
   create_table "tickets", force: :cascade do |t|
     t.integer  "tournament_id"
     t.integer  "user_id"
-    t.string   "type"
+    t.string   "tickets_type"
     t.float    "price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false

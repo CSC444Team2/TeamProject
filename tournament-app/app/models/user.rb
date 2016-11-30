@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
 		format: { with: VALID_EMAIL_REGEX, message: "Not appropriate e-mail address" },
 		uniqueness: { case_sensitive: false }
 
+	def get_user_name
+		user_name = self.first_name + " " + self.last_name
+		return user_name
+	end
+
 	#Password
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }
