@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 	#Personal info
+	before_create { generate_token(:auth_token) }
+	
 	before_save { self.email = email.downcase }
 	validates :first_name, presence: true, length: { maximum: 50 }
 	validates :last_name, presence: true, length: { maximum: 50 }
@@ -15,7 +17,7 @@ class User < ActiveRecord::Base
 
 	#Password
 	has_secure_password
-	validates :password, presence: true, length: { minimum: 6 }
+	validates :password, presence: true, length: { minimum: 6 }, :on => :create
 
 	#Tickets
 	#This ticket model will saved all the tickets for this user
@@ -28,6 +30,20 @@ class User < ActiveRecord::Base
 									dependent: :destroy
 	has_many :played_events, through: :player_involvements, source: :event
 
+	def send_password_reset
+		generate_token(:password_reset_token)
+		self.password_reset_sent_at = Time.zone.now
+        	save!
+		UserMailer.password_reset(self).deliver
+	end
+
+	def generate_token(column)
+	begin
+		self[column] = SecureRandom.urlsafe_base64
+	end while User.exists?(column => self[column])
+	end
+	
+	
 	def play_in(some_event)
 		if(!self.played_in?(some_event))
 			player_involvements.create(event_id: some_event.id)
