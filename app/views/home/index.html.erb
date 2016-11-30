@@ -1,0 +1,53 @@
+<html>
+<head>
+  	<title>Golf Stuff</title>
+  	<meta name="keywords" content="golf tournament" />
+  	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  	<link rel="stylesheet" type="text/css" href="css/style.css" />
+  	<script type="text/javascript"></script>
+</head>
+
+<body>
+  <div id="main">
+    <%= render "header_menu"%>
+	<div id="site_content">
+	  <div id="banner_image">
+            <%= image_tag("ball.jpg", :alt => "golf ball") %>
+	  </div>
+
+	  <div class="sidebar_container">
+		<div class="sidebar">
+		<h1>Features</h1>
+			<div class="content_container">
+		    <p>*This will describe your ability to create a tournament*</p>
+		  	<div class="login_button">
+		      <a href="/tournaments/new">Create Tournament</a>
+		    </div><!--close button_small-->
+		  	</div><!--close content_container-->
+		  	<div class="content_container">
+		    <p>*This will describe your ability to browse and sign up for tournaments*</p>
+		  	<div class="login_button">
+		      <a href="/tournaments">View Tournaments</a>
+		    </div><!--close button_small-->
+		  </div><!--close content_container-->
+		</div>
+		</div>
+
+	  <div id="content">
+		<div class="content_item">
+		  <h1>Welcome To Golf Stuff</h1>
+	      <p>Golf Stuff lets you browse, register, sponsor and create your own golf tournaments.</p>
+	      <h1>Some Upcoming Events</h1>
+		    <p>*insert small table of tournaments here*</p>
+		</div><!--close content_item-->
+	  </div><!--close content-->
+
+	</div><!--close site_content-->
+  </div><!--close main-->
+
+  <div id="footer">
+	  <a title="A website template by" href="http://www.araynordesign.co.uk">ARaynorDesign</a>
+  </div><!--close footer-->
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<div id="login_div">
+<%= form_for @user do |f| %>
+  <p id="create_user">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name, :placeholder => "First Name", :class =>"form_input",:required => true%>
+  </p>
+ 
+  <p id="create_user">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name, :placeholder => "Last Name", :class =>"form_input", :required => true%>
+  </p>
+
+  <p id="create_user">
+    <%= f.label :gender %><br>
+    <%= f.text_field :gender, :placeholder => "Male/Female/Prefer not to say", :class => "form_input", :required => false%>
+  </p>
+
+  <p id="create_user">
+    <%= f.label :date_of_birth %><br>
+    <%= f.date_select :date_of_birth, start_year: 1900, :required => true%>
+  </p>
+
+  <p id="create_user">
+    <%= f.label :email %><br>
+    <%= f.email_field :email, :placeholder => "Email", :class =>"form_input", :required => true%>
+  </p>
+
+  <p id="create_user">
+    <%= f.label :phone_number %><br>
+    <%= f.telephone_field :phone_number, :placeholder => "Phone Number", :class =>"form_input", :required => true%>
+  </p>
+
+  <p id="create_user">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, :placeholder => "at least 6 characters", :class =>"form_input", :required => true, :minlength => 6 %>
+  </p>
+
+  <p id="create_user">
+    <%= f.label :confirm_password %><br>
+    <%= f.password_field :password_confirmation,:class =>"form_input", :required => true%>
+  </p>
+ 
+  <p id="create_user">
+    <%= f.submit "Submit", :class => "login_button"%>
+  </p>
+
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li id="errors"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  </div>
+ 
+<% end %>
+</html>
