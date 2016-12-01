@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123211126) do
+ActiveRecord::Schema.define(version: 20161130215839) do
 
   create_table "golf_courses", force: :cascade do |t|
     t.text     "name"
@@ -70,8 +70,7 @@ ActiveRecord::Schema.define(version: 20161123211126) do
   create_table "tickets", force: :cascade do |t|
     t.integer  "tournament_id"
     t.integer  "user_id"
-    t.string   "type"
-    t.float    "price"
+    t.string   "tickets_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["tournament_id"], name: "index_tickets_on_tournament_id"
@@ -80,13 +79,15 @@ ActiveRecord::Schema.define(version: 20161123211126) do
 
   create_table "tournaments", force: :cascade do |t|
     t.text     "name"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "is_private"
+    t.integer  "golf_course_id"
     t.string   "location"
     t.datetime "date"
     t.string   "contact_email"
     t.string   "contact_name"
-    t.text     "description",   limit: 500
+    t.text     "description",    limit: 500
   end
 
   create_table "users", force: :cascade do |t|
@@ -102,6 +103,9 @@ ActiveRecord::Schema.define(version: 20161123211126) do
     t.string   "gender"
     t.string   "address"
     t.string   "phone_number"
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

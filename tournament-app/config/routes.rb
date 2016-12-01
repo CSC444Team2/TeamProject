@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 	
 	resources :golf_courses
 	resources :join, only: [:create, :destroy]
+	resources :tickets
 	resources :requests, only: [:new, :create, :destroy]
 	resources :password_resets
 end
