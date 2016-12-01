@@ -26,6 +26,8 @@ class TicketsController < ApplicationController
 
 	def show
     @ticket = Ticket.find(params[:id])
+    @event_name = Tournament.find(@ticket.tournament_id).name
+    @user_name = current_user.get_user_name
   end
 
 	def destroy
