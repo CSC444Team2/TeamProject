@@ -17,7 +17,7 @@
 	<%= form_for @ticket do |f| %>
 	  <p>
 	    <%= f.label :TicketType %><br>
-	    <%= f.text_field :tickets_type %>
+	    <%= f.select(:tickets_type, options_for_select([['Player', "Player"], ['Sponsor', "Sponsor"]], 2)) %>
 	    <%= f.hidden_field :event_id, :value=> @event_id %>
 	  </p>
 	  <p>
