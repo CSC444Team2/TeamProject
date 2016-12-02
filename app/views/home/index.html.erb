@@ -16,6 +16,7 @@
 <body>
     <script>document.body.className += ' fade-out';</script>
   <div id="wrap">
+
       <%= render partial: "header_menu" %>
 
       <%= image_tag("ball.jpg", :alt => "golf ball", :class=>"img-responsive img-banner hidden-xs") %>
@@ -44,11 +45,7 @@
     <div id="push"></div>
   </div> <!--End of wrap-->
 
-  <footer id="footer">
-    <!--<div class="container">-->
-      CSC444 Fall 2016 - Software Engineering I - Group 2
-    <!--</div>-->
-  </footer>
+  <%= render "footer" %>
 
 </body>
 </html>
