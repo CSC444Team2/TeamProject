@@ -1,31 +1,47 @@
-<html>
-<head>
-  	<title>Golf Stuff</title>
-  	<meta name="keywords" content="golf tournament" />
-  	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  	<link rel="stylesheet" type="text/css" href="css/style.css" />
-</head>
+<!-- Latest compiled and minified CSS -->
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-	<div id="menubar">
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	  <div id="welcome">
-	    <h1><a href="#">Golf Stuff</a></h1>
-	  </div><!--close welcome-->
-
-	  <div id="menu_items">
-	    <ul id="menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/tournaments">Tournaments</a></li>
-          <li><a href="/golf_courses">Golf Courses</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="ourStory.html">Our Story</a></li>
-          <% if logged_in? %>
-		  <li><%= link_to "Profile", @current_user %></li>
-		  <li><%= link_to "Logout", logout_path, method: "delete" %></li>
-		  <% else %>
-		  <li><%= link_to "Login", login_path%></li>
-	      <% end %>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-bar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Golf Stuff</a>
+    </div>
+    <div class="collapse navbar-collapse" id="nav-bar">
+      <ul class="nav navbar-nav">
+        <li><a href="/tournaments">Tournaments</a></li>
+        <li><a href="/golf_courses">Golf Courses</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="ourStory.html">Our Story</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+            <li>
+              <%= link_to (@current_user) do %>
+                  <span class="glyphicon glyphicon-user"></span> Profile
+              <% end %>
+            </li>
+            <li>
+              <%= link_to (logout_path), method: "delete" do %>
+                <span class="glyphicon glyphicon-log-out"></span> Login Out
+              <% end %>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to (login_path) do %>
+                <span class="glyphicon glyphicon-log-in"></span> Login
+              <% end %>
+            </li>
+        <% end %>
       </ul>
     </div>
   </div>
-</html>
+</nav>
