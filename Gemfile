@@ -43,10 +43,14 @@ gem 'test-unit'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+# Integrate Bootstrap with the application
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'autoprefixer-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
-	gem 'pg'
+	# gem 'pg'
 end
 
 group :development, :test do
