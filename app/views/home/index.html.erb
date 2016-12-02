@@ -3,49 +3,52 @@
   	<title>Golf Stuff</title>
   	<meta name="keywords" content="golf tournament" />
   	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <script>
+      $(document).ready(function() {
+        $(function() {
+          $('body').removeClass('fade-out');
+        });
+      });
+    </script>
 </head>
 
 <body>
-  <div id="main">
-    <%= render "header_menu"%>
-	<div id="site_content">
-	  <div id="banner_image">
-            <%= image_tag("ball.jpg", :alt => "golf ball") %>
-	  </div>
+    <script>document.body.className += ' fade-out';</script>
+  <div id="wrap">
+      <%= render partial: "header_menu" %>
 
-	  <div class="sidebar_container">
-		<div class="sidebar">
-		<h1>Features</h1>
-			<div class="content_container">
-		    <p>*This will describe your ability to create a tournament*</p>
-		  	<div class="login_button">
-		      <a href="/tournaments/new">Create Tournament</a>
-		    </div><!--close button_small-->
-		  	</div><!--close content_container-->
-		  	<div class="content_container">
-		    <p>*This will describe your ability to browse and sign up for tournaments*</p>
-		  	<div class="login_button">
-		      <a href="/tournaments">View Tournaments</a>
-		    </div><!--close button_small-->
-		  </div><!--close content_container-->
-		</div>
-		</div>
+      <%= image_tag("ball.jpg", :alt => "golf ball", :class=>"img-responsive img-banner hidden-xs") %>
 
-	  <div id="content">
-		<div class="content_item">
-		  <h1>Welcome To Golf Stuff</h1>
-	      <p>Golf Stuff lets you browse, register, sponsor and create your own golf tournaments.</p>
-	      <h1>Some Upcoming Events</h1>
-		    <p>*insert small table of tournaments here*</p>
-		</div><!--close content_item-->
-	  </div><!--close content-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <h1>Features</h1>
+            <div>*This will describe your ability to create a tournament*</div>
+            <a href="/tournaments/new"><button class="button_new button btn-home">Create Tournament</button></a>
 
-	</div><!--close site_content-->
-  </div><!--close main-->
+            <div>*This will describe your ability to browse and sign up for tournaments*</div>
+            <a href="/tournaments"><button class="button_new button">View Tournaments</button></a>
+          </div>
 
-  <div id="footer">
-	 
-  </div><!--close footer-->
+          <div class="col-sm-8">
+                <h1>Welcome To Golf Stuff</h1>
+                <div>Golf Stuff lets you browse, register, sponsor and create your own golf tournaments.</div>
+
+                <h1>Some Upcoming Events</h1>
+                <div>*insert small table of tournaments here*</div>
+          </div>
+        </div>
+      </div>
+
+    <div id="push"></div>
+  </div> <!--End of wrap-->
+
+  <footer id="footer">
+    <!--<div class="container">-->
+      CSC444 Fall 2016 - Software Engineering I - Group 2
+    <!--</div>-->
+  </footer>
 
 </body>
 </html>

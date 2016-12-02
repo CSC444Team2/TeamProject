@@ -84,3 +84,58 @@ table.main-table tr:nth-child(even) {
     font-weight: bold;
     font-size: 1.5em;
 }
+
+.img-banner {
+    width: 100%;
+}
+
+
+.navbar {
+    margin-bottom: 0 !important;
+}
+
+body {
+    opacity: 1;
+    transition: 3s opacity;
+}
+body.fade-out {
+    opacity: 0;
+    transition: none;
+}
+
+.btn-home {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+#footer, #push {
+    height: 75px;
+}
+
+#footer {
+    padding: 20px;
+    color: gray;
+    background-color: rgba(237, 255, 168, 0.45);
+}
+
+/*@media (max-width: 767px) {*/
+    /*#footer {*/
+        /*margin-left: -20px;*/
+        /*margin-right: -20px;*/
+        /*padding-left: 20px;*/
+        /*padding-right: 20px;*/
+    /*}*/
+/*}*/
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -75px !important;
+}
