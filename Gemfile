@@ -21,7 +21,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem "paperclip", "~>4.1.1" #gem for saving images
+gem "paperclip", github: 'thoughtbot/paperclip' #gem for saving images
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

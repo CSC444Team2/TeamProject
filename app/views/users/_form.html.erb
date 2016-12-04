@@ -4,7 +4,7 @@
   <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <div id="login_div">
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => { :multipart => true } do |f| %>
   <p id="create_user">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name, :placeholder => "First Name", :class =>"form_input",:required => true%>
@@ -13,6 +13,11 @@
   <p id="create_user">
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name, :placeholder => "Last Name", :class =>"form_input", :required => true%>
+  </p>
+
+  <p id="create_user">
+    <%= f.label :profile_picture %><br>
+    <%= f.file_field :profile_picture %>
   </p>
 
   <p id="create_user">

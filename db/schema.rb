@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130215839) do
+ActiveRecord::Schema.define(version: 20161204214957) do
 
   create_table "golf_courses", force: :cascade do |t|
     t.text     "name"
@@ -106,6 +106,10 @@ ActiveRecord::Schema.define(version: 20161130215839) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "profile_picture_file_name"
+    t.string   "profile_picture_content_type"
+    t.integer  "profile_picture_file_size"
+    t.datetime "profile_picture_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

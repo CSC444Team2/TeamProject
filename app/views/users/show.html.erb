@@ -67,7 +67,8 @@
           </table>
         </div>
         <div class="col-xs-4">
-          <%= image_tag("avatar.png", :alt => "golf ball", :class => "avatar")%>
+          <!--<%= image_tag("avatar.png", :alt => "golf ball", :class => "avatar")%> -->
+          <%= image_tag @user.profile_picture.url(:large) %>
         </div>
       </div>
 
