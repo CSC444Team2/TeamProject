@@ -36,6 +36,11 @@
   </p>
 
   <p id="create_user">
+    <%= f.label :address %><br>
+    <%= f.text_field :address, :placeholder => "Address", :class =>"form_input", :required => true%>
+  </p>
+
+  <p id="create_user">
     <%= f.label :password %><br>
     <%= f.password_field :password, :placeholder => "at least 6 characters", :class =>"form_input", :required => true, :minlength => 6 %>
   </p>

@@ -1,0 +1,279 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"text",
+				"text_field"
+			],
+			[
+				"date",
+				"date_of_birth"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"for",
+				"form_input"
+			],
+			[
+				"txt",
+				"text_field"
+			],
+			[
+				"tournament_",
+				"tournament_input"
+			],
+			[
+				"te",
+				"text_field"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"h",
+				"href	Attr"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"font",
+				"font-variant"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"s",
+				"src	Attr"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/CoreyYen/Desktop/4th Year/Ionic-Test/ionic-starter-eventmaps-1.0.1/www/app/app.js",
+		"/Users/CoreyYen/Desktop/4th Year/Ionic-Test/backand/src/app/app.component.ts",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/users/_form.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/users/show.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/assets/stylesheets/style.css",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/tournaments/_form.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/migrate/20161026203703_add_attributes_to_tournament.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/users/edit.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/migrate/20161109213810_add_attribute_to_users.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/migrate/20161109215112_remove_phone_number_from_users.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/migrate/20161109215140_add_phone_number_to_users.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/test.sqlite3",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/sessions/_form.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/sessions/new.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/controllers/tournaments_controller.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/migrate/20161028024719_add_description_and_type_to_tournaments.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/migrate/20161109211543_remove_type_from_tournaments.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/migrate/20161026210506_add_type_to_tournament.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/tournaments/show.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/home/index.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/users/index.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/tournaments/index.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/tournaments/new.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/config/application.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/controllers/application_controller.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/migrate/20161005203025_create_users.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/tournaments/_show_persons_for_one_event.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/views/tournaments/edit.html.erb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/migrate/20160928212202_create_tournaments.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/schema.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/seeds.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/db/migrate/20161026195616_add_location_to_touranament.rb",
+		"/Users/CoreyYen/Desktop/4th Year/CSC444/TeamProject/tournament-app/app/assets/stylesheets/users.scss",
+		"/Users/CoreyYen/Desktop/CSC444/TeamProject/tournament-app/config/routes.rb",
+		"/Users/CoreyYen/Desktop/CSC444/TeamProject/tournament-app/app/views/tournaments/index.html.erb",
+		"/Users/CoreyYen/Desktop/CSC444/TeamProject/Template/css/style.css",
+		"/Users/CoreyYen/Desktop/CSC444/TeamProject/tournament-app/app/views/home/index.html.erb",
+		"/Users/CoreyYen/Desktop/CSC444/TeamProject/Template/Tournament Page.html",
+		"/Users/CoreyYen/Desktop/CSC444/TeamProject/Template/tournaments.html",
+		"/Users/CoreyYen/Desktop/CSC444/TeamProject/Template/index.html",
+		"/Users/CoreyYen/Desktop/style.css",
+		"/Users/CoreyYen/Desktop/tournament page.html",
+		"/Users/CoreyYen/Desktop/tournaments.html",
+		"/Users/CoreyYen/Desktop/CSC444/TeamProject/tournament-app/app/views/tournaments/new.html.erb",
+		"/Users/CoreyYen/Desktop/CSC444/TeamProject/Template/contact.html",
+		"/Users/CoreyYen/Desktop/html-workshop-master/zerotype/css/style.css",
+		"/Users/CoreyYen/Desktop/html-workshop-master/zerotype/features.html",
+		"/Users/CoreyYen/Desktop/html-workshop-master/zerotype/contact.html",
+		"/Users/CoreyYen/Desktop/html-workshop-master/zerotype/about.html",
+		"/Users/CoreyYen/Desktop/html-workshop-master/index.html",
+		"/Users/CoreyYen/Desktop/html-workshop-master/css/style.css"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"tournament_d",
+			"form_input",
+			"tournament",
+			"dddddf"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "index.html.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 196.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

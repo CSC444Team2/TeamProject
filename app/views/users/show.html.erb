@@ -41,8 +41,12 @@
               <td><%= @user.last_name %></td>
             </tr>
             <tr>
+              <th>Gender</th>
+              <td><%= @user.gender %></td>
+            </tr>
+            <tr>
               <th>Birthdate</th>
-              <td><%= @user.first_name %></td>
+              <td><%= @user.date_of_birth %></td>
             </tr>
           </table>
 
@@ -54,11 +58,11 @@
             </tr>
             <tr>
               <th>Phone Number</th>
-              <td></td>
+              <td><%= @user.phone_number %></td>
             </tr>
             <tr>
-              <th>Addressr</th>
-              <td></td>
+              <th>Address</th>
+              <td><%= @user.address %></td>
             </tr>
           </table>
         </div>
@@ -72,7 +76,8 @@
       <%= render partial: "show_events_for_one_person", locals: { :@title => "Played Tournaments", :@events => @user.played_events } %>
 
       <%= render partial: "show_events_for_one_person", locals: { :@title => "Sponsored Tournaments", :@events => @user.sponsored_events } %>
-
+      <br>
+      <br>
       <% if current_user == @user %>
         <%= link_to 'Edit My Profile', edit_user_path(@user), :class => "button_new button btn-on-profile"%>
       <% end %>
