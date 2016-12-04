@@ -1,51 +1,87 @@
 <html>
-<title>Login</title>
-<link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+<head>
+  <title>Golf Stuff - Login</title>
 </head>
+
 <body>
-	<div id="main">
-		<%=render "header_menu"%>
-		<div id="site_content">
-			<p>&nbsp;</p>
-			<% if current_user == @user %>
-				<%= render partial: "tournaments/show_requests", locals: {title: "Sent Requests", requests: @user.sent_requests} %>
-				<%= render partial: "tournaments/show_requests", locals: {title: "Received Requests", requests: @user.received_requests} %>
-				<h2 class="page_header">Welcome to your personal profile, <%= @user.first_name %></h2>
-			<% else %>
-				<h2 class="page_header">Profile page for <%= @user.first_name %> <%= @user.last_name %></h2>
-			<% end %>
-			
-			<br>
-			<div class="profile">
-				<div class="general_inf">
-					<%= image_tag("avatar.png", :alt => "golf ball")%>
-				</div>
-				<div class="general_inf">
-					<p class="info"><strong>First Name:</strong><%= @user.first_name %></p>
-					<p class="info"><strong>Last Name:</strong><%= @user.last_name %></p>
-					<p class="info"><strong>Birthdate:</strong></p>
-				</div>
-			</div>
+  <div id="wrap">
+    <%=render "header_menu"%>
 
-			<div class="profile">	
-			<p class="info"><strong>Contact Information</strong></p>
-			<p class="info"><strong>Email:</strong><%= @user.email %></p>
-			<p class="info"><strong>Phone Number:</strong></p>
-			<p class="info"><strong>Address:</strong></p>
-			<p>&nbsp;</p>
-			</div>
+    <div class="container">
 
-			<!--div class="profile"--><!--!!!!!Bug if added this!!!!!-->
-			<%= render partial: "show_events_for_one_person", locals: { :@title => "Organized Tournaments", :@events => @user.organized_events } %>
-			<p>&nbsp;</p>
-			<%= render partial: "show_events_for_one_person", locals: { :@title => "Played Tournaments", :@events => @user.played_events } %>
-			<p>&nbsp;</p>
-			<%= render partial: "show_events_for_one_person", locals: { :@title => "Sponsored Tournaments", :@events => @user.sponsored_events } %>
-			<p>&nbsp;</p>
-			<% if current_user == @user %>
-				<%= link_to 'Edit My Profile', edit_user_path(@user), :class => "button_small"%> 
-			<% end %>
-			<!--/div-->
-		</div>
-	</div>
+      <div class="row">
+        <h1 class="tournament-title"><%= @user.first_name %> <%= @user.last_name %></h1>
+      </div>
+
+
+      <% if current_user == @user %>
+
+        <h2>Welcome to your personal profile, <%= @user.first_name %></h2>
+        <div class="requests-box">
+          <%= render partial: "tournaments/show_requests", locals: {title: "Sent Requests", requests: @user.sent_requests} %>
+          <%= render partial: "tournaments/show_requests", locals: {title: "Received Requests", requests: @user.received_requests} %>
+        </div>
+
+      <% else %>
+
+        <h2>Profile page for <%= @user.first_name %> <%= @user.last_name %></h2>
+
+      <% end %>
+
+      <div class="row">
+        <div class="col-xs-8">
+          <table class="table table-info">
+            <tr>
+              <th>First Name</th>
+              <td><%= @user.first_name %></td>
+            </tr>
+            <tr>
+              <th>Last Name</th>
+              <td><%= @user.last_name %></td>
+            </tr>
+            <tr>
+              <th>Birthdate</th>
+              <td><%= @user.first_name %></td>
+            </tr>
+          </table>
+
+          <h4>Contact Information</h4>
+          <table class="table table-info">
+            <tr>
+              <th>Email</th>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <th>Phone Number</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Addressr</th>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-xs-4">
+          <%= image_tag("avatar.png", :alt => "golf ball", :class => "avatar")%>
+        </div>
+      </div>
+
+      <%= render partial: "show_events_for_one_person", locals: { :@title => "Organized Tournaments", :@events => @user.organized_events } %>
+
+      <%= render partial: "show_events_for_one_person", locals: { :@title => "Played Tournaments", :@events => @user.played_events } %>
+
+      <%= render partial: "show_events_for_one_person", locals: { :@title => "Sponsored Tournaments", :@events => @user.sponsored_events } %>
+
+      <% if current_user == @user %>
+        <%= link_to 'Edit My Profile', edit_user_path(@user), :class => "button_new button btn-on-profile"%>
+      <% end %>
+
+    </div><!-- End of container -->
+    <div id="push"></div>
+  </div><!-- End of wrap -->
+
+  <%= render "footer" %>
+
 </body>
+</html>

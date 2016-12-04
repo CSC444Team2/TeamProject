@@ -65,7 +65,7 @@ table.main-table tr:nth-child(even) {
 }
 
 .btn-small {
-    padding: 0 5px;
+    padding: 5px;
     width: auto;
     margin: 0;
 }
@@ -130,4 +130,33 @@ html, body {
     height: auto !important;
     height: 100%;
     margin-bottom: -75px !important;
+}
+
+.requests-box {
+    width: 90%;
+    margin: auto;
+    border: 1px solid lightgrey;
+    padding: 10px !important;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 576px) {
+    .table-info {
+        width: 50% !important;
+    }
+}
+
+
+.table-info td, .table-info th {
+    border: none !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.avatar {
+    float: right;
+}
+
+.btn-on-profile {
+    margin-top: 50px !important;
 }
