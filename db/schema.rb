@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20161205043249) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "reset_digest"
-    t.datetime "reset_sent_at"
+    t.time     "reset_sent_at"
     t.date     "date_of_birth"
     t.string   "gender"
     t.string   "address"

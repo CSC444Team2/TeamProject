@@ -23,7 +23,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem "paperclip", github: 'thoughtbot/paperclip' #gem for saving images
 gem 'aws-sdk', '~> 2.3'
-
+gem 'rmagick'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
