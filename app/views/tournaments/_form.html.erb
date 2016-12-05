@@ -12,8 +12,28 @@
         <%= t.text_field :name, :placeholder => "Tournament Name", :class => "form_input" %>
       </p>
 
-      <p id="create_tournament"> 
+      <p id="create_tournament">
+        <%= t.label :private_tournament? %><br>
+        <i>Private tournaments will not show up on the "tournaments" page. Outsiders(not logged in) will not be able to view private tournaments.</i><br>
+        <%= t.select :is_private, options_for_select([['public', 0], ['private', 1]], @tournament.is_private), :include_blank => false %>
+      </p>
+
+      <p id="create_tournament">
         <%= t.label :location %><br>
+        <% @golf_course_dump = [] %>
+        <% (GolfCourse.all).each do |gf| %>
+            <% @golf_course_dump << [gf.id.to_s+". "+gf.name+"("+gf.address+")", gf.id] %>
+        <% end %>
+        <% if !@golf_course_dump.empty? %>
+          <i>Note: If both fields are filled in, the location field, though recorded, will be covered with the address of the selected golf course</i><br>
+          <%= t.select :golf_course_id, options_for_select(@golf_course_dump), :prompt => "<select an existing golf course in the list> ", :include_blank => false %><br>
+
+          <i>OR</i><br>
+        <% else %>
+          <i>No registered golf courses available now...</i><br>
+        <% end %>
+
+        <i>Enter a location</i>
         <%= t.text_field :location, :placeholder => "Location", :class => "form_input" %>
       </p>
 

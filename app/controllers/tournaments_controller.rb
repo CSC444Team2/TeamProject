@@ -1,5 +1,6 @@
 class TournamentsController < ApplicationController
     before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
+    before_action :private_permission, only: [:show]
     before_action :require_organizer, only: [:edit, :update, :destroy]
     protect_from_forgery except: [:hook]
 
@@ -33,6 +34,10 @@ class TournamentsController < ApplicationController
                 @unassigned_dump << [p.id.to_s+". "+p.first_name+" "+p.last_name+"("+p.email+")", p.id]
             end
         end #end if
+
+        if !@tournament.golf_course_id.nil?
+            @golf_course = GolfCourse.find(@tournament.golf_course_id)
+        end
     end
 
     def edit
@@ -160,6 +165,17 @@ class TournamentsController < ApplicationController
     
     private
     def tournament_params
-        params.require(:tournament).permit(:name, :id, :location, :date, :contact_email, :contact_name, :description)
+        params.require(:tournament).permit(:name, :id, :location, :date, :contact_email, :contact_name, :description, :is_private, :golf_course_id)
+    end
+
+    def private_permission
+        @tournament = Tournament.find(params[:id])
+        if @tournament && @tournament.is_private!=0
+            if current_user
+                return true
+            else
+                redirect_to '/'
+            end
+        end
     end
 end

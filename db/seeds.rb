@@ -6,16 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-t1=Tournament.create(name: 'myTournament')
-t2=Tournament.create(name: 'myTournament2')
-t3=Tournament.create(name: 'myTournament3')
-t4=Tournament.create(name: 'hello4', location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
+t1=Tournament.create(name: 'myTournament', is_private: 0)
+t2=Tournament.create(name: 'myTournament2', is_private: 0)
+t3=Tournament.create(name: 'myTournament3', is_private: 0)
+t5=Tournament.create(name: 'privateTournament', is_private: 1)
+t4=Tournament.create(name: 'hello4', is_private: 0, location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
 
-
-u1=User.new(first_name: 'Alice', last_name: 'Aleena', email: 'aasdf@aasdf.com', 
+u1=User.create(first_name: 'Alice', last_name: 'Aleena', email: 'aasdf@aasdf.com', 
 	password:'1234567', password_confirmation:'1234567')
-u1.generate_token(:auth_token)
-u1.save
 u2=User.create(first_name: 'Ben', last_name: 'Bean', email: 'b@b.com', 
 	password:'1234567', password_confirmation:'1234567')
 u3=User.create(first_name: 'Cathy', last_name: 'Clark', email: 'c@c.com', 
@@ -32,6 +30,8 @@ g2=GolfCourse.create(name: 'Course on Water', overview: 'Water Course', address:
 
 r1=Request.create(sender_id: 1, receiver_id: 2)
 r2=Request.create(sender_id: 2, receiver_id: 3)
+r2=Request.create(sender_id: 3, receiver_id: 4)
+r2=Request.create(sender_id: 4, receiver_id: 1)
 
 u1.organize_a(t1)
 u2.organize_a(t2)
