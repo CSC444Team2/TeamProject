@@ -8,12 +8,90 @@
   <%= render "header_menu" %>
 
   <div class="row">
-    <h1 class="col-xs-10 col-xs-offset-1 tournament-title"><%= @tournament.name %></h1>
+    <div class="col-xs-8 col-xs-offset-1 tournament-title"><h1><%= @tournament.name %></h1>
+    <% if @is_organizer%>
+        <%= link_to 'Edit Tournament Details', edit_tournament_path(@tournament), :class=>"button-small button button_new"%>
+    <% end %>
+    </div>
   </div>
 
+  
   <div class="col-xs-10 col-xs-offset-1">
+    <!--Show Details-->
+    <div class="row">
+        <div class="col-xs-10">
+          <table>
+            <tr>
+              <th>Permission</th>
+              <% if @tournament.is_private!=0 %>
+                <td><i>Private</i></td>
+              <% else %>
+                <td><i>Public</i></td>
+              <% end %>
+            </tr>
+            <tr>
+              <th>Date & Time</th>
+              <% if !@tournament.date.nil? %>
+                <td><%= @tournament.date %></td>
+              <% else %>
+                <td>N/A</td>
+              <% end %>
+            </tr>
+            <tr>
+              <th>Golf Course</th>
+              <% if !@golf_course.nil?%>
+                <td><%= link_to @golf_course.name, golf_course_path(@golf_course) %></td>
+              <% else %>
+                <td> N/A</td>
+              <% end %>
+            </tr>
+            <tr>
+              <th>Location</th>
+              <% if !@golf_course.nil?%>
+                <td><%= @golf_course.address %></td>
+              <% elsif !@tournament.location.nil? && !@tournament.location.empty?%>
+                <td><%= @tournament.location %></td>
+              <% else %>
+                <td>N/A</td>
+              <% end %>
+            </tr>
+            <tr>
+              <th>Contact Email</th>
+              <% if !@tournament.contact_email.nil? && !@tournament.contact_email.empty? %>
+                <td><%= @tournament.contact_email %></td>
+              <% else %>
+                <td>N/A</td>
+              <% end %>
+            </tr>
+            <tr>
+              <th>Contact Name</th>
+              <% if !@tournament.contact_name.nil? && !@tournament.contact_name.empty? %>
+                <td><%= @tournament.contact_name %></td>
+              <% else %>
+                <td>N/A</td>
+              <% end %>
+            </tr>
+            <tr>
+              <th>Description</th>
+              <%if @tournament.description.nil? || @tournament.description.empty? %>
+                <td>None</td>
+              <% else %>
+                <td><%= @tournament.description %></td>
+              <% end %>
+            </tr>
+          </table>
+        </div>
+        <% if !@golf_course.nil? %>
+          <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe>
+        <% else %>
+          <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @tournament.location %>" allowfullscreen></iframe>
+        <% end %>
+      </div>
 
-    <!--Show requests-->
+      
+
+
+      <!--Show requests-->
     <% if @is_organizer%>
         <%= render partial: "show_requests", locals: {title: "Pending Requests for This Tournament", requests: @tournament.received_requests} %>
     <% end %>
@@ -60,6 +138,7 @@
 
     <% if @tournament.players.any? %>
 
+        <!--Players with group-->
         <% i=0%>
         <% @group_of_groups.each do |pg| %>
             <b><i><%= "Player Group (ID #{@group_id[i]})" %></i></b>
@@ -75,34 +154,24 @@
                     <%= submit_tag "Add Member to Group" %>
                 <% end %>
             <% elsif pg[:players].length==4 && @is_organizer %>
-                <i>4 members in group already (group full)</i>
+                <i>4 members in group already (group <%=@group_id[i]%> is full)</i><br><br>
             <% end %>
-
-            <!--Show players without group-->
-            <% if !@unassigned_players.empty? %>
-                <hr />
-                <b><i><%= "Players without group" %></i></b>
-                <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@player_subgroup => true, :@is_player_group => false, :is_organizer => @is_organizer} %>
-            <% end %>
-
-          <% i+=1 %>
+            <% i+=1 %>
         <% end %>
 
+        <!--Show players without group-->
+        <% if !@unassigned_players.empty? %>
+            <hr />
+            <b><i><%= "Players without group" %></i></b>
+            <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@player_subgroup => true, :@is_player_group => false, :is_organizer => @is_organizer} %>
+        <% end %>
     <% else %>
-        <h2>Players</h2>
         <div>No players</div>
     <% end %>
 
     <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Organizers", :@persons => @tournament.organizers, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
 
     <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Sponsors", :@persons => @tournament.sponsors, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
-
-    <h2>Description</h2>
-    <%if @tournament.description.nil?%>
-      None
-    <% else %>
-      <%= @tournament.description %>
-  	<% end %>
 
   </div>
 </body>

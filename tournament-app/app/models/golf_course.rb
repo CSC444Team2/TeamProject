@@ -1,2 +1,0 @@
-class GolfCourse < ApplicationRecord
-end

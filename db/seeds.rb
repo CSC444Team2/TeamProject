@@ -6,16 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-t1=Tournament.create(name: 'myTournament')
-t2=Tournament.create(name: 'myTournament2')
-t3=Tournament.create(name: 'myTournament3')
-t4=Tournament.create(name: 'hello4', location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
+g1=GolfCourse.create(name: 'Ladies Golf Club of Toronto', overview: 'Great course', address: '7859 Yonge Street, Thornhill, ON L3T 2C4', website: 'http://www.ladiesgolfclub.com/', contact_info: 'Anna')
+g2=GolfCourse.create(name: 'Humber Valley Golf Course', address: '40 Beattie Avenue', website: 'http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=5e1cd49024561410VgnVCM10000071d60f89RCRD', contact_info: 'Anna', overview: "Humber Valley's par 70 course challenges golfers with its combination of links and valley land holes.")
+
+t1=Tournament.create(name: 'myTournament', is_private: 0, golf_course_id: 1)
+t2=Tournament.create(name: 'myTournament2', is_private: 0, location: 'Buttonville')
+t3=Tournament.create(name: 'myTournament3', is_private: 0, golf_course_id: 2)
+t5=Tournament.create(name: 'privateTournament', is_private: 1, golf_course_id: 2)
+t4=Tournament.create(name: 'hello5', is_private: 0, location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
 
 
-u1=User.new(first_name: 'Alice', last_name: 'Aleena', email: 'aasdf@aasdf.com', 
+u1=User.create(first_name: 'Alice', last_name: 'Aleena', email: 'aasdf@aasdf.com', 
 	password:'1234567', password_confirmation:'1234567')
-u1.generate_token(:auth_token)
-u1.save
 u2=User.create(first_name: 'Ben', last_name: 'Bean', email: 'b@b.com', 
 	password:'1234567', password_confirmation:'1234567')
 u3=User.create(first_name: 'Cathy', last_name: 'Clark', email: 'c@c.com', 
@@ -27,11 +29,10 @@ u5=User.create(first_name: 'Ellen', last_name: 'Elms', email: 'e@e.com',
 u6=User.create(first_name: 'Fox', last_name: 'Findley', email: 'f@f.com', 
 	password:'1234567', password_confirmation:'1234567')
 
-g1=GolfCourse.create(name: 'Golf Course 1', overview: 'Great course', address: '123 Main Street', website: 'www.google.com', contact_info: 'Anna')
-g2=GolfCourse.create(name: 'Course on Water', overview: 'Water Course', address: '123 Bay Street', website: 'www.baidu.com', contact_info: 'Anna')
-
 r1=Request.create(sender_id: 1, receiver_id: 2)
 r2=Request.create(sender_id: 2, receiver_id: 3)
+r2=Request.create(sender_id: 3, receiver_id: 4)
+r2=Request.create(sender_id: 4, receiver_id: 1)
 
 u1.organize_a(t1)
 u2.organize_a(t2)

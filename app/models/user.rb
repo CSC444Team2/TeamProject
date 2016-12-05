@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 	has_many :tickets
 	has_many :tournaments, through: :tickets
 
-	#Involvements
+	#========== Tournament Involvements ===============
 	has_many :player_involvements, class_name: "Play", foreign_key: "person_id",
 									dependent: :destroy
 	has_many :played_events, through: :player_involvements, source: :event
@@ -102,6 +102,43 @@ class User < ActiveRecord::Base
 			end
 		end
 		return requests
+  end
+
+  #========== Golf Course Involvements ===============
+  has_many :admin_course_rel, class_name: "CourseAdmin", foreign_key: "admin_id",
+  								dependent: :destroy
+  has_many :admined_courses, through: :admin_course_rel, source: :course
+
+  has_many :manage_course_rel, class_name: "CourseManager", foreign_key: "manager_id",
+  								dependent: :destroy
+  has_many :managed_courses, through: :manage_course_rel, source: :course
+  def deal_course(some_course, type)
+  	if(!self.dealt_a?(some_course))
+  		case type
+  		when 0
+  			admin_course_rel.create(course_id: some_course.id)
+  		when 1
+  			manage_course_rel.create(course_id: some_course.id)
+  		end
+  	end
+  end
+  def not_deal_course(some_course, type)
+  	if(self.dealt_a?(some_course))
+  		case type
+	  	when 0
+	  		admin_course_rel.find_by(course_id: some_course.id).destroy
+	  	when 1
+	  		manage_course_rel.find_by(course_id: some_course.id).destroy
+	  	end
+  	end
+  end
+  def dealt_a_course?(some_course, type)
+  	case type
+  	when 0
+  		return admined_courses.include?(some_course)
+  	when 1
+  		return managed_courses.include?(some_course)
+  	end
   end
 
   # draft method to redirect to PayPal payment
