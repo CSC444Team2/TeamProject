@@ -16,11 +16,7 @@ class User < ActiveRecord::Base
 	end
 
 	#Profile Picture
-	has_attached_file :profile_picture, 
-	:styles => {large: "600x600>", medium: "300x300>", thumb: "150x150#"},
-	:storage => :s3,
-	:bucket => 'csc444team2'
-	:s3_credentials => S3_CREDENTIALS
+	has_attached_file :profile_picture, :styles => {large: "600x600>", medium: "300x300>", thumb: "150x150#"}
 	validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/\
 
 	#Password
