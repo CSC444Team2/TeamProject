@@ -41,10 +41,20 @@
     </div>
 
     <!-- Admins & CSRs -->
+    <h3>Golf Course Admins</h3>
     <div class="row tourn-btn-row">
-        <%= render partial: "tournaments/show_persons_for_one_event", :locals => { :@title => "Golf Course Admins", :@persons => @golf_course.admins, :@player_subgroup => false, :@is_player_group => false, :is_organizer => false} %>
-        <%= render partial: "tournaments/show_persons_for_one_event", :locals => { :@title => "Golf Course CSRs(Managers)", :@persons => @golf_course.managers, :@player_subgroup => false, :@is_player_group => false, :is_organizer => false} %>
+        
+        <%= render partial: "tournaments/show_persons_for_one_event", :locals => { :@title => nil, :@persons => @golf_course.admins, :@player_subgroup => false, :@is_player_group => false, :is_organizer => false} %>
+    </div>
+    <h3>Golf Course CSRs(Managers)</h3>
+    <div class="row tourn-btn-row">
+        <%= render partial: "tournaments/show_persons_for_one_event", :locals => { :@title => nil, :@persons => @golf_course.managers, :@player_subgroup => false, :@is_player_group => false, :is_organizer => false} %>
         <br>
+    </div>
+    
+    <h3>Hosted Tournaments</h3>
+    <div class="row tourn-btn-row">
+        <%= render partial: "users/show_events_for_one_person", locals: { :@title => nil, :@events => @hosted_tournaments } %>
     </div>
  </div>
 </div>

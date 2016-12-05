@@ -9,6 +9,13 @@ class GolfCoursesController < ApplicationController
 		@golf_course = GolfCourse.find(params[:id])
 		@is_admin = current_user && current_user.dealt_a_course?(@golf_course, 0)
 		@is_manager = current_user && current_user.dealt_a_course?(@golf_course, 1)
+		@hosted_tournaments = []
+		Tournament.all.each do |t|
+			if t.golf_course_id == @golf_course.id
+				@hosted_tournaments << t
+			end
+		end
+
 		@google_api_key = google_api_key
 	end
 

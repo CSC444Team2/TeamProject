@@ -45,12 +45,6 @@
                               <%= link_to "Stop playing", join_path(:id => t.id, :params => {:event_id => t.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure?' }, :class=>"button-small button button_new_stop" %>
                         <% end %>
                       </td>
-                      <td>
-                        <% if !current_user.nil? && current_user.organized_a?(t) %>
-                          <%= link_to "Edit", edit_tournament_path(t), :class=>"button-small button button_new" %>
-                          <%= link_to 'Delete', tournament_path(t), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"button-small button button_new_stop"  %>
-                        <% end %>
-                      </td>
                   </tr>
                 <% end %>
                 <% end %>
