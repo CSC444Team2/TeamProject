@@ -60,6 +60,7 @@
 
     <% if @tournament.players.any? %>
 
+        <!--Players with group-->
         <% i=0%>
         <% @group_of_groups.each do |pg| %>
             <b><i><%= "Player Group (ID #{@group_id[i]})" %></i></b>
@@ -77,16 +78,17 @@
             <% elsif pg[:players].length==4 && @is_organizer %>
                 <i>4 members in group already (group full)</i>
             <% end %>
-
-            <!--Show players without group-->
-            <% if !@unassigned_players.empty? %>
-                <hr />
-                <b><i><%= "Players without group" %></i></b>
-                <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@player_subgroup => true, :@is_player_group => false, :is_organizer => @is_organizer} %>
-            <% end %>
-
-          <% i+=1 %>
+            <% i+=1 %>
         <% end %>
+
+        <!--Show players without group-->
+        <% if !@unassigned_players.empty? %>
+            <hr />
+            <b><i><%= "Players without group" %></i></b>
+            <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@player_subgroup => true, :@is_player_group => false, :is_organizer => @is_organizer} %>
+        <% end %>
+
+          
 
     <% else %>
         <h2>Players</h2>
