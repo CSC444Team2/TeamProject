@@ -26,6 +26,9 @@ Rails.application.routes.draw do
 	end
 	
 	resources :golf_courses
+	post '/operate_golf_course' => 'golf_courses#operate_course'
+	post '/not_operate_golf_course' => 'golf_courses#stop_operate'
+
 	resources :join, only: [:create, :destroy]
 	resources :tickets
 	resources :requests, only: [:new, :create, :destroy]

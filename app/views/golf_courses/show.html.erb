@@ -1,17 +1,51 @@
 <body>
-	<b>Golf Course Name: </b><%= @golf_course.name %> <br />
-    <b>Golf Course ID: </b> <%= @golf_course.id %> <br />
-    <b>Overview: </b> <%= @golf_course.overview %> <br />
-    <b>Address: </b><%= @golf_course.address %><br />
-    <b>Contact Information: </b><%= @golf_course.contact_info %><br />
-    <b>Website: </b><%= @golf_course.website%><br />
-    <p>&nbsp;</p>
+    <%=render "header_menu"%>
+    <div class="row">
+    <div class="col-xs-8 col-xs-offset-1 tournament-title"><h1><%= @golf_course.name %></h1>
+    <% if @is_admin || @is_manager %>
+        <%= link_to 'Edit Golf Course Details', edit_golf_course_path(@golf_course), :class=>"button-small button button_new"%>
+    <% end %>
+    <% if @is_admin %>
+        <%= link_to 'Delete', golf_course_path(@golf_course), method: :delete, data: { confirm: 'You sure you want to delete this golf course?' }, :class=>"button-small button button_new_stop" %>
+    <% end %>
+    </div>
+  </div>
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="row">
+    	<b>Golf Course Name: </b><%= @golf_course.name %> <br />
+        <b>Golf Course ID: </b> <%= @golf_course.id %> <br />
+        <b>Overview: </b> <%= @golf_course.overview %> <br />
+        <b>Address: </b><%= @golf_course.address %><br />
+        <b>Contact Information: </b><%= @golf_course.contact_info %><br />
+        <b>Website: </b><%= link_to @golf_course.website, @golf_course.website %><br />
+        <p>&nbsp;</p>
+    </div>
     <% if !@golf_course.nil? %>
-          <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe><br>
+              <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe><br>
     <% end %>
 
-    <%= render partial: "tournaments/show_persons_for_one_event", :locals => { :@title => "Golf Course Admins", :@persons => @golf_course.admins, :@player_subgroup => false, :@is_player_group => false, :is_organizer => false} %>
-    <%= render partial: "tournaments/show_persons_for_one_event", :locals => { :@title => "Golf Course CSRs", :@persons => @golf_course.managers, :@player_subgroup => false, :@is_player_group => false, :is_organizer => false} %>
-    <br>
-    <%= link_to "All Golf Courses", "/golf_courses", :class=>"button_small button_tour" %>
+    <!---->
+    <div class="col-sm-6 text-center">
+          <% if current_user.nil? || !current_user.dealt_a_course?(@golf_course, 0) %>
+            <%= button_to "Become Admin", {:controller => "golf_courses", :action => "operate_course", :method=> :post, :params=> {golf_course_id: @golf_course.id, join: 0}}, {:class=>"button_new button"} %>
+          <% else %>
+            <%= button_to "Stop Admin", {:controller => "golf_courses", :action => "stop_operate", :method=> :post, :params=> {golf_course_id: @golf_course.id, join: 0}}, data: { confirm: 'Are you sure you want to stop administering this golf course?' }, :class=>"button_new_stop button" %>
+          <% end %>
+    </div>
+    <div class="col-sm-6 text-center">
+          <% if current_user.nil? || !current_user.dealt_a_course?(@golf_course, 1) %>
+            <%= button_to "Become CSR", {:controller => "golf_courses", :action => "operate_course", :method=> :post, :params=> {golf_course_id: @golf_course.id, join: 1}}, {:class=>"button_new button"} %>
+          <% else %>
+            <%= button_to "Stop being CSR", {:controller => "golf_courses", :action => "stop_operate", :method=> :post, :params=> {golf_course_id: @golf_course.id, join: 1}}, data: { confirm: 'Are you sure you want to stop managing this golf course?' }, :class=>"button_new_stop button" %>
+          <% end %>
+    </div>
+
+    <!-- Admins & CSRs -->
+    <div class="row tourn-btn-row">
+        <%= render partial: "tournaments/show_persons_for_one_event", :locals => { :@title => "Golf Course Admins", :@persons => @golf_course.admins, :@player_subgroup => false, :@is_player_group => false, :is_organizer => false} %>
+        <%= render partial: "tournaments/show_persons_for_one_event", :locals => { :@title => "Golf Course CSRs(Managers)", :@persons => @golf_course.managers, :@player_subgroup => false, :@is_player_group => false, :is_organizer => false} %>
+        <br>
+    </div>
+ </div>
+</div>
 </body>

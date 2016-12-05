@@ -11,6 +11,7 @@
     <div class="col-xs-8 col-xs-offset-1 tournament-title"><h1><%= @tournament.name %></h1>
     <% if @is_organizer%>
         <%= link_to 'Edit Tournament Details', edit_tournament_path(@tournament), :class=>"button-small button button_new"%>
+        <%= link_to 'Delete Tournament', tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"button-small button button_new_stop"  %>
     <% end %>
     </div>
   </div>
