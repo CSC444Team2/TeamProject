@@ -26,7 +26,8 @@
         <% end %>
         <% if !@golf_course_dump.empty? %>
           <i>Note: If both fields are filled in, the location field, though recorded, will be covered with the address of the selected golf course</i><br>
-          <%= t.select :golf_course_id, options_for_select(@golf_course_dump), :prompt => "<select an existing golf course in the list> ", :include_blank => false %><br>
+          <i>Select an existing golf course in the list</i>
+          <%= t.select :golf_course_id, options_for_select(@golf_course_dump), :include_blank => true %><br>
 
           <i>OR</i><br>
         <% else %>

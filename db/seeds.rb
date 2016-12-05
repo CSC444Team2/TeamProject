@@ -6,10 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-t1=Tournament.create(name: 'myTournament', is_private: 0)
-t2=Tournament.create(name: 'myTournament2', is_private: 0)
+g1=GolfCourse.create(name: 'Golf Course 1', overview: 'Great course', address: '123 Main Street', website: 'www.google.com', contact_info: 'Anna')
+g2=GolfCourse.create(name: 'Course on Water', overview: 'Water Course', address: '123 Bay Street', website: 'www.baidu.com', contact_info: 'Anna')
+
+t1=Tournament.create(name: 'myTournament', is_private: 0, golf_course_id: 1)
+t2=Tournament.create(name: 'myTournament2', is_private: 0, location: 'Buttonville')
 t3=Tournament.create(name: 'myTournament3', is_private: 0)
-t5=Tournament.create(name: 'privateTournament', is_private: 1)
+t5=Tournament.create(name: 'privateTournament', is_private: 1, golf_course_id: 2)
 t4=Tournament.create(name: 'hello4', is_private: 0, location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
 
 u1=User.create(first_name: 'Alice', last_name: 'Aleena', email: 'aasdf@aasdf.com', 
@@ -24,9 +27,6 @@ u5=User.create(first_name: 'Ellen', last_name: 'Elms', email: 'e@e.com',
 	password:'1234567', password_confirmation:'1234567')
 u6=User.create(first_name: 'Fox', last_name: 'Findley', email: 'f@f.com', 
 	password:'1234567', password_confirmation:'1234567')
-
-g1=GolfCourse.create(name: 'Golf Course 1', overview: 'Great course', address: '123 Main Street', website: 'www.google.com', contact_info: 'Anna')
-g2=GolfCourse.create(name: 'Course on Water', overview: 'Water Course', address: '123 Bay Street', website: 'www.baidu.com', contact_info: 'Anna')
 
 r1=Request.create(sender_id: 1, receiver_id: 2)
 r2=Request.create(sender_id: 2, receiver_id: 3)
