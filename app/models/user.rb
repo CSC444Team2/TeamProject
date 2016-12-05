@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 	has_many :tickets
 	has_many :tournaments, through: :tickets
 
-	#Involvements
+	#========== Tournament Involvements ===============
 	has_many :player_involvements, class_name: "Play", foreign_key: "person_id",
 									dependent: :destroy
 	has_many :played_events, through: :player_involvements, source: :event
@@ -103,6 +103,9 @@ class User < ActiveRecord::Base
 		end
 		return requests
   end
+
+  #========== Golf Course Involvements ===============
+  
 
   # draft method to redirect to PayPal payment
 	def paypal_url(root, return_path, sponsor_amount, name, event_id)

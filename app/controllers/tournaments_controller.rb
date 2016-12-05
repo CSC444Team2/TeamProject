@@ -38,6 +38,8 @@ class TournamentsController < ApplicationController
         if !@tournament.golf_course_id.nil?
             @golf_course = GolfCourse.find(@tournament.golf_course_id)
         end
+
+        @google_api_key = google_api_key
     end
 
     def edit

@@ -29,7 +29,12 @@
                   <tr>
                       <td><%= t.id %></td>
                       <td><%= t.name %></td>
-                      <td><%= t.location %></td>
+                      <% if !t.golf_course_id.nil?%>
+                        <% @gf = GolfCourse.find(t.golf_course_id)%>
+                        <td><%= @gf.name %></td>
+                      <% else %>
+                        <td><%= t.location %></td>
+                      <% end %>
                       <td><%= t.date %></td>
                       <td><%= t.contact_email %></td>
                       <td>

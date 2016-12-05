@@ -6,6 +6,7 @@
 
 	def show
 		@golf_course = GolfCourse.find(params[:id])
+		@google_api_key = google_api_key
 	end
 
 	def edit

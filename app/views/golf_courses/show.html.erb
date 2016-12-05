@@ -6,5 +6,8 @@
     <b>Contact Information: </b><%= @golf_course.contact_info %><br />
     <b>Website: </b><%= @golf_course.website%><br />
     <p>&nbsp;</p>
+    <% if !@golf_course.nil? %>
+          <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe><br>
+    <% end %>
     <%= link_to "All Golf Courses", "/golf_courses", :class=>"button_small button_tour" %>
 </body>

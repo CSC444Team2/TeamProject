@@ -6,14 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-g1=GolfCourse.create(name: 'Golf Course 1', overview: 'Great course', address: '123 Main Street', website: 'www.google.com', contact_info: 'Anna')
-g2=GolfCourse.create(name: 'Course on Water', overview: 'Water Course', address: '123 Bay Street', website: 'www.baidu.com', contact_info: 'Anna')
+g1=GolfCourse.create(name: 'Ladies Golf Club of Toronto', overview: 'Great course', address: '123 Main Street', website: 'www.google.com', contact_info: 'Anna')
+g2=GolfCourse.create(name: 'Humber Valley Golf Course', overview: 'Water Course', address: '123 Bay Street', website: 'www.baidu.com', contact_info: 'Anna')
 
 t1=Tournament.create(name: 'myTournament', is_private: 0, golf_course_id: 1)
 t2=Tournament.create(name: 'myTournament2', is_private: 0, location: 'Buttonville')
-t3=Tournament.create(name: 'myTournament3', is_private: 0)
+t3=Tournament.create(name: 'myTournament3', is_private: 0, golf_course_id: 2)
 t5=Tournament.create(name: 'privateTournament', is_private: 1, golf_course_id: 2)
-t4=Tournament.create(name: 'hello4', is_private: 0, location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
+t4=Tournament.create(name: 'hello5', is_private: 0, location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
+
 
 u1=User.create(first_name: 'Alice', last_name: 'Aleena', email: 'aasdf@aasdf.com', 
 	password:'1234567', password_confirmation:'1234567')

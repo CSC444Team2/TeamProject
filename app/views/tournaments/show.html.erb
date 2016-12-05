@@ -81,7 +81,14 @@
             </tr>
           </table>
         </div>
+        <% if !@golf_course.nil? %>
+          <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe>
+        <% else %>
+          <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @tournament.location %>" allowfullscreen></iframe>
+        <% end %>
       </div>
+
+      
 
 
       <!--Show requests-->
@@ -158,11 +165,7 @@
             <b><i><%= "Players without group" %></i></b>
             <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@player_subgroup => true, :@is_player_group => false, :is_organizer => @is_organizer} %>
         <% end %>
-
-          
-
     <% else %>
-        <h2>Players</h2>
         <div>No players</div>
     <% end %>
 
