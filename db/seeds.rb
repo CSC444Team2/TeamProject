@@ -56,3 +56,11 @@ pg2=Playergroup.create(tournament_id: t1.id, group_members: [u5.id])
 
 pg3=Playergroup.create(tournament_id: t3.id, group_members: [u3.id, u4.id, u5.id])
 
+#0: admin; 1: CSR
+u1.deal_course(g2, 0)
+u2.deal_course(g1, 1)
+u3.deal_course(g2, 1)
+u4.deal_course(g1, 0)
+u5.deal_course(g1, 0)
+
+

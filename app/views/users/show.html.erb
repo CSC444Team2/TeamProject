@@ -78,6 +78,9 @@
 
       <%= render partial: "show_events_for_one_person", locals: { :@title => "Sponsored Tournaments", :@events => @user.sponsored_events } %>
       <br>
+      <%= render partial: "show_courses_for_one_person", locals: { :@title => "Administered Golf Courses", :@golf_courses => @user.admined_courses } %>
+      <%= render partial: "show_courses_for_one_person", locals: { :@title => "Managed Golf Courses (run CSR for)", :@golf_courses => @user.managed_courses } %>
+      <br>
       <br>
       <% if current_user == @user %>
         <%= link_to 'Edit My Profile', edit_user_path(@user), :class => "button_new button btn-on-profile"%>

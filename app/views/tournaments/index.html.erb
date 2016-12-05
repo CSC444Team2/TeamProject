@@ -19,7 +19,6 @@
                   <th>Name</th>
                   <th>Location</th>
                   <th>Date</th>
-                  <th>Contact e-mail</th>
                   <th>Actions</th>
                   <th></th>
                   <th></th>
@@ -36,7 +35,6 @@
                         <td><%= t.location %></td>
                       <% end %>
                       <td><%= t.date %></td>
-                      <td><%= t.contact_email %></td>
                       <td>
                         <%= link_to "Details", tournament_path(t), :class=>"button-small button button_new" %>
                       </td>
@@ -45,12 +43,6 @@
                               <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => t.id}, :method=> :get}, {:class=>"button-small button button_new"} %>
                         <% else %>
                               <%= link_to "Stop playing", join_path(:id => t.id, :params => {:event_id => t.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure?' }, :class=>"button-small button button_new_stop" %>
-                        <% end %>
-                      </td>
-                      <td>
-                        <% if !current_user.nil? && current_user.organized_a?(t) %>
-                          <%= link_to "Edit", edit_tournament_path(t), :class=>"button-small button button_new" %>
-                          <%= link_to 'Delete', tournament_path(t), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"button-small button button_new_stop"  %>
                         <% end %>
                       </td>
                   </tr>

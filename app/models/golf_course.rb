@@ -1,4 +1,13 @@
 class GolfCourse < ApplicationRecord
+	before_destroy {
+		Tournament.all.each do |t|
+			if t.golf_course_id == self.id
+				t.golf_course_id = nil
+				t.save
+			end
+		end
+	}
+
 	validates :name, presence: true
 	validates :address, presence: true
 	validates :overview, length: { maximum: 200 }
