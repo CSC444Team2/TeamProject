@@ -24,6 +24,7 @@
 
 	def new
 		@golf_course = GolfCourse.new
+		current_user.deal_a_course(@golf_course)
 	end
 	def create
 		@golf_course = GolfCourse.new(golf_course_params)

@@ -9,5 +9,9 @@
     <% if !@golf_course.nil? %>
           <iframe src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe><br>
     <% end %>
+
+    <%= render partial: "tournaments/show_persons_for_one_event", :locals => { :@title => "Golf Course Admins", :@persons => @golf_course.admins, :@player_subgroup => false, :@is_player_group => false, :is_organizer => false} %>
+    <%= render partial: "tournaments/show_persons_for_one_event", :locals => { :@title => "Golf Course CSRs", :@persons => @golf_course.managers, :@player_subgroup => false, :@is_player_group => false, :is_organizer => false} %>
+    <br>
     <%= link_to "All Golf Courses", "/golf_courses", :class=>"button_small button_tour" %>
 </body>

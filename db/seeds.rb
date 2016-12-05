@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-g1=GolfCourse.create(name: 'Ladies Golf Club of Toronto', overview: 'Great course', address: '123 Main Street', website: 'www.google.com', contact_info: 'Anna')
-g2=GolfCourse.create(name: 'Humber Valley Golf Course', overview: 'Water Course', address: '123 Bay Street', website: 'www.baidu.com', contact_info: 'Anna')
+g1=GolfCourse.create(name: 'Ladies Golf Club of Toronto', overview: 'Great course', address: '7859 Yonge Street, Thornhill, ON L3T 2C4', website: 'http://www.ladiesgolfclub.com/', contact_info: 'Anna')
+g2=GolfCourse.create(name: 'Humber Valley Golf Course', address: '40 Beattie Avenue', website: 'http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=5e1cd49024561410VgnVCM10000071d60f89RCRD', contact_info: 'Anna', overview: "Humber Valley's par 70 course challenges golfers with its combination of links and valley land holes.")
 
 t1=Tournament.create(name: 'myTournament', is_private: 0, golf_course_id: 1)
 t2=Tournament.create(name: 'myTournament2', is_private: 0, location: 'Buttonville')
