@@ -49,25 +49,9 @@
                   <th></th>
                 </tr>
                 
-                <% @tournaments.each do |t| %>
-                  <tr>
-                      <td><%= t.id %></td>
-                      <td><%= t.is_private %></td>
-                      <td><%= t.name %></td>
-                      <% if !t.golf_course_id.nil?%>
-                        <% @gf = GolfCourse.find(t.golf_course_id)%>
-                        <td><%= @gf.name %></td>
-                      <% else %>
-                        <td><%= t.location %></td>
-                      <% end %>
-                      <td><%= t.date %></td>
-                      <td>
-                        <%= link_to "Details", tournament_path(t), :class=>"button-small button button_new" %>
-                      </td>
-                  </tr>
-                <% end %>
+                
               
-            </table>
+                </table>
             <a href="/tournaments"><button class="button_new button">See More</button></a>
           </div>
         </div>
