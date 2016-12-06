@@ -178,3 +178,12 @@ html, body {
 .sm-mar-bot {
     margin-bottom: 5px !important;
 }
+
+.green-add-on {
+    background-color: rgba(116, 158, 0, 0.37) !important;
+}
+
+.editing-link-box {
+    padding-bottom: 20px;
+    padding-top: 10px;
+}

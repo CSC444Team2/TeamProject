@@ -2,7 +2,7 @@ class TournamentsController < ApplicationController
     before_action :require_user, only: [:new, :create]
     before_action :private_permission, only: [:show]
     before_action :require_organizer, only: [:edit, :update, :destroy]
-    protect_from_forgery except: [:hook]
+    protect_from_forgery except: [:hook_sponsor]
 
     def index
         @tournaments = Tournament.all
@@ -153,12 +153,24 @@ class TournamentsController < ApplicationController
         render "_show_persons_for_one_event"
     end
     
-    def hook
+    def hook_sponsor
       params.permit! # Permit all Paypal input params
       status = params[:payment_status]
       if status == "Completed"
         @tournament = Tournament.find(params[:item_number])
         current_user.sponsor_a(@tournament)
+        redirect_to(:action => 'show', :id => @tournament.id)
+      else
+        render nothing: true
+      end
+    end
+
+    def hook_play
+      params.permit! # Permit all Paypal input params
+      status = params[:payment_status]
+      if status == "Completed"
+        @tournament = Tournament.find(params[:item_number])
+        current_user.play_in(@tournament)
         redirect_to(:action => 'show', :id => @tournament.id)
       else
         render nothing: true
