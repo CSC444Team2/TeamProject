@@ -1,6 +1,7 @@
 class Tournament < ActiveRecord::Base
 	#Players/Organizers/Sponsors Roles
 	validates :name, presence: true, length: { maximum: 50 }
+	validates :description, length: {maximum: 300}
 	#Tickets
 	has_many :tickets
 	has_many :user, through: :tickets

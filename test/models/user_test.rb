@@ -9,7 +9,7 @@ class UserTest < ActiveSupport::TestCase
   		                    password: "foobar", password_confirmation: "foobar")
   end
 
-  test "should be validate" do
+  test "should be valid" do
   	assert @user.valid?
   end
 

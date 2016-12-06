@@ -32,7 +32,7 @@ class SponsorTest < ActiveSupport::TestCase
     assert @i2.new_record?
   end
 
-  test "sponsor relation should save successuflly" do
+  test "sponsor relation should save successfully" do
     @involvement.person_id = @e1.id
     @involvement.event_id = @p1.id
     @involvement.save
