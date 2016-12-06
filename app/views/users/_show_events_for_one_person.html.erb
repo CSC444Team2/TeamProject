@@ -1,4 +1,6 @@
-<h2><%= @title %></h2>
+<% if @title %>
+  <h2><%= @title %></h2>
+<% end %>
 
 <% if @events && @events.any? %>
   <table class="table main-table">
@@ -16,5 +18,5 @@
       <% end %>
   </table>
 <% elsif @events%>
-  None
+  <div class="none-info">None</div>
 <% end %>

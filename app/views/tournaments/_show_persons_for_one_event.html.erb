@@ -1,5 +1,7 @@
 <% if !@player_subgroup %>
-  <h2><%= @title %></h2>
+  <% if @title %>
+    <h2><%= @title %></h2>
+  <% end %>
 <% end %>
 <% if @persons && @persons.any? %>
   <table class="table main-table">
@@ -23,8 +25,8 @@
   </table>
 <% elsif @persons %>
   <% if @is_player_group %>
-    No members
+    <div class="none-info">No members</div>
   <% else %>
-    None
+    <div class="none-info">None</div>
   <% end %>
 <% end %>

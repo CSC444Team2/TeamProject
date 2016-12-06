@@ -160,3 +160,21 @@ html, body {
 .btn-on-profile {
     margin-top: 50px !important;
 }
+
+.course-info div span {
+    font-weight: bold;
+}
+
+.course-map {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.none-info {
+    margin: 0 !important;
+    font-style: italic;
+}
+
+.sm-mar-bot {
+    margin-bottom: 5px !important;
+}
