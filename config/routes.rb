@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 	resources :requests, only: [:new, :create, :destroy]
 	resources :password_resets
 
-
+	get "/pages/:page" => "pages#show"	
 	#NOTE: this should appear at VERY end for not found pages
 	get '*unmatched_route', to: 'home#not_found'
 end
