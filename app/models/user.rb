@@ -54,7 +54,9 @@ class User < ActiveRecord::Base
 		end
 	end
 	def not_play(some_event)
-		player_involvements.find_by(event_id: some_event.id).destroy
+		if(self.played_in?(some_event))
+			player_involvements.find_by(event_id: some_event.id).destroy
+		end
 	end
 	def played_in?(some_event)
 		played_events.include?(some_event)
@@ -69,7 +71,9 @@ class User < ActiveRecord::Base
 		end
 	end
 	def not_organize(some_event)
-		organizer_involvements.find_by(event_id: some_event.id).destroy
+		if(self.organized_a?(some_event))
+			organizer_involvements.find_by(event_id: some_event.id).destroy
+		end
 	end
 	def organized_a?(some_event)
 		organized_events.include?(some_event)
@@ -84,7 +88,9 @@ class User < ActiveRecord::Base
 		end
 	end
 	def not_sponsor(some_event)
-		sponsor_involvements.find_by(event_id: some_event.id).destroy
+		if(self.sponsored_a?(some_event))
+			sponsor_involvements.find_by(event_id: some_event.id).destroy
+		end
 	end
 	def sponsored_a?(some_event)
 		sponsored_events.include?(some_event)
