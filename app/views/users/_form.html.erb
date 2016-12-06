@@ -1,63 +1,79 @@
-<html>
+<div class="col-sm-6 col-sm-offset-3">
+  <%= form_for @user, :html => { :multipart => true } do |f| %>
 
-<head>
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-</head>
-<div id="login_div">
-<%= form_for @user, :html => { :multipart => true } do |f| %>
-  <p id="create_user">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name, :placeholder => "First Name", :class =>"form_input",:required => true%>
-  </p>
- 
-  <p id="create_user">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name, :placeholder => "Last Name", :class =>"form_input", :required => true%>
-  </p>
+      <h1>Sign Up</h1>
 
-  <p id="create_user">
-    <%= f.label :profile_picture %><br>
-    <%= f.file_field :profile_picture %>
-  </p>
+      <div class="form-group row">
+        <%= f.label :first_name, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.text_field :first_name, :placeholder => "First Name", :class =>"form-control",:required => true%>
+        </div>
+      </div>
 
-  <p id="create_user">
-    <%= f.label :gender %><br>
-    <%= f.text_field :gender, :placeholder => "Male/Female/Prefer not to say", :class => "form_input", :required => false%>
-  </p>
+      <div class="form-group row">
+        <%= f.label :last_name, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.text_field :last_name, :placeholder => "Last Name", :class =>"form-control", :required => true%>
+        </div>
+      </div>
 
-  <p id="create_user">
-    <%= f.label :date_of_birth %><br>
-    <%= f.date_select :date_of_birth, start_year: 1900, :required => true%>
-  </p>
+      <div class="form-group row">
+        <%= f.label :profile_picture, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.file_field :profile_picture, :class => "form-control-file" %>
+        </div>
+      </div>
 
-  <p id="create_user">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, :placeholder => "Email", :class =>"form_input", :required => true%>
-  </p>
+      <div class="form-group row">
+        <%= f.label :gender, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.text_field :gender, :placeholder => "Male/Female/Prefer not to say", :class => "form-control", :required => false%>
+        </div>
+      </div>
 
-  <p id="create_user">
-    <%= f.label :phone_number %><br>
-    <%= f.telephone_field :phone_number, :placeholder => "Phone Number", :class =>"form_input", :required => true%>
-  </p>
+      <div class="form-group row">
+        <%= f.label :date_of_birth, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.date_select :date_of_birth, start_year: 1900, :required => true, :class => "form-control" %>
+        </div>
+      </div>
 
-  <p id="create_user">
-    <%= f.label :address %><br>
-    <%= f.text_field :address, :placeholder => "Address", :class =>"form_input", :required => true%>
-  </p>
+      <div class="form-group row">
+        <%= f.label :email, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.email_field :email, :placeholder => "Email", :class =>"form-control", :required => true%>
+        </div>
+      </div>
 
-  <p id="create_user">
-    <%= f.label :password %><br>
-    <%= f.password_field :password, :placeholder => "at least 6 characters", :class =>"form_input", :required => true, :minlength => 6 %>
-  </p>
+      <div class="form-group row">
+        <%= f.label :phone_number, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.telephone_field :phone_number, :placeholder => "Phone Number", :class =>"form-control", :required => true%>
+        </div>
+      </div>
 
-  <p id="create_user">
-    <%= f.label :confirm_password %><br>
-    <%= f.password_field :password_confirmation,:class =>"form_input", :required => true%>
-  </p>
- 
-  <p id="create_user">
-    <%= f.submit "Submit", :class => "login_button"%>
-  </p>
+      <div class="form-group row">
+        <%= f.label :address, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+         <%= f.text_field :address, :placeholder => "Address", :class =>"form-control", :required => true%>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :password, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.password_field :password, :placeholder => "at least 6 characters", :class =>"form-control", :required => true, :minlength => 6 %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :confirm_password, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.password_field :password_confirmation,:class =>"form-control", :required => true%>
+        </div>
+      </div>
+
+    <%= f.submit "Submit", :class => "button button_new"%>
 
     <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -67,8 +83,7 @@
         <% end %>
       </ul>
     </div>
-  <% end %>
-  </div>
- 
-<% end %>
-</html>
+    <% end %>
+
+<% end %> <!-- End of form-->
+</div>
