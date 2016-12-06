@@ -161,7 +161,7 @@ class User < ActiveRecord::Base
 				cmd: "_xclick",
         return: return_path, #"#{root}hook",
         rm: 2,
-				amount: sponsor_amount,
+				amount: amount,
 				item_name: "Sponsor a tournament #{name}",
         item_number: event_id,
         currency_code: "CAD",

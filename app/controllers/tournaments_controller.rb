@@ -2,7 +2,7 @@ class TournamentsController < ApplicationController
     before_action :require_user, only: [:new, :create]
     before_action :private_permission, only: [:show]
     before_action :require_organizer, only: [:edit, :update, :destroy]
-    protect_from_forgery except: [:hook]
+    protect_from_forgery except: [:hook_sponsor]
 
     def index
         @tournaments = Tournament.all

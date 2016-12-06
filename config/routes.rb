@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 	delete 'logout' => 'sessions#destroy'
 
   # PayPal payment processing
-	post '/hook' => 'tournaments#hook'
+	post '/hook_sponsor' => 'tournaments#hook_sponsor'
+	post '/hook_play' => 'tournaments#hook_play'
 
 	resources :tournaments do 
 	  member do
