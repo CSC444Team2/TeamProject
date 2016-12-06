@@ -47,7 +47,6 @@ class User < ActiveRecord::Base
 	end while User.exists?(column => self[column])
 	end
 	
-	
 	def play_in(some_event)
 		if(!self.played_in?(some_event))
 			player_involvements.create(event_id: some_event.id)
@@ -162,7 +161,7 @@ class User < ActiveRecord::Base
         return: return_path, #"#{root}hook",
         rm: 2,
 				amount: amount,
-				item_name: "Sponsor a tournament #{name}",
+				item_name: "#{name} Tournament Ticket",
         item_number: event_id,
         currency_code: "CAD",
         notify_url: return_path #"#{root}hook"

@@ -98,7 +98,7 @@
 
           <div class="col-sm-4 text-center">
             <% if current_user.nil? || !current_user.played_in?(@tournament) %>
-                <%= button_to "PLAY!", {:controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 0}}, {:class=>"button_new button"} %>
+                <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => @tournament.id}, :method=> :get}, {:class=>"button_new button"} %>
             <% else %>
                 <%= button_to "Stop playing", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure you want to stop playing?' }, :class=>"button_new_stop button" %>
             <% end %>

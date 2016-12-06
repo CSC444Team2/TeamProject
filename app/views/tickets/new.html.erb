@@ -20,9 +20,17 @@
 	    <%= f.select(:tickets_type, options_for_select([['Player', "Player"], ['Sponsor', "Sponsor"]], 2)) %>
 	    <%= f.hidden_field :event_id, :value=> @event_id %>
 	  </p>
-	  <p>
-	  	<%= f.submit "Pay"%>
 	  </p>
 	<% end %>
+  <div class="col-sm-4 text-center">
+  <%= form_tag({:controller=> "join", :action => "create", :params=> {event_id: @event.id, join: 0, name: @event.name}}) do %>
+      <div class="input-group input-group-lg">
+        <div class="input-group-addon green-add-on">CAD</div>
+        <%= text_field_tag :sponsor_amount, nil, placeholder: "Donation amount", class: "form-control" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Pay", :class=>"btn btn-play" %>
+        </span>
+      </div>
+  <% end %>
 </body>
 </html>
