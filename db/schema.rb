@@ -95,13 +95,13 @@ ActiveRecord::Schema.define(version: 20161205043249) do
     t.text     "name"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "is_private"
     t.integer  "golf_course_id"
     t.string   "location"
     t.datetime "date"
     t.string   "contact_email"
     t.string   "contact_name"
     t.text     "description",    limit: 500
+    t.integer  "is_private"
   end
 
   create_table "users", force: :cascade do |t|
