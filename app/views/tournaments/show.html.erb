@@ -90,8 +90,6 @@
       <% end %>
 
 
-
-
       <!--Show requests-->
       <% if @is_organizer%>
           <%= render partial: "show_requests", locals: {title: "Pending Requests for This Tournament", requests: @tournament.received_requests} %>
@@ -175,6 +173,8 @@
 
       <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Sponsors", :@persons => @tournament.sponsors, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
 
+      <!-- Social media sharing -->
+      <%= render_shareable :buttons=> ['twitter', 'facebook']%>
     </div> <!--End of container-->
 
     <div id="push"></div>
