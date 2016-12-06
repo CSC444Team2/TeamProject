@@ -12,25 +12,51 @@
     <div class="container">
 
       <h1 class="tournament-title"><%= @golf_course.name %></h1>
-      <% if @is_admin || @is_manager %>
+
+      <div class="container editing-link-box">
+        <% if @is_admin || @is_manager %>
           <%= link_to 'Edit Golf Course Details', edit_golf_course_path(@golf_course), :class=>"button-small button button_new"%>
-      <% end %>
-      <% if @is_admin %>
+        <% end %>
+        <% if @is_admin %>
           <%= link_to 'Delete', golf_course_path(@golf_course), method: :delete, data: { confirm: 'You sure you want to delete this golf course?' }, :class=>"button-small button button_new_stop" %>
-      <% end %>
+        <% end %>
+      </div>
 
-      <div class="course-info">
-        <div><span>Golf Course Name:</span> <%= @golf_course.name %></div>
-        <!--<div><span>Golf Course ID:</span> <%= @golf_course.id %></div>-->
-        <div><span>Overview:</span> <%= @golf_course.overview %></div>
-        <div><span>Address:</span> <%= @golf_course.address %></div>
-        <div><span>Contact Information:</span> <%= @golf_course.contact_info %></div>
-        <div><span>Website:</span> <%= link_to @golf_course.website, @golf_course.website %></div>
+      <div class="container">
+      <table class="table-info">
+        <tr>
+          <th>Golf Course Name</th>
+          <td><%= @golf_course.name %></td>
+        </tr>
+        <tr>
+          <th>Overview</th>
+          <td><%= @golf_course.overview %></td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td><%= @golf_course.address %></td>
+        </tr>
+        <tr>
+          <th>Contact Information</th>
+          <td><%= @golf_course.contact_info %></td>
+        </tr>
+        <tr>
+          <th>Website</th>
+          <td><%= link_to @golf_course.website, @golf_course.website %></td>
+        </tr>
+        </table>
+      </div>
 
+        <!--<div><span>Golf Course Name:</span> <%= @golf_course.name %></div>-->
+        <!--<div><span>Overview:</span> <%= @golf_course.overview %></div>-->
+        <!--<div><span>Address:</span> <%= @golf_course.address %></div>-->
+        <!--<div><span>Contact Information:</span> <%= @golf_course.contact_info %></div>-->
+        <!--<div><span>Website:</span> <%= link_to @golf_course.website, @golf_course.website %></div>-->
+
+        <div></div>
         <% if !@golf_course.nil? %>
           <iframe class="course-map" src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe>
         <% end %>
-      </div>
 
       <div class="row">
         <div class="col-sm-6 text-center">
