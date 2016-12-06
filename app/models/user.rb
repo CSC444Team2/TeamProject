@@ -142,18 +142,24 @@ class User < ActiveRecord::Base
   end
 
   # draft method to redirect to PayPal payment
-	def paypal_url(root, return_path, sponsor_amount, name, event_id)
+	def paypal_url(root, pay_type, amount, name, event_id)
+		return_path = ''
+		if (pay_type == 'play')
+			return_path = "#{root}hook_play"
+		elsif (pay_type == 'sponsor')
+			return_path = "#{root}hook_sponsor"
+		end
+
 		values = {
 				business: "csc444.toronto-merchant@gmail.com", #created an account on PayPal Developer and fake Sandbox email addresses
 				cmd: "_xclick",
-        return: "#{root}hook",
-				# return: "#{root}#{return_path}",
+        return: return_path, #"#{root}hook",
         rm: 2,
 				amount: sponsor_amount,
 				item_name: "Sponsor a tournament #{name}",
         item_number: event_id,
         currency_code: "CAD",
-        notify_url: "#{root}hook"
+        notify_url: return_path #"#{root}hook"
 		}
 		"#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
 	end

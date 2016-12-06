@@ -16,7 +16,7 @@ class JoinController < ApplicationController
     			end
     		when 2
     			if !current_user.sponsored_a?(@event)
-                    redirect_to current_user.paypal_url(root_url, tournament_path(@event), params[:sponsor_amount], params[:name], params[:event_id])
+                    redirect_to current_user.paypal_url(root_url, 'sponsor', params[:sponsor_amount], params[:name], params[:event_id])
     			end
     		else
     			redirect_to tournament_path(@event)

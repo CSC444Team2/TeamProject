@@ -153,7 +153,7 @@ class TournamentsController < ApplicationController
         render "_show_persons_for_one_event"
     end
     
-    def hook
+    def hook_sponsor
       params.permit! # Permit all Paypal input params
       status = params[:payment_status]
       if status == "Completed"
