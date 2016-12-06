@@ -7,8 +7,8 @@ class JoinController < ApplicationController
 			case @joinType
 			when 0
 				if !current_user.played_in?(@event)
-    				current_user.play_in(@event)
-                    redirect_to tournament_path(@event)
+    				# current_user.play_in(@event)
+                    redirect_to current_user.paypal_url(root_url, 'play', params[:sponsor_amount], params[:name], params[:event_id])
     			end
     		when 1
     			if !current_user.organized_a?(@event)

@@ -13,72 +13,75 @@
       <h1 class="tournament-title"><%= @tournament.name %></h1>
 
       <% if @is_organizer%>
-        <%= link_to 'Edit Tournament Details', edit_tournament_path(@tournament), :class=>"button-small button button_new"%>
-        <%= link_to 'Delete Tournament', tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"button-small button button_new_stop"  %>
-        <p><br></p>
+        <div class="container editing-link-box">
+          <%= link_to 'Edit Tournament Details', edit_tournament_path(@tournament), :class=>"button-small button button_new"%>
+          <%= link_to 'Delete Tournament', tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"button-small button button_new_stop"  %>
+        </div>
       <% end %>
 
       <!--Show Details-->
-      <table class="table-info">
-        <tr>
-          <th>Permission</th>
-          <% if @tournament.is_private!=0 %>
-            <td><i>Private</i></td>
-          <% else %>
-            <td><i>Public</i></td>
-          <% end %>
-        </tr>
-        <tr>
-          <th>Date & Time</th>
-          <% if !@tournament.date.nil? %>
-            <td><%= @tournament.date %></td>
-          <% else %>
-            <td>N/A</td>
-          <% end %>
-        </tr>
-        <tr>
-          <th>Golf Course</th>
-          <% if !@golf_course.nil?%>
-            <td><%= link_to @golf_course.name, golf_course_path(@golf_course) %></td>
-          <% else %>
-            <td> N/A</td>
-          <% end %>
-        </tr>
-        <tr>
-          <th>Location</th>
-          <% if !@golf_course.nil?%>
-            <td><%= @golf_course.address %></td>
-          <% elsif !@tournament.location.nil? && !@tournament.location.empty?%>
-            <td><%= @tournament.location %></td>
-          <% else %>
-            <td>N/A</td>
-          <% end %>
-        </tr>
-        <tr>
-          <th>Contact Email</th>
-          <% if !@tournament.contact_email.nil? && !@tournament.contact_email.empty? %>
-            <td><%= @tournament.contact_email %></td>
-          <% else %>
-            <td>N/A</td>
-          <% end %>
-        </tr>
-        <tr>
-          <th>Contact Name</th>
-          <% if !@tournament.contact_name.nil? && !@tournament.contact_name.empty? %>
-            <td><%= @tournament.contact_name %></td>
-          <% else %>
-            <td>N/A</td>
-          <% end %>
-        </tr>
-        <tr>
-          <th>Description</th>
-          <%if @tournament.description.nil? || @tournament.description.empty? %>
-            <td>None</td>
-          <% else %>
-            <td><%= @tournament.description %></td>
-          <% end %>
-        </tr>
-      </table>
+      <div class="container">
+        <table class="table-info">
+          <tr>
+            <th>Permission</th>
+            <% if @tournament.is_private!=0 %>
+              <td><i>Private</i></td>
+            <% else %>
+              <td><i>Public</i></td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Date & Time</th>
+            <% if !@tournament.date.nil? %>
+              <td><%= @tournament.date %></td>
+            <% else %>
+              <td>N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Golf Course</th>
+            <% if !@golf_course.nil?%>
+              <td><%= link_to @golf_course.name, golf_course_path(@golf_course) %></td>
+            <% else %>
+              <td> N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <% if !@golf_course.nil?%>
+              <td><%= @golf_course.address %></td>
+            <% elsif !@tournament.location.nil? && !@tournament.location.empty?%>
+              <td><%= @tournament.location %></td>
+            <% else %>
+              <td>N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Contact Email</th>
+            <% if !@tournament.contact_email.nil? && !@tournament.contact_email.empty? %>
+              <td><%= @tournament.contact_email %></td>
+            <% else %>
+              <td>N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Contact Name</th>
+            <% if !@tournament.contact_name.nil? && !@tournament.contact_name.empty? %>
+              <td><%= @tournament.contact_name %></td>
+            <% else %>
+              <td>N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <%if @tournament.description.nil? || @tournament.description.empty? %>
+              <td>None</td>
+            <% else %>
+              <td><%= @tournament.description %></td>
+            <% end %>
+          </tr>
+        </table>
+      </div>
 
       <% if !@golf_course.nil? %>
         <iframe class="course-map" src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe>
@@ -99,7 +102,7 @@
 
           <div class="col-sm-4 text-center">
             <% if current_user.nil? || !current_user.played_in?(@tournament) %>
-                <%= button_to "PLAY!", {:controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 0}}, {:class=>"button_new button"} %>
+                <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => @tournament.id}, :method=> :get}, {:class=>"button_new button"} %>
             <% else %>
                 <%= button_to "Stop playing", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure you want to stop playing?' }, :class=>"button_new_stop button" %>
             <% end %>

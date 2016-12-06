@@ -164,6 +164,18 @@ class TournamentsController < ApplicationController
         render nothing: true
       end
     end
+
+    def hook_play
+      params.permit! # Permit all Paypal input params
+      status = params[:payment_status]
+      if status == "Completed"
+        @tournament = Tournament.find(params[:item_number])
+        current_user.play_in(@tournament)
+        redirect_to(:action => 'show', :id => @tournament.id)
+      else
+        render nothing: true
+      end
+    end
     
     private
     def tournament_params
