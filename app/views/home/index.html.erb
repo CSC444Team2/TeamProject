@@ -42,6 +42,7 @@
                 <table class="table main-table">
                 <tr>
                   <th>ID</th>
+                  <th>Private?</th>
                   <th>Name</th>
                   <th>Location</th>
                   <th>Date</th>
@@ -50,6 +51,7 @@
                 <% @tournaments.each do |t| %>
                   <tr>
                       <td><%= t.id %></td>
+                      <td><%= t.is_private %></td>
                       <td><%= t.name %></td>
                       <% if !t.golf_course_id.nil?%>
                         <% @gf = GolfCourse.find(t.golf_course_id)%>
