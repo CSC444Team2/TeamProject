@@ -178,3 +178,8 @@ html, body {
 .sm-mar-bot {
     margin-bottom: 5px !important;
 }
+
+.green-add-on {
+    background-color: rgba(116, 158, 0, 0.37) !important;
+}
+
