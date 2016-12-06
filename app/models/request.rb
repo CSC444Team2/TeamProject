@@ -4,4 +4,5 @@ class Request < ApplicationRecord
 
 	validates :sender_id, presence: true
 	validates :receiver_id, presence: true
+	validates :message, length: {maximum: 200}
 end
