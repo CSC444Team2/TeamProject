@@ -100,13 +100,13 @@ class User < ActiveRecord::Base
 			dependent: :destroy
 	#has_many :wanted_events, through: :sent_requests, source: :receiver
 	def received_requests
-		requests=[]
+		@requests=[]
 		organized_events.each do |e|
 			e.received_requests.each do |new_request|
-				requests << new_request
+				@requests << new_request
 			end
 		end
-		return requests
+		return @requests
   end
 
   #========== Golf Course Involvements ===============
@@ -144,6 +144,26 @@ class User < ActiveRecord::Base
   	when 1
   		return managed_courses.include?(some_course)
   	end
+  end
+
+  def received_golf_admin_requests
+  	@requests=[]
+		admined_courses.each do |ac|
+		ac.received_admin_requests.each do |new_request|
+			@requests << new_request
+		end
+	end
+	return @requests
+  end
+
+  def received_golf_csr_requests
+  	@requests=[]
+		admined_courses.each do |ac|
+		ac.received_csr_requests.each do |new_request|
+			@requests << new_request
+		end
+	end
+	return @requests
   end
 
   # draft method to redirect to PayPal payment
