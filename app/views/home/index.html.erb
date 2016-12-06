@@ -24,6 +24,8 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-4">
+            <h1>Our Story</h1>
+            <div>As passionate golfers we wanted to bring organizing and playing in tournaments into one easy to use, golfer friendly environment. Established in 2016 Golf Stuff is a new and improved tool built for the golfing community</div>
             <h1>Features</h1>
             <div>Golf Stuff allows you to create and organize golf tournaments in just a few simple steps.</div>
             <a href="/tournaments/new"><button class="button_new button btn-home">Create Tournament</button></a>
@@ -37,7 +39,32 @@
                 <div>Golf Stuff lets you browse, register, sponsor and create your own golf tournaments.</div>
 
                 <h1>Some Upcoming Events</h1>
-                <div>*insert small table of tournaments here*</div>
+                <table class="table main-table">
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th></th>
+                </tr>
+                <% @tournaments.each do |t| %>
+                  <tr>
+                      <td><%= t.id %></td>
+                      <td><%= t.name %></td>
+                      <% if !t.golf_course_id.nil?%>
+                        <% @gf = GolfCourse.find(t.golf_course_id)%>
+                        <td><%= @gf.name %></td>
+                      <% else %>
+                        <td><%= t.location %></td>
+                      <% end %>
+                      <td><%= t.date %></td>
+                      <td>
+                        <%= link_to "Details", tournament_path(t), :class=>"button-small button button_new" %>
+                      </td>
+                  </tr>
+                <% end %>
+            </table>
+            <a href="/tournaments"><button class="button_new button">See More</button></a>
           </div>
         </div>
       </div>
