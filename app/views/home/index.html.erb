@@ -40,15 +40,28 @@
 
                 <h1>Some Upcoming Events</h1>
                 <table class="table main-table">
-                <tr>
-                  <th>ID</th>
-                  <th>Private?</th>
+                <tr>       
+
                   <th>Name</th>
                   <th>Location</th>
                   <th>Date</th>
                   <th></th>
                 </tr>
-                
+                <% @tournaments.each do |t| %>
+                  <tr>
+                      <td><%= t.name %></td>
+                      <% if !t.golf_course_id.nil?%>
+                        <% @gf = GolfCourse.find(t.golf_course_id)%>
+                        <td><%= @gf.name %></td>
+                      <% else %>
+                        <td><%= t.location %></td>
+                      <% end %>
+                      <td><%= t.date %></td>
+                      <td>
+                        <%= link_to "Details", tournament_path(t), :class=>"button-small button button_new" %>
+                      </td>
+                  </tr>
+                <% end %> 
                 
               
                 </table>
