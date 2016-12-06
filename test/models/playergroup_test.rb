@@ -6,14 +6,14 @@ class PlayergroupTest < ActiveSupport::TestCase
 	password:'1234567', password_confirmation:'1234567')
   	@u2 = User.create(first_name: 'b', last_name: 'b', email: 'b2@b2.com', 
 	password:'1234567', password_confirmation:'1234567')
-	@u3 = User.create(first_name: 'b', last_name: 'b', email: 'b3@b3.com', 
-	password:'1234567', password_confirmation:'1234567')
-	@u4 = User.create(first_name: 'b', last_name: 'b', email: 'b4@b4.com', 
-	password:'1234567', password_confirmation:'1234567')
-	@u5 = User.create(first_name: 'b', last_name: 'b', email: 'b5@b5.com', 
-	password:'1234567', password_confirmation:'1234567')
-	@t1 = Tournament.create(name: "test player group")
-	@t1 = Tournament.find_by(name: "test player group")
+  	@u3 = User.create(first_name: 'b', last_name: 'b', email: 'b3@b3.com', 
+  	password:'1234567', password_confirmation:'1234567')
+  	@u4 = User.create(first_name: 'b', last_name: 'b', email: 'b4@b4.com', 
+  	password:'1234567', password_confirmation:'1234567')
+  	@u5 = User.create(first_name: 'b', last_name: 'b', email: 'b5@b5.com', 
+  	password:'1234567', password_confirmation:'1234567')
+  	@t1 = Tournament.create(name: "test player group")
+  	@t1 = Tournament.find_by(name: "test player group")
   end
 
   test "should not save without id present" do
