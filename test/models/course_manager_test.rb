@@ -9,7 +9,7 @@ class CourseManagerTest < ActiveSupport::TestCase
   	@u2 = User.create(first_name: 'i', last_name: 'i', email: 'ahh@ahh.com', password:'123ss4567', password_confirmation:'123ss4567')
   	
   	@gf1=GolfCourse.create(name: 'GF111', overview: 'Great course', address: '7859 Yonge Street, Thornhill, ON L3T 2C4', website: 'http://www.ladiesgolfclub.com/', contact_info: 'Anna')
-	@gf2=GolfCourse.create(name: 'Humber Valley 2', address: '40 Blah', website: 'http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=5e1cd49024561410VgnVCM10000071d60f89RCRD', contact_info: 'Anna', overview: "Humber Valley'ses.")
+	  @gf2=GolfCourse.create(name: 'Humber Valley 2', address: '40 Blah', website: 'http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=5e1cd49024561410VgnVCM10000071d60f89RCRD', contact_info: 'Anna', overview: "Humber Valley'ses.")
 
   	@cg1 = CourseManager.new(golf_course_id: @gf1.id, manager_id: @u2.id)
   	@cg2 = CourseManager.new(golf_course_id: @gf2.id, manager_id: @u1.id)

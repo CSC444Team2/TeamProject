@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
  	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   	root 'home#index'
-
+  	
 	get 'signup' => 'users#new'
 	get 'login' => 'sessions#new', as: :login
 	post 'login' => 'sessions#create'
@@ -34,4 +34,8 @@ Rails.application.routes.draw do
 	resources :tickets
 	resources :requests, only: [:new, :create, :destroy]
 	resources :password_resets
+
+
+	#NOTE: this should appear at VERY end for not found pages
+	get '*unmatched_route', to: 'home#not_found'
 end
