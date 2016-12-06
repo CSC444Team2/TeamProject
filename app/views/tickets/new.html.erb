@@ -1,28 +1,48 @@
-<html>
+<html lang="en">
 <head>
-<title>Ticket Infomation</title>
+  <meta charset="UTF-8">
+  <title>GolfStuff - Ticket Information</title>
 </head>
+
 <body>
-	<p>
-  	<strong>Check the ticket info below</strong>
-	</p>
-	<p>
-  	<strong>User Name:</strong>
-  	<%= @username %>
-	</p>
-	<p>
-  	<strong>Tournament:</strong>
-  	<%= @tournament_name %>
-	</p>
-	<%= form_for @ticket do |f| %>
-	  <p>
-	    <%= f.label :TicketType %><br>
-	    <%= f.select(:tickets_type, options_for_select([['Player', "Player"], ['Sponsor', "Sponsor"]], 2)) %>
-	    <%= f.hidden_field :event_id, :value=> @event_id %>
-	  </p>
-	  <p>
-	  	<%= f.submit "Pay"%>
-	  </p>
-	<% end %>
+  <div id="wrap">
+    <%=render "header_menu"%>
+
+    <div class="container">
+      <div class="col-md-6 col-md-offset-3">
+
+        <h2>Check the ticket info below</h2>
+
+        <%= form_for @ticket, :id => "form-ticket" do |f| %>
+        <table class="table">
+          <tr>
+            <th>User Name</th>
+            <td><%= @username %></td>
+          </tr>
+          <tr>
+            <th>Tournament</th>
+            <td><%= @tournament_name %></td>
+          </tr>
+          <tr>
+            <th>
+              <%= f.label :TicketType, "Ticket Type" %>
+            </th>
+            <td>
+              <%= f.select(:tickets_type, options_for_select([['Player', "Player"], ['Sponsor', "Sponsor"]]), {}, {:class => "form-control"}) %>
+            </td>
+          </tr>
+        </table>
+
+        <%= f.hidden_field :event_id, :value=> @event_id %>
+        <%= f.submit "Pay", :class => "button button_new"%>
+        <% end %>
+
+      </div>
+    </div> <!--End of container-->
+
+    <div id="push"></div>
+  </div><!-- End of wrap -->
+
+  <%= render "footer" %>
 </body>
 </html>
