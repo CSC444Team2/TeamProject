@@ -18,11 +18,12 @@
       <% if current_user == @user %>
 
         <h2>Welcome to your personal profile, <%= @user.first_name %></h2>
+
         <div class="requests-box">
           <%= render partial: "tournaments/show_requests", locals: {title: "Sent Requests", requests: @user.sent_requests} %>
           <%= render partial: "tournaments/show_requests", locals: {title: "Received Requests", requests: @user.received_requests} %>
         </div>
-
+      
       <% else %>
 
         <h2>Profile page for <%= @user.first_name %> <%= @user.last_name %></h2>
