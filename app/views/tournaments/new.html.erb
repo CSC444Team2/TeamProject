@@ -6,11 +6,13 @@
 <body>
   	<div id="main">
 		<%= render "application/header_menu" %>
-		
+		<div class="col-sm-6 col-sm-offset-3">
+        	<h1>New Tournament</h1>
+      	</div>
     	<div id="site_content">
 			<%= render 'form' %>
-			<%= link_to 'Cancel', "/tournaments", :class => "cancel_button" %>
-		</div>
+		
+		</div>		
   	</div>
 </body>
 </html>
