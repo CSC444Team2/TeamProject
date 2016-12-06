@@ -6,5 +6,5 @@ class CreateTournaments < ActiveRecord::Migration
         t.integer :is_private
         t.integer :golf_course_id
     end
-  end
+  
 end
