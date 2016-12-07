@@ -71,7 +71,11 @@
         </div>
         <div class="col-xs-4">
           <!--<%= image_tag("avatar.png", :alt => "golf ball", :class => "avatar")%> -->
-          <%= image_tag @user.profile_picture.url(:medium) %>
+          <% if @user.profile_picture.file? %>
+            <%= image_tag @user.profile_picture.url(:medium) %>
+          <% else %>
+            <%= image_tag("avatar.png", :alt => "golf ball", :class => "avatar")%>
+          <% end %> 
         </div>
       </div>
 
