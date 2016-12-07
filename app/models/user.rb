@@ -100,13 +100,13 @@ class User < ActiveRecord::Base
 			dependent: :destroy
 	#has_many :wanted_events, through: :sent_requests, source: :receiver
 	def received_requests
-		requests=[]
+		@requests=[]
 		organized_events.each do |e|
 			e.received_requests.each do |new_request|
-				requests << new_request
+				@requests << new_request
 			end
 		end
-		return requests
+		return @requests
   end
 
   #========== Golf Course Involvements ===============
@@ -146,6 +146,26 @@ class User < ActiveRecord::Base
   	end
   end
 
+  def received_golf_admin_requests
+  	@requests=[]
+		admined_courses.each do |ac|
+		ac.received_admin_requests.each do |new_request|
+			@requests << new_request
+		end
+	end
+	return @requests
+  end
+
+  def received_golf_csr_requests
+  	@requests=[]
+		admined_courses.each do |ac|
+		ac.received_csr_requests.each do |new_request|
+			@requests << new_request
+		end
+	end
+	return @requests
+  end
+
   # draft method to redirect to PayPal payment
 	def paypal_url(root, pay_type, amount, name, event_id)
 		return_path = ''
@@ -158,13 +178,13 @@ class User < ActiveRecord::Base
 		values = {
 				business: "csc444.toronto-merchant@gmail.com", #created an account on PayPal Developer and fake Sandbox email addresses
 				cmd: "_xclick",
-        return: return_path, #"#{root}hook",
-        rm: 2,
+	    return: return_path, #"#{root}hook",
+	    rm: 2,
 				amount: amount,
 				item_name: "#{name} Tournament Ticket",
-        item_number: event_id,
-        currency_code: "CAD",
-        notify_url: return_path #"#{root}hook"
+	    item_number: event_id,
+	    currency_code: "CAD",
+	    notify_url: return_path #"#{root}hook"
 		}
 		"#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
 	end

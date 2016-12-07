@@ -4,16 +4,19 @@ class RequestsController < ApplicationController
 		if current_user.nil?
 			redirect_to login_path
 		else
-			@candidate_events = Tournament.all
-			#Do not include events that the user already organizes
-			@candidate_events = @candidate_events.reject do |t|
-				t.got_organizer?(current_user)
-			end
+			@is_golf_course = params[:is_golf_course]
+			if !@is_golf_course.nil?
+			else
+				@candidate_events = Tournament.all
+				#Do not include events that the user already organizes
+				@candidate_events = @candidate_events.reject do |t|
+					t.got_organizer?(current_user)
+				end
 
-			#Default selection
-			@selected_event=params[:selected_event]
-			if @selected_event.nil? && !@candidate_events.empty?
-				@selected_event=1
+				#Default selection
+				@selected_event=params[:selected_event]
+				if @selected_event.nil? && !@candidate_events.empty?
+					@selected_event=1
 			end
 		end
 	end
