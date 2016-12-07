@@ -14,8 +14,8 @@
 
       <% if @is_organizer%>
         <div class="container editing-link-box">
-          <%= link_to 'Edit Tournament Details', edit_tournament_path(@tournament), :class=>"button-small button button_new"%>
-          <%= link_to 'Delete Tournament', tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"button-small button button_new_stop"  %>
+          <%= link_to 'Edit Tournament Details', edit_tournament_path(@tournament), :class=>"btn-small button button_new"%>
+          <%= link_to 'Delete Tournament', tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn-small button button_new_stop"  %>
         </div>
       <% end %>
 
@@ -101,21 +101,22 @@
 
           <div class="col-sm-4 text-center">
             <% if current_user.nil? || !current_user.played_in?(@tournament) %>
-                <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => @tournament.id}, :method=> :get}, {:class=>"button_new button"} %>
+                <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => @tournament.id}, :method=> :get}, {:class=>"btn btn-lg button_new button btn-long"} %>
             <% else %>
-                <%= button_to "Stop playing", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure you want to stop playing?' }, :class=>"button_new_stop button" %>
+                <%= button_to "Stop playing", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure you want to stop playing?' }, :class=>"btn btn-lg button_new_stop button btn-long" %>
             <% end %>
           </div>
 
           <div class="col-sm-4 text-center">
             <% if current_user.nil? || !current_user.organized_a?(@tournament) %>
-                <%= button_to "Request to Organize", {:controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 1}}, {:class=>"button_new button"} %>
+                <%= button_to "Request to Organize", {:controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 1}}, {:class=>"btn btn-lg button_new button btn-long"} %>
             <% else %>
-                <%= button_to "Stop organizing", join_path(:params => {:event_id => @tournament.id, :join => 1}), :method=> :delete, data: { confirm: 'Are you sure you want to stop organizing?' }, :class=>"button_new_stop button" %>
+                <%= button_to "Stop organizing", join_path(:params => {:event_id => @tournament.id, :join => 1}), :method=> :delete, data: { confirm: 'Are you sure you want to stop organizing?' }, :class=>"btn btn-lg button_new_stop button btn-long" %>
             <% end %>
           </div>
 
           <div class="col-sm-4 text-center">
+            <div class="sponsor-box">
               <%= form_tag({:controller=> "join", :action => "create", :params=> {event_id: @tournament.id, join: 2, name: @tournament.name}}) do %>
                   <div class="input-group input-group-lg">
                     <div class="input-group-addon green-add-on">CAD</div>
@@ -125,6 +126,7 @@
                     </span>
                   </div>
               <% end %>
+            </div>
           </div>
 
         </div>

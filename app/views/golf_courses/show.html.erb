@@ -15,10 +15,10 @@
 
       <div class="container editing-link-box">
         <% if @is_admin || @is_manager %>
-          <%= link_to 'Edit Golf Course Details', edit_golf_course_path(@golf_course), :class=>"button-small button button_new"%>
+          <%= link_to 'Edit Golf Course Details', edit_golf_course_path(@golf_course), :class=>"btn-small button button_new"%>
         <% end %>
         <% if @is_admin %>
-          <%= link_to 'Delete', golf_course_path(@golf_course), method: :delete, data: { confirm: 'You sure you want to delete this golf course?' }, :class=>"button-small button button_new_stop" %>
+          <%= link_to 'Delete', golf_course_path(@golf_course), method: :delete, data: { confirm: 'You sure you want to delete this golf course?' }, :class=>"btn-small button button_new_stop" %>
         <% end %>
       </div>
 

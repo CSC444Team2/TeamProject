@@ -39,10 +39,11 @@ ul.nav li:hover {
     padding: 10px;
     border: 0;
     border-radius: 7px;
-    width: 100%;
+    width: auto;
     margin: 5px;
     color: white;
     display: block;
+    text-align: center;
 }
 
 .tourn-btn-row {
@@ -66,8 +67,8 @@ table.main-table tr:nth-child(even) {
 }
 
 .btn-small {
-    padding: 5px;
-    width: auto;
+    padding: 5px !important;
+    width: auto !important;
     margin: 0;
 }
 
@@ -202,5 +203,12 @@ nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium siz
 a.button:hover {
     text-decoration: none;
     color: white;
+}
+
+a.button {
     white-space: nowrap;
+}
+
+.btn-long {
+    width: 100% !important;
 }
