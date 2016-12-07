@@ -36,13 +36,14 @@
                       <% end %>
                       <td><%= t.date %></td>
                       <td>
-                        <%= link_to "Details", tournament_path(t), :class=>"btn-small button button_new" %>
+                        <%= link_to "Details", tournament_path(t), :class=>"btn btn-sm button button_new" %>
                       </td>
                       <td>
                         <% if current_user.nil? || !current_user.played_in?(t) %>
-                              <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => t.id, :payment => 0}, :method=> :get}, {:class=>"btn-small button button_new"} %>
+                            <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => t.id}, :method=> :get}, {:class=>"btn btn-sm button button_new"} %>
                         <% else %>
-                        <button type="button" class="button_new_stop button" data-toggle="modal" data-target="#myModal">Stop Playing</button>
+                            <button type="button" class="btn btn-sm button button_new_stop" data-toggle="modal" data-target="#myModal">Stop Playing</button>
+
                           <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
                               <!-- Modal content-->
@@ -60,6 +61,7 @@
                               </div>
                             </div>
                           </div>
+
                         <% end %>
                       </td>
                   </tr>
