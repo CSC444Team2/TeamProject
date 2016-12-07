@@ -24,14 +24,6 @@
             <th>Tournament</th>
             <td><%= @tournament_name %></td>
           </tr>
-          <tr>
-            <th>
-              <%= f.label :TicketType, "Ticket Type" %>
-            </th>
-            <td>
-              <%= f.select(:tickets_type, options_for_select([['Player', "Player"], ['Sponsor', "Sponsor"]]), {}, {:class => "form-control"}) %>
-            </td>
-          </tr>
         </table>
 
         <%= f.hidden_field :event_id, :value=> @event_id %>
@@ -39,8 +31,8 @@
 
         <%= form_tag({:controller=> "join", :action => "create", :params=> {event_id: @event.id, join: 0, name: @event.name}}) do %>
             <div class="input-group input-group-lg">
-              <div class="input-group-addon green-add-on">CAD</div>
-              <%= text_field_tag :sponsor_amount, nil, :value => @event.price, class: "form-control", :readonly => true %>
+              <div class="input-group-addon green-add-on">Ticket Type</div>
+              <%= select_tag("sponsor_amount", options_for_select([[('Play ($'+  @event.price.to_s + ')'), @event.price], ['Play & Eat ($'+  (@event.price+30).to_s + ')', @event.price+30]]), {:class => "form-control"}) %>
               <span class="input-group-btn">
                 <%= submit_tag "Pay and Play", :class=>"btn btn-sponsor" %>
               </span>
