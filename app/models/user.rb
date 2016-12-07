@@ -47,6 +47,11 @@ class User < ActiveRecord::Base
 	end while User.exists?(column => self[column])
 	end
 	
+	def send_confirmation
+		
+		UserMailer.confirmation(self).deliver
+		end
+		
 	def play_in(some_event)
 		if(!self.played_in?(some_event))
 			player_involvements.create(event_id: some_event.id)
