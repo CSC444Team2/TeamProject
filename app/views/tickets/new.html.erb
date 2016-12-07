@@ -39,7 +39,7 @@
         <%= form_tag({:controller=> "join", :action => "create", :params=> {event_id: @event.id, join: 0, name: @event.name}}) do %>
             <div class="input-group input-group-lg">
               <div class="input-group-addon green-add-on">CAD</div>
-              <%= text_field_tag :sponsor_amount, nil, placeholder: @event.price, class: "form-control" %>
+              <%= text_field_tag :sponsor_amount, nil, :value => @event.price, class: "form-control", :readonly => true %>
               <span class="input-group-btn">
                 <%= submit_tag "Pay and Play", :class=>"btn btn-sponsor" %>
               </span>
