@@ -15,10 +15,8 @@
       <% if @is_organizer%>
         <div class="container editing-link-box">
           <%= link_to 'Edit Tournament Details', edit_tournament_path(@tournament), :class=>"button-small button button_new"%>
-
-
-                <button type="button" class="button_new_stop button" data-toggle="modal" data-target="#myModal">Delete Tournament</button>
-                <div class="modal fade" id="myModal" role="dialog">
+                <button type="button" class="button_new_stop button" data-toggle="modal" data-target="#myModaldel">Delete Tournament</button>
+                <div class="modal fade" id="myModaldel" role="dialog">
                   <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -124,15 +122,14 @@
                 <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => @tournament.id}, :method=> :get}, {:class=>"button_new button"} %>
             <% else %>
               <!-- Trigger the modal with a button -->
-              <button type="button" class="button_new_stop button" data-toggle="modal" data-target="#myModal">Stop Playing</button>
-                <div class="modal fade" id="myModal" role="dialog">
+              <button type="button" class="button_new_stop button" data-toggle="modal" data-target="#myModalply">Stop Playing</button>
+                <div class="modal fade" id="myModalply" role="dialog">
                   <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Are you sure you want to stop playing?</h4>
-
                       </div>
                       <div class="modal-footer">
                       <div class="form-inline">  
@@ -150,8 +147,8 @@
             <% if current_user.nil? || !current_user.organized_a?(@tournament) %>
                 <%= button_to "Request to Organize", {:controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 1}}, {:class=>"button_new button"} %>
             <% else %>
-                <button type="button" class="button_new_stop button" data-toggle="modal" data-target="#myModal">Stop Organizing</button>
-                <div class="modal fade" id="myModal" role="dialog">
+                <button type="button" class="button_new_stop button" data-toggle="modal" data-target="#myModalorg">Stop Organizing</button>
+                <div class="modal fade" id="myModalorg" role="dialog">
                   <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
