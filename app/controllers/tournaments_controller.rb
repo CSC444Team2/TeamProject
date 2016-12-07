@@ -2,11 +2,12 @@ class TournamentsController < ApplicationController
     before_action :require_user, only: [:new, :create]
     before_action :private_permission, only: [:show]
     before_action :require_organizer, only: [:edit, :update, :destroy]
-    protect_from_forgery except: [:hook_sponsor]
+    protect_from_forgery except: [:hook_sponsor, :hook_play]
 
     def index
         @tournaments = Tournament.all
     end
+
     def show
         @tournament = Tournament.find(params[:id])
         @is_organizer = current_user && current_user.organized_a?(@tournament)
@@ -45,6 +46,7 @@ class TournamentsController < ApplicationController
     def edit
         @tournament = Tournament.find(params[:id])
     end
+
     def update
         @tournament = Tournament.find(params[:id])
         if @tournament.update_attributes(tournament_params)
@@ -53,6 +55,7 @@ class TournamentsController < ApplicationController
             render 'edit'
         end
     end
+
     def new
         @tournament = Tournament.new
         @organizer = current_user
