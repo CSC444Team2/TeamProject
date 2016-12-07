@@ -9,4 +9,10 @@ class UserMailer < ApplicationMailer
   @user = user
   mail :to => user.email, :subject => "Password Reset"
 end
+ 
+ def confirmation(user)
+  @user = user
+  mail :to => user.email, :subject => "Confirmation"
+end
+ 
 end
