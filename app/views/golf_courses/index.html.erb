@@ -17,19 +17,19 @@
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Actions</th>
+                <th></th>
               </tr>
               <% @golf_courses.each do |g| %>
                 <tr>
                     <td><%= g.id %></td>
                     <td><%= g.name %></td>
                     <td>
-                      <%= link_to "Details", golf_course_path(g), :class=>"btn-small button button_new" %>
+                      <%= link_to "Details", golf_course_path(g), :class=>"button button_new btn-table btn-sm" %>
                     </td>
                 </tr>
               <% end %>
             </table>
-            <%= link_to 'New Golf Course', "/golf_courses/new", :class => "btn-small button button_new" %>
+            <%= link_to 'New Golf Course', "/golf_courses/new", :class => "button button_new btn" %>
 
       </div> <!--End of container-->
 

@@ -18,7 +18,7 @@
       <div class="form-group row">
         <%= t.label :price, :class=>"col-xs-3 col-form-label" %>
         <div class="col-xs-9">
-          <%= t.text_field :price, :placeholder => "Price", :class => "form_control" %>
+          <%= t.text_field :price, :placeholder => "Price", :class => "form-control", :pattern => "\\d*" %>
         </div>
       </div>
 
@@ -80,7 +80,9 @@
       </div>
     </div>
 
-    <%= t.submit "Create Tournament", :class => "button button_new" %>
-    <%= link_to 'Cancel', "/tournaments", :class => "button button_new" %>
+    <div class="block-center">
+      <%= t.submit "Create Tournament", :class => "button button_new btn" %>
+      <%= link_to 'Cancel', "/tournaments", :class => "button button_new_stop btn" %>
+  </div>
 <% end %> <!-- End of form-->
 
