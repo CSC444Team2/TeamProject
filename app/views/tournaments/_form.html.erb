@@ -22,18 +22,6 @@
         </div>
       </div>
 
-      <div class="form-group row">
-        <%= t.label :location, :class=>"col-xs-3 col-form-label" %>
-        <div class="col-xs-9">
-          <% @golf_course_dump = [] %>
-        <% (GolfCourse.all).each do |gf| %>
-            <% @golf_course_dump << [gf.id.to_s+". "+gf.name+"("+gf.address+")", gf.id] %>
-        <% end %>
-        <% if !@golf_course_dump.empty? %>
-          <i>Note: If both fields are filled in, the location field, though recorded, will be covered with the address of the selected golf course</i><br>
-          <i>Select an existing golf course in the list</i>
-          <%= t.select :golf_course_id, options_for_select(@golf_course_dump), :include_blank => true %><br>
-          
     <div class="form-group row">
       <%= t.label :location, :class=>"col-xs-3 col-form-label" %>
       <div class="col-xs-9">
@@ -45,7 +33,6 @@
         <%= t.select :golf_course_id, options_for_select(@golf_course_dump), {:include_blank => true}, {:class=>"form-control"} %>
         <small class="form-text text-muted">Note: If both fields are filled in, the location field, though recorded, will be covered with the address of the selected golf course</small>
         <small class="form-text text-muted">Select an existing golf course in the list</small>
->>>>>>> a51607cc108a6953f37b6f636c4c5ca1de61df11
 
       <% else %>
         <div class="none-info">No registered golf courses available now...</div>
