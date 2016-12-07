@@ -116,17 +116,15 @@
           </div>
 
           <div class="col-sm-4 text-center">
-            <div class="sponsor-box">
-              <%= form_tag({:controller=> "join", :action => "create", :params=> {event_id: @tournament.id, join: 2, name: @tournament.name}}) do %>
-                  <div class="input-group input-group-lg">
-                    <div class="input-group-addon green-add-on">CAD</div>
-                    <%= text_field_tag :sponsor_amount, nil, placeholder: "Donation amount", class: "form-control" %>
-                    <span class="input-group-btn">
-                      <%= submit_tag "Sponsor", :class=>"btn btn-sponsor" %>
-                    </span>
-                  </div>
-              <% end %>
-            </div>
+            <%= form_tag({:controller=> "join", :action => "create", :params=> {event_id: @tournament.id, join: 2, name: @tournament.name}}) do %>
+                <div class="input-group input-group-lg">
+                  <div class="input-group-addon green-add-on">CAD</div>
+                  <%= text_field_tag :sponsor_amount, nil, placeholder: "Donation amount", class: "form-control" %>
+                  <span class="input-group-btn">
+                    <%= submit_tag "Sponsor", :class=>"btn btn-sponsor" %>
+                  </span>
+                </div>
+            <% end %>
           </div>
 
         </div>
