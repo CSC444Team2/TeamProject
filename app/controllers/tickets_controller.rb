@@ -19,6 +19,7 @@ class TicketsController < ApplicationController
 	def new
 		@event_id = params[:event_id]
 		@event = Tournament.find(params[:event_id])
+		@payment = params[:payment]
 		@tournament_name = @event.name
 		@username = current_user.get_user_name
 		@ticket = Ticket.new(tournament: @event, user: current_user)
@@ -26,6 +27,7 @@ class TicketsController < ApplicationController
 
 	def show
     @ticket = Ticket.find(params[:id])
+    @event = Tournament.find(@ticket.tournament_id)
     @event_name = Tournament.find(@ticket.tournament_id).name
     @user_name = current_user.get_user_name
   end

@@ -40,7 +40,7 @@
                       </td>
                       <td>
                         <% if current_user.nil? || !current_user.played_in?(t) %>
-                              <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => t.id}, :method=> :get}, {:class=>"btn-small button button_new"} %>
+                              <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => t.id, :payment => 0}, :method=> :get}, {:class=>"btn-small button button_new"} %>
                         <% else %>
                               <%= link_to "Stop playing", join_path(:id => t.id, :params => {:event_id => t.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure?' }, :class=>"btn-small button button_new_stop" %>
                         <% end %>

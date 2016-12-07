@@ -13,5 +13,5 @@
   <%= @ticket.tickets_type %>
 </p>
 
-<%= link_to "Confirm", join_index_path(:id => @ticket.tournament_id, :params => {:event_id => @ticket.tournament_id, :join => 0}), :method=> :post %>
+<%= link_to "Confirm", tournament_path(@event) %>
 

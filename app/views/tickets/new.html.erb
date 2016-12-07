@@ -9,8 +9,9 @@
     <%=render "header_menu"%>
 
     <div class="container">
-      <div class="col-md-6 col-md-offset-3">
 
+      <div class="col-md-6 col-md-offset-3">
+      
         <h2>Check the ticket info below</h2>
 
         <%= form_for @ticket, :id => "form-ticket" do |f| %>
@@ -47,6 +48,8 @@
         <% end %>
 
       </div>
+    <% else %>
+
     </div> <!--End of container-->
 
     <div id="push"></div>

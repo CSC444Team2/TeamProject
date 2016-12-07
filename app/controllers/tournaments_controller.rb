@@ -174,7 +174,8 @@ class TournamentsController < ApplicationController
       if status == "Completed"
         @tournament = Tournament.find(params[:item_number])
         current_user.play_in(@tournament)
-        redirect_to(:action => 'show', :id => @tournament.id)
+        @ticket = Ticket.create(user_id: current_user.id, tournament_id: @tournament.id, tickets_type: 'Player')
+        redirect_to controller: "tickets", action: "show", id: @ticket.id
       else
         render nothing: true
       end
