@@ -5,6 +5,7 @@ class CreateTournaments < ActiveRecord::Migration
         t.timestamps null: false
         t.integer :is_private
         t.integer :golf_course_id
+        t.integer :price
     end
   end
 end

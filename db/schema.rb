@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20161206224705) do
     t.datetime "updated_at",                 null: false
     t.integer  "is_private"
     t.integer  "golf_course_id"
+    t.integer  "price"
     t.string   "location"
     t.datetime "date"
     t.string   "contact_email"
