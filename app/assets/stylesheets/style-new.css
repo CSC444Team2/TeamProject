@@ -39,9 +39,10 @@ ul.nav li:hover {
     padding: 10px;
     border: 0;
     border-radius: 7px;
-    width: 100%;
+    width: 100% !important;
     margin: 5px;
     color: white;
+    display: block;
 }
 
 .tourn-btn-row {
@@ -186,4 +187,10 @@ html, body {
 .editing-link-box {
     padding-bottom: 20px;
     padding-top: 10px;
+}
+
+a.button:hover {
+    text-decoration: none;
+    color: white;
+    white-space: nowrap;
 }
