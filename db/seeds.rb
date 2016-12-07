@@ -57,10 +57,14 @@ pg2=Playergroup.create(tournament_id: t1.id, group_members: [u5.id])
 pg3=Playergroup.create(tournament_id: t3.id, group_members: [u3.id, u4.id, u5.id])
 
 #0: admin; 1: CSR
-u1.deal_course(g2, 0)
+u1.deal_course(g1, 0)
+u2.deal_course(g2, 0)
+u1.deal_course(g2, 1)
 u2.deal_course(g1, 1)
-u3.deal_course(g2, 1)
-u4.deal_course(g1, 0)
-u5.deal_course(g1, 0)
+
+admin_req1 = GolfRequest.create(sender_id: u3.id, receiver_id: g1.id, golf_request_type: 0)
+admin_req2 = GolfRequest.create(sender_id: u4.id, receiver_id: g2.id, golf_request_type: 0)
+csr_req1 = GolfRequest.create(sender_id: u5.id, receiver_id: g2.id, golf_request_type: 1)
+csr_req2 = GolfRequest.create(sender_id: u3.id, receiver_id: g1.id, golf_request_type: 1)
 
 

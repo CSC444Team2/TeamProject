@@ -89,12 +89,11 @@
         <iframe class="course-map" src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @tournament.location %>" allowfullscreen></iframe>
       <% end %>
 
-
-
-
       <!--Show requests-->
       <% if @is_organizer%>
+        <div class="requests-box">
           <%= render partial: "show_requests", locals: {title: "Pending Requests for This Tournament", requests: @tournament.received_requests} %>
+        </div>
       <% end %>
 
       <!--Play/Sponsor/Organize options-->

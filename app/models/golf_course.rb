@@ -26,21 +26,21 @@ class GolfCourse < ApplicationRecord
 		managers.include?(some_manager)
 	end
 
-	has_many :received_requests, class_name: "GolfRequest", foreign_key: "receiver_id",
-			dependent: :destroy
 	def received_admin_requests
 		@admin_requests = []
-		received_requests.each do |req|
-			if received_requests.golf_request_type == 0
+		GolfRequest.all.each do |req|
+			if req.receiver_id == id && req.golf_request_type == 0
 				@admin_requests << req
 			end
 		end
 		return @admin_requests
+		#return GolfRequest.all
 	end
+
 	def received_csr_requests
 		@csr_requests = []
-		received_requests.each do |req|
-			if received_requests.golf_request_type == 1
+		GolfRequest.all.each do |req|
+			if req.receiver_id == id && req.golf_request_type == 1
 				@csr_requests << req
 			end
 		end
