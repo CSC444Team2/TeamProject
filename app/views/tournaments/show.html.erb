@@ -12,13 +12,6 @@
 
       <h1 class="tournament-title"><%= @tournament.name %></h1>
 
-      <% if @is_organizer%>
-        <div class="container editing-link-box">
-          <%= link_to 'Edit Tournament Details', edit_tournament_path(@tournament), :class=>"btn-small button button_new"%>
-          <%= link_to 'Delete Tournament', tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn-small button button_new_stop"  %>
-        </div>
-      <% end %>
-
       <!--Show Details-->
       <div class="container">
         <table class="table-info">
@@ -82,6 +75,17 @@
           </tr>
         </table>
       </div>
+
+      <% if @is_organizer%>
+          <div class="row editing-link-box">
+            <div class="col-sm-3">
+              <%= link_to 'Edit Details', edit_tournament_path(@tournament), :class=>"btn-small button button_new"%>
+            </div>
+            <div class="col-sm-3">
+              <%= link_to 'Delete Tournament', tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn-small button button_new_stop"  %>
+            </div>
+          </div>
+      <% end %>
 
       <% if !@golf_course.nil? %>
         <iframe class="course-map" src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe>

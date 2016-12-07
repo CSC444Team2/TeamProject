@@ -212,3 +212,10 @@ a.button {
 .btn-long {
     width: 100% !important;
 }
+
+.btn-table {
+    margin: 0;
+    width: 100px;
+    float: right;
+    font-size: 0.75em;
+}
