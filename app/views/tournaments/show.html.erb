@@ -57,6 +57,14 @@
             <% end %>
           </tr>
           <tr>
+            <th>Price</th>
+            <% if !@tournament.price.nil? %>
+              <td><%= @tournament.price %> CAD</td>
+            <% else %>
+              <td>N/A</td>
+            <% end %>
+          </tr>
+          <tr>
             <th>Contact Email</th>
             <% if !@tournament.contact_email.nil? && !@tournament.contact_email.empty? %>
               <td><%= @tournament.contact_email %></td>

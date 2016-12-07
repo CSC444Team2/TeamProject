@@ -18,6 +18,13 @@
       </div>
 
       <div class="form-group row">
+        <%= t.label :price, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= t.text_field :price, :placeholder => "Price", :class => "form_control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
         <%= t.label :location, :class=>"col-xs-3 col-form-label" %>
         <div class="col-xs-9">
           <% @golf_course_dump = [] %>

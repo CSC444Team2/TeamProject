@@ -9,11 +9,11 @@
 g1=GolfCourse.create(name: 'Ladies Golf Club of Toronto', overview: 'Great course', address: '7859 Yonge Street, Thornhill, ON L3T 2C4', website: 'http://www.ladiesgolfclub.com/', contact_info: 'Anna')
 g2=GolfCourse.create(name: 'Humber Valley Golf Course', address: '40 Beattie Avenue', website: 'http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=5e1cd49024561410VgnVCM10000071d60f89RCRD', contact_info: 'Anna', overview: "Humber Valley's par 70 course challenges golfers with its combination of links and valley land holes.")
 
-t1=Tournament.create(name: 'myTournament', is_private: 0, golf_course_id: 1)
-t2=Tournament.create(name: 'myTournament2', is_private: 0, location: 'Buttonville')
-t3=Tournament.create(name: 'myTournament3', is_private: 0, golf_course_id: 2)
-t5=Tournament.create(name: 'privateTournament', is_private: 1, golf_course_id: 2)
-t4=Tournament.create(name: 'hello5', is_private: 0, location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey')
+t1=Tournament.create(name: 'myTournament', is_private: 0, golf_course_id: 1, price: 150)
+t2=Tournament.create(name: 'myTournament2', is_private: 0, location: 'Buttonville', price: 150)
+t3=Tournament.create(name: 'myTournament3', is_private: 0, golf_course_id: 2, price: 150)
+t5=Tournament.create(name: 'privateTournament', is_private: 1, golf_course_id: 2, price: 150)
+t4=Tournament.create(name: 'hello5', is_private: 0, location: 'Toronto', date: DateTime.new(2016, 12, 12, 12, 0, 0), contact_email: 'abc@abc.com', contact_name: 'corey', price: 150)
 
 
 u1=User.create(first_name: 'Alice', last_name: 'Aleena', email: 'aasdf@aasdf.com', 
