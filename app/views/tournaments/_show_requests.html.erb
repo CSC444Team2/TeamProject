@@ -19,8 +19,8 @@
             </td>
 
             <% if current_user.organized_a?(request_tournament) %>
-              <td><%= link_to 'Approve', request_path(:id => r.id, :approval => 1), method: :delete, data: { :confirm => 'Confirm that you approve?' }, :class=>"button_new button btn-small"  %></td>
-              <td><%= link_to 'Reject', request_path(:id => r.id, :approval => 0), method: :delete, data: { :confirm => 'Confirm that you reject?' }, :class=>"button_new button btn-small"  %></td>
+              <td><%= link_to 'Approve', request_path(:id => r.id, :approval => 1, :is_golf_course => false), method: :delete, data: { :confirm => 'Confirm that you approve?' }, :class=>"button_new button btn-small"  %></td>
+              <td><%= link_to 'Reject', request_path(:id => r.id, :approval => 0, :is_golf_course => false), method: :delete, data: { :confirm => 'Confirm that you reject?' }, :class=>"button_new button btn-small"  %></td>
             <% end %>
 
           </tr>
