@@ -1,0 +1,88 @@
+<%= form_for @tournament, :html => { :multipart => true } do |t| %>
+
+    <div class="form-group row">
+       <%= t.label :tournament_name, :class=>"col-xs-3 col-form-label" %>
+      <div class="col-xs-9">
+        <%= t.text_field :name, :placeholder => "Tournament Name", :class =>"form-control",:required => true%>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= t.label :private_tournament?, :class=>"col-xs-3 col-form-label" %>
+      <div class="col-xs-9">
+        <%= t.select :is_private, options_for_select([['Public', 0], ['Private', 1]], @tournament.is_private), {}, {:class=>"form-control", :include_blank => false} %>
+        <small class="text-muted form-text">Private tournaments will not show up on the "tournaments" page. Outsiders(not logged in) will not be able to view private tournaments.</small>
+      </div>
+    </div>
+
+      <div class="form-group row">
+        <%= t.label :price, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= t.text_field :price, :placeholder => "Price", :class => "form-control", :pattern => "\\d*" %>
+        </div>
+      </div>
+
+    <div class="form-group row">
+      <%= t.label :location, :class=>"col-xs-3 col-form-label" %>
+      <div class="col-xs-9">
+        <% @golf_course_dump = [] %>
+      <% (GolfCourse.all).each do |gf| %>
+          <% @golf_course_dump << [gf.id.to_s+". "+gf.name+"("+gf.address+")", gf.id] %>
+      <% end %>
+      <% if !@golf_course_dump.empty? %>
+        <%= t.select :golf_course_id, options_for_select(@golf_course_dump), {:include_blank => true}, {:class=>"form-control"} %>
+        <small class="form-text text-muted">Note: If both fields are filled in, the location field, though recorded, will be covered with the address of the selected golf course</small>
+        <small class="form-text text-muted">Select an existing golf course in the list</small>
+
+      <% else %>
+        <div class="none-info">No registered golf courses available now...</div>
+      <% end %>
+
+
+        <div class="form-group row">
+          <% if !@golf_course_dump.empty? %>
+            <label class="col-xs-4 col-form-label">Or enter a location</label>
+          <% else %>
+            <label class="col-xs-4 col-form-label">Enter a location</label>
+          <% end %>
+          <div class="col-xs-8">
+            <%= t.text_field :location, :placeholder => "Location", :class => "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= t.label :date, :class=>"col-xs-3 col-form-label" %>
+      <div class="col-xs-9">
+        <%= t.datetime_select :date, start_year: Date.current.year, :class => "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= t.label :email, :class=>"col-xs-3 col-form-label" %>
+      <div class="col-xs-9">
+        <%= t.text_field :contact_email, :placeholder => "Email", :class => "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= t.label :contact_name, :class=>"col-xs-3 col-form-label" %>
+      <div class="col-xs-9">
+        <%= t.text_field :contact_name, :placeholder => "Name", :class => "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= t.label :description, :class=>"col-xs-3 col-form-label" %>
+      <div class="col-xs-9">
+        <%= t.text_area :description, cols: "58", rows: "10", :maxlength => 500, :placeholder => "Type your tournament description here...", :class => "form-control"%>
+      </div>
+    </div>
+
+    <div class="block-center">
+      <%= t.submit "Create Tournament", :class => "button button_new btn" %>
+      <%= link_to 'Cancel', "/tournaments", :class => "button button_new_stop btn" %>
+  </div>
+<% end %> <!-- End of form-->
+

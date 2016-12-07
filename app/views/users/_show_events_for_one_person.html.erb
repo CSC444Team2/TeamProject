@@ -1,0 +1,22 @@
+<% if @title %>
+  <h2><%= @title %></h2>
+<% end %>
+
+<% if @events && @events.any? %>
+  <table class="table main-table">
+    <tr>
+      <th>Tournament ID</th>
+      <th>Tournament Name</th>
+      <th></th>
+    </tr>
+    <% @events.each do |e| %>
+      <tr>
+        <td><%= e.id %></td>
+        <td><%= e.name %></td>
+        <td><%= link_to "Show Details", tournament_path(e),  :class=>"btn-small btn-table button_new button" %></td>
+      </tr>
+      <% end %>
+  </table>
+<% elsif @events%>
+  <div class="none-info">None</div>
+<% end %>

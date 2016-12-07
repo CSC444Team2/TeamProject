@@ -1,0 +1,102 @@
+<html>
+
+<head>
+  <title>Golf Stuff - Login</title>
+</head>
+
+<body>
+  <div id="wrap">
+    <%=render "header_menu"%>
+
+    <div class="container">
+
+      <div class="row">
+        <h1 class="tournament-title"><%= @user.first_name %> <%= @user.last_name %></h1>
+      </div>
+
+      <% if current_user == @user %>
+
+        <h2>Welcome to your personal profile, <%= @user.first_name %></h2>
+
+        <div class="requests-box">
+          <%= render partial: "tournaments/show_requests", locals: {title: "Sent Tournament Organization Requests", requests: @user.sent_requests} %>
+          <%= render partial: "tournaments/show_requests", locals: {title: "Received Tournament Organization Requests", requests: @user.received_requests} %>
+          <%= render partial: "golf_courses/show_requests", locals: {title: "Received Golf Course Admin Requests", requests: @user.received_golf_admin_requests} %>
+          <%= render partial: "golf_courses/show_requests", locals: {title: "Received Golf Course CSR Requests", requests: @user.received_golf_csr_requests} %>
+        </div>
+      
+      <% else %>
+
+        <h2>Profile page for <%= @user.first_name %> <%= @user.last_name %></h2>
+
+      <% end %>
+
+      <div class="row">
+        <div class="col-xs-8">
+          <table class="table table-info">
+            <tr>
+              <th>First Name</th>
+              <td><%= @user.first_name %></td>
+            </tr>
+            <tr>
+              <th>Last Name</th>
+              <td><%= @user.last_name %></td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td><%= @user.gender %></td>
+            </tr>
+            <tr>
+              <th>Birthdate</th>
+              <td><%= @user.date_of_birth %></td>
+            </tr>
+          </table>
+
+          <h4>Contact Information</h4>
+          <table class="table table-info">
+            <tr>
+              <th>Email</th>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <th>Phone Number</th>
+              <td><%= @user.phone_number %></td>
+            </tr>
+            <tr>
+              <th>Address</th>
+              <td><%= @user.address %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-xs-4">
+          <!--<%= image_tag("avatar.png", :alt => "golf ball", :class => "avatar")%> -->
+          <% if @user.profile_picture.file? %>
+            <%= image_tag @user.profile_picture.url(:medium) %>
+          <% else %>
+            <%= image_tag("avatar.png", :alt => "golf ball", :class => "avatar")%>
+          <% end %> 
+        </div>
+      </div>
+
+      <%= render partial: "show_events_for_one_person", locals: { :@title => "Organized Tournaments", :@events => @user.organized_events } %>
+
+      <%= render partial: "show_events_for_one_person", locals: { :@title => "Played Tournaments", :@events => @user.played_events } %>
+
+      <%= render partial: "show_events_for_one_person", locals: { :@title => "Sponsored Tournaments", :@events => @user.sponsored_events } %>
+      <br>
+      <%= render partial: "show_courses_for_one_person", locals: { :@title => "Administered Golf Courses", :@golf_courses => @user.admined_courses } %>
+      <%= render partial: "show_courses_for_one_person", locals: { :@title => "Managed Golf Courses (run CSR for)", :@golf_courses => @user.managed_courses } %>
+      <br>
+      <br>
+      <% if current_user == @user %>
+        <%= link_to 'Edit My Profile', edit_user_path(@user), :class => "button_new button col-sm-4 col-sm-offset-4"%>
+      <% end %>
+
+    </div><!-- End of container -->
+    <div id="push"></div>
+  </div><!-- End of wrap -->
+
+  <%= render "footer" %>
+
+</body>
+</html>

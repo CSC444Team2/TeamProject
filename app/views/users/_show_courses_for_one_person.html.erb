@@ -1,0 +1,20 @@
+<h2><%= @title %></h2>
+
+<% if @golf_courses && @golf_courses.any? %>
+  <table class="table main-table">
+    <tr>
+      <th>Golf Course ID</th>
+      <th>Golf Course Name</th>
+      <th></th>
+    </tr>
+    <% @golf_courses.each do |g| %>
+      <tr>
+        <td><%= g.id %></td>
+        <td><%= g.name %></td>
+        <td><%= link_to "Show Details", golf_course_path(g),  :class=>"btn-small btn-table button_new button" %></td>
+      </tr>
+      <% end %>
+  </table>
+<% elsif @golf_courses%>
+  None
+<% end %>

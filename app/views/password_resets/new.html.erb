@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>Golf Stuff - Reset Password</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+  <div id="wrap">
+		<%=render "header_menu"%>
+		<div class="col-sm-6 col-sm-offset-3">
+			<h1>Reset Your Password</h1>
+			<%= form_tag password_resets_path, :method => :post do %>
+				<div class="field">
+				    <%= label_tag :email %>
+				    <%= text_field_tag :email, params[:email] %>
+				</div>
+				  <div class="actions"><%= submit_tag "Reset Password", :class => "button_new button"%></div>
+				<% end %>
+				    </div> <!--End of container-->
+				  </div><!-- End of wrap -->
+
+		<%= render "footer" %>
+
+</body>
+</html>
+
+
+

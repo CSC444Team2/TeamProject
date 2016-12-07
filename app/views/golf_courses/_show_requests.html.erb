@@ -1,0 +1,32 @@
+<% if requests.any? %>
+    <h3> <%= title %> </h3>
+    <table class="table main-table">
+      <% requests.each do |r| %>
+        <% request_sender=User.find(r.sender_id) %>
+        <% request_golf_course = GolfCourse.find(r.receiver_id) %>
+          <tr>
+            <td>
+              <% if current_user == request_sender %>
+                  You sent the organization request for
+              <% else %>
+                <%= link_to (request_sender.first_name + " " + request_sender.last_name), user_path(request_sender) %>
+                (<%= link_to request_sender.email, user_path(request_sender) %>)
+                wants to 
+                <% if r.golf_request_type == 0 %>be admin for 
+                <% else%>be CSR for 
+                <% end %>
+              <% end %>
+
+              <%= link_to request_golf_course.name, golf_course_path(request_golf_course) %>:
+              <i><%= r.message %></i>
+            </td>
+            
+            <% if current_user.dealt_a_course?(request_golf_course, 0) %>
+              <td><%= link_to 'Approve', golf_request_path(:id => r.id, :approval => 1, :is_golf_course => true), method: :delete, data: { :confirm => 'Confirm that you approve?' }, :class=>"button_new button btn-small"  %></td>
+              <td><%= link_to 'Reject', golf_request_path(:id => r.id, :approval => 0, :is_golf_course => true), method: :delete, data: { :confirm => 'Confirm that you reject?' }, :class=>"button_new button btn-small"  %></td>
+            <% end %>
+
+          </tr>
+      <% end %>
+    </table>
+<% end %>

@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GolfStuff - Ticket Information</title>
+</head>
+
+<body>
+<div id="wrap">
+  <%=render "header_menu"%>
+
+  <div class="container">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="alert alert-success alert-dismissible tourn-btn-row">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Your payment has been processed successfully.</strong>
+      </div>
+
+      <h2>Thank you!</h2>
+
+      <table class="table">
+        <tr>
+          <th>Tournament</th>
+          <td><%= @event_name %></td>
+        </tr>
+        <tr>
+          <th>User Name</th>
+          <td><%= @user_name %></td>
+        </tr>
+        <tr>
+          <th>Type</th>
+          <td><%= @ticket.tickets_type %></td>
+        </tr>
+      </table>
+
+      <%= link_to "Go Back to Tournament", tournament_path(@event), class: "btn button_new button" %>
+    </div>
+
+  </div> <!--End of container-->
+
+  <div id="push"></div>
+</div><!-- End of wrap -->
+
+<%= render "footer" %>
+</body>
+</html>

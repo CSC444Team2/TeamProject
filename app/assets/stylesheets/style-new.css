@@ -1,0 +1,221 @@
+.navbar {
+    background-color: #edffa8 !important;
+}
+
+ul.nav li:hover {
+    background-color: #cedf92;
+}
+
+.navbar-default .navbar-nav > .active{
+    color: white !important;
+    background: #749e00 !important;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: white !important;
+    background: #749e00 !important;
+}
+
+.tournament-title {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.button_new {
+    background: #749e00;
+}
+
+.button:hover, .btn-sponsor:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.button_new_stop {
+    background-color: #af1d26;
+}
+
+.button {
+    padding: 10px;
+    border: 0;
+    border-radius: 7px;
+    width: auto;
+    margin: 5px;
+    color: white;
+    display: block;
+    text-align: center;
+}
+
+.tourn-btn-row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+table.main-table {
+    border-collapse: collapse;
+    margin-bottom: 13px;
+    overflow: scroll;
+    width: 100%;
+}
+
+table.main-table td, .main-table th{
+    border: 0;
+}
+
+table.main-table tr:nth-child(even) {
+    background: #edffa8;
+}
+
+.btn-small {
+    padding: 5px !important;
+    width: auto !important;
+    margin: 0;
+}
+
+.btn-sponsor {
+    background: #749e00;
+    color: white;
+}
+
+.btn-sponsor:hover {
+    color: white;
+}
+
+.navbar-brand {
+    color: #4b6600 !important;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.img-banner {
+    width: 100%;
+}
+
+
+.navbar {
+    margin-bottom: 0 !important;
+}
+
+body {
+    opacity: 1;
+    transition: 3s opacity;
+}
+body.fade-out {
+    opacity: 0;
+    transition: none;
+}
+
+.btn-home {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+#footer, #push {
+    height: 75px;
+}
+
+#footer {
+    padding: 20px;
+    color: gray;
+    background-color: rgba(237, 255, 168, 0.45);
+    margin-top: 50px;
+}
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -75px !important;
+}
+
+.requests-box {
+    width: 90%;
+    margin: auto;
+    border: 1px solid white;
+    padding: 10px !important;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 576px) {
+    .table-info {
+        width: 50% !important;
+    }
+}
+
+
+.table-info td, .table-info th {
+    border: none !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.avatar {
+    float: right;
+}
+
+.btn-on-profile {
+    margin-top: 50px !important;
+}
+
+.course-info div span {
+    font-weight: bold;
+}
+
+.course-map {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.none-info {
+    margin: 0 !important;
+    font-style: italic;
+}
+
+.sm-mar-bot {
+    margin-bottom: 5px !important;
+}
+
+.green-add-on {
+    background-color: rgba(116, 158, 0, 0.37) !important;
+}
+
+.editing-link-box {
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+nav.share {display:inline-block;} /* shareable's nav tag */
+nav.share div {float:left;}
+nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */
+#___plusone_0 {font-size: default !important;}
+.fb_iframe_widget span { vertical-align: top; }
+.fb_edge_widget_with_comment { vertical-align: top;}
+.fb-like{display:inline-block}
+* html .fb-like{display:inline}/* ie6 inline block fix*/
+*+html .fb-like{display:inline}/* ie7 inline block fix*/
+
+a.button:hover {
+    text-decoration: none;
+    color: white;
+}
+
+a.button {
+    white-space: nowrap;
+}
+
+.btn-long {
+    width: 100% !important;
+}
+
+.btn-table {
+    margin: 0;
+    width: 100px;
+    float: right;
+    font-size: 0.75em;
+}

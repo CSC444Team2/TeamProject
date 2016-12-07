@@ -1,0 +1,49 @@
+<!-- Don't use "form_for :tournament", that got routing problems  -->
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<div id="tournament_div">
+	<%= form_for(@golf_course) do |f| %>
+
+      <div class="form-group row">
+        <%= f.label :golf_course_name, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.text_field :name, :placeholder => "Golf Course Name", :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :overview, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.text_field :overview, :placeholder => "Overview", :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :address, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.text_field :address, :placeholder => "Address", :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :contact_information, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.text_field :contact_info, :placeholder => "Contact Information", :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :website, :class=>"col-xs-3 col-form-label" %>
+        <div class="col-xs-9">
+          <%= f.text_field :website, :placeholder => "Website", :class => "form-control" %>
+        </div>
+      </div>
+       	 
+   		<%= f.submit "Add Golf Course", :class => "button button_new btn" %>
+  <% end %>
+</div>
+</html>
+

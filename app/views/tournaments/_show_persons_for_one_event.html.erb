@@ -1,0 +1,35 @@
+<% if !@player_subgroup %>
+  <% if @title %>
+    <h2><%= @title %></h2>
+  <% end %>
+<% end %>
+<% if @persons && @persons.any? %>
+  <table class="table main-table">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th></th>
+      <% if @is_player_group && @is_organizer %>
+        <th></th>
+      <% end %>
+    </tr>
+  	<% @persons.each do |p| %>
+      <tr>
+        <td><%= p.first_name %></td>
+        <td><%= p.last_name %></td>
+        <td><%= p.email %></td>
+        <td><%= link_to 'Show Profile', user_path(p), :class=>"btn btn-sm button_new button btn-table" %></td>
+        <% if @is_player_group && @is_organizer%>
+          <td><%= link_to 'Remove user from group', member_out_of_group_tournament_path(member: p), method: :post, class: "button_new_stop button btn btn-sm"%></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% elsif @persons %>
+  <% if @is_player_group %>
+    <div class="none-info">No members</div>
+  <% else %>
+    <div class="none-info">None</div>
+  <% end %>
+<% end %>

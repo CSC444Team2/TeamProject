@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>GolfStuff - New Golf Course</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+<div id="wrap">
+  <%=render "header_menu"%>
+
+  <div class="container">
+
+        <div id="request_div">
+            <% if @golf_request_type == 0 %>
+              <h1 id="reqeustHeader">New request to be golf course admin</h1>
+            <% elsif @golf_request_type == 1 %>
+              <h1 id="reqeustHeader">New request to be golf course CSR</h1>
+            <% end %>
+            <%= form_for(@request) do |f| %>
+                <p id="create_request">
+                  <%= f.label :golf_course %><br>
+                  <%= f.collection_select :receiver_id, @candidate_courses, :id, :name, {selected: @selected_course}, include_blank: false %>
+                  <!--http://stackoverflow.com/questions/8907867/can-someone-explain-collection-select-to-me-in-clear-simple-terms-->
+                </p>
+                <p id="create_request">
+                  <%= f.label :message %><br>
+                  <%= f.text_field :message, :placeholder => "Describe your intention", :class => "form_input" %>
+                </p>
+                <%= f.hidden_field :golf_request_type, :value => @golf_request_type%>
+                <%= f.submit "Send Request", :class => "login_button" %>
+            <% end %>
+        </div>
+        </div>
+    </div>
+</div> <!--End of container-->
+<div id="push"></div>
+</div><!-- End of wrap -->
+
+<%= render "footer" %>
+
+</body>
+</html>

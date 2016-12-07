@@ -1,0 +1,84 @@
+<html>
+<head>
+  	<title>Golf Stuff</title>
+  	<meta name="keywords" content="golf tournament" />
+  	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <!--<script>-->
+<!--//      $(document).ready(function() {-->
+<!--//        $(function() {-->
+<!--//          $('body').removeClass('fade-out');-->
+<!--//        });-->
+<!--//      });-->
+    <!--</script>-->
+</head>
+
+<!--<script>document.body.className += ' fade-out';</script>-->
+<body>
+  <div id="wrap">
+
+      <%= render partial: "header_menu" %>
+
+      <%= image_tag("ball.jpg", :alt => "golf ball", :class=>"img-responsive img-banner hidden-xs") %>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <h1>Our Story</h1>
+            <div>As passionate golfers we wanted to bring organizing and playing in tournaments into one easy to use, golfer friendly environment. Established in 2016 Golf Stuff is a new and improved tool built for the golfing community</div>
+            <h1>Features</h1>
+            <div>Golf Stuff allows you to create and organize golf tournaments in just a few simple steps.</div>
+            <a href="/tournaments/new" class="button_new button">Create Tournament</a>
+            <div>Golf Stuff allows users to view and sign up to play or sponsor public golf tournaments. We offer secure payment through PayPal </div>
+            <a href="/tournaments" class="button_new button">View Tournaments</a>
+          
+            <h1>Contact Us</h1>
+            <h4>Phone:</h4>
+            <div>+1 234 5678</div>
+            <h4>Email:</h4>
+            <div>admin@golfstuff.com</div>
+          </div>
+
+          <div class="col-sm-8">
+                <h1>Welcome To Golf Stuff</h1>
+                <div>Golf Stuff lets you browse, register, sponsor and create your own golf tournaments.</div>
+
+                <h1>Some Upcoming Events</h1>
+                <table class="table main-table">
+                <tr>       
+
+                  <th>Name</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th></th>
+                </tr>
+                <% @tournaments.each do |t| %>
+                  <tr>
+                      <td><%= t.name %></td>
+                      <% if !t.golf_course_id.nil?%>
+                        <% @gf = GolfCourse.find(t.golf_course_id)%>
+                        <td><%= @gf.name %></td>
+                      <% else %>
+                        <td><%= t.location %></td>
+                      <% end %>
+                      <td><%= t.date %></td>
+                      <td>
+                        <%= link_to "Details", tournament_path(t), :class=>"btn-small button button_new" %>
+                      </td>
+                  </tr>
+                <% end %> 
+                
+              
+                </table>
+            <a href="/tournaments" class="button_new button btn">See More</a>
+          </div>
+        </div>
+      </div>
+
+    <div id="push"></div>
+  </div> <!--End of wrap-->
+
+  <%= render "footer" %>
+
+</body>
+</html>

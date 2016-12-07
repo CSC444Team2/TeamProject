@@ -1,0 +1,30 @@
+<!-- Don't use "form_for :tournament", that got routing problems  -->
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+    <div id="main">
+    <%=render "header_menu"%>
+
+        <div id="site_content">
+        <div id="request_div">
+            <h1 id="reqeustHeader">New Request to Organize Tournament</h1>
+            <%= form_for(@request) do |f| %>  
+                <p id="create_request">
+                  <%= f.label :tournament %><br>
+                  <%= f.collection_select :receiver_id, @candidate_events, :id, :name, {selected: @selected_event}, include_blank: false %>
+                  <!--http://stackoverflow.com/questions/8907867/can-someone-explain-collection-select-to-me-in-clear-simple-terms-->
+                </p>
+                <p id="create_request">
+                  <%= f.label :message %><br> 
+                  <%= f.text_field :message, :placeholder => "Describe your intention", :class => "form_input" %>
+                </p>
+                <%= f.submit "Send Request", :class => "login_button" %>
+            <% end %>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

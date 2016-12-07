@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GolfStuff - Ticket Information</title>
+</head>
+
+<body>
+  <div id="wrap">
+    <%=render "header_menu"%>
+
+    <div class="container">
+
+      <div class="col-md-6 col-md-offset-3">
+      
+        <h2>Check the ticket info below</h2>
+
+        <%= form_for @ticket, :id => "form-ticket" do |f| %>
+        <table class="table">
+          <tr>
+            <th>User Name</th>
+            <td><%= @username %></td>
+          </tr>
+          <tr>
+            <th>Tournament</th>
+            <td><%= @tournament_name %></td>
+          </tr>
+        </table>
+
+        <%= f.hidden_field :event_id, :value=> @event_id %>
+        <% end %>
+
+        <%= form_tag({:controller=> "join", :action => "create", :params=> {event_id: @event.id, join: 0, name: @event.name}}) do %>
+            <div class="input-group input-group-lg">
+              <div class="input-group-addon green-add-on">Ticket Type</div>
+              <%= select_tag("sponsor_amount", options_for_select([[('Play ($'+  @event.price.to_s + ')'), @event.price], ['Play & Eat ($'+  (@event.price+30).to_s + ')', @event.price+30]]), {:class => "form-control"}) %>
+              <span class="input-group-btn">
+                <%= submit_tag "Pay and Play", :class=>"btn btn-sponsor" %>
+              </span>
+            </div>
+        <% end %>
+
+      </div>
+
+    </div> <!--End of container-->
+
+    <div id="push"></div>
+  </div><!-- End of wrap -->
+
+  <%= render "footer" %>
+</body>
+</html>

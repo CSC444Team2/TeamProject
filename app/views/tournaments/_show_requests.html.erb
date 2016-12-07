@@ -1,0 +1,29 @@
+<% if requests.any? %>
+    <h3> <%= title %> </h3>
+    <table class="table main-table">
+      <% requests.each do |r| %>
+        <% request_sender=User.find(r.sender_id) %>
+        <% request_tournament = Tournament.find(r.receiver_id) %>
+          <tr>
+            <td>
+              <% if current_user == request_sender %>
+                  You sent the organization request for
+              <% else %>
+                <%= link_to (request_sender.first_name + " " + request_sender.last_name), user_path(request_sender) %>
+                (<%= link_to request_sender.email, user_path(request_sender) %>)
+                wants to organize
+              <% end %>
+
+              <%= link_to request_tournament.name, tournament_path(request_tournament) %>:
+              <i><%= r.message %></i>
+            </td>
+
+            <% if current_user.organized_a?(request_tournament) %>
+              <td><%= link_to 'Approve', request_path(:id => r.id, :approval => 1, :is_golf_course => false), method: :delete, data: { :confirm => 'Confirm that you approve?' }, :class=>"button_new button btn-small"  %></td>
+              <td><%= link_to 'Reject', request_path(:id => r.id, :approval => 0, :is_golf_course => false), method: :delete, data: { :confirm => 'Confirm that you reject?' }, :class=>"button_new button btn-small"  %></td>
+            <% end %>
+
+          </tr>
+      <% end %>
+    </table>
+<% end %>

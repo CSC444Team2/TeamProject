@@ -1,0 +1,252 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GolfStuff - Tournament</title>
+</head>
+
+<body>
+  <div id="wrap">
+    <%=render "header_menu"%>
+
+    <div class="container">
+
+      <h1 class="tournament-title"><%= @tournament.name %></h1>
+
+      
+
+      <!--Show Details-->
+      <div class="container">
+        <table class="table-info">
+          <tr>
+            <th>Permission</th>
+            <% if @tournament.is_private!=0 %>
+              <td><i>Private</i></td>
+            <% else %>
+              <td><i>Public</i></td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Date & Time</th>
+            <% if !@tournament.date.nil? %>
+              <td><%= @tournament.date %></td>
+            <% else %>
+              <td>N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Golf Course</th>
+            <% if !@golf_course.nil?%>
+              <td><%= link_to @golf_course.name, golf_course_path(@golf_course) %></td>
+            <% else %>
+              <td> N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <% if !@golf_course.nil?%>
+              <td><%= @golf_course.address %></td>
+            <% elsif !@tournament.location.nil? && !@tournament.location.empty?%>
+              <td><%= @tournament.location %></td>
+            <% else %>
+              <td>N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Price</th>
+            <% if !@tournament.price.nil? %>
+              <td><%= @tournament.price %> CAD</td>
+            <% else %>
+              <td>N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Contact Email</th>
+            <% if !@tournament.contact_email.nil? && !@tournament.contact_email.empty? %>
+              <td><%= @tournament.contact_email %></td>
+            <% else %>
+              <td>N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Contact Name</th>
+            <% if !@tournament.contact_name.nil? && !@tournament.contact_name.empty? %>
+              <td><%= @tournament.contact_name %></td>
+            <% else %>
+              <td>N/A</td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <%if @tournament.description.nil? || @tournament.description.empty? %>
+              <td>None</td>
+            <% else %>
+              <td><%= @tournament.description %></td>
+            <% end %>
+          </tr>
+        </table>
+      </div>
+      <% if @is_organizer%>
+            <div class="row editing-link-box">
+                 <div class="col-sm-3">
+                   <%= link_to 'Edit Details', edit_tournament_path(@tournament), :class=>"btn-small button button_new"%>
+                 </div>
+                 <div class="col-sm-3">
+                      <button type="button" class="btn-small button button_new_stop" data-toggle="modal" data-target="#myModaldel">Delete Tournament</button>
+                 </div>
+            </div>
+                <div class="modal fade" id="myModaldel" role="dialog">
+                  <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Are you sure you want to delete this tournament?</h4>
+                      </div>
+                      <div class="modal-footer">
+                      <div class="form-inline">  
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <%= link_to 'Delete Tournament', tournament_path(@tournament), method: :delete, :class=>"btn btn-primary"  %>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      <% end %>
+
+      <% if !@golf_course.nil? %>
+        <iframe class="course-map" src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe>
+      <% else %>
+        <iframe class="course-map" src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @tournament.location %>" allowfullscreen></iframe>
+      <% end %>
+      <!--Show requests-->
+      <% if @is_organizer%>
+        <div class="requests-box">
+          <%= render partial: "show_requests", locals: {title: "Pending Requests for This Tournament", requests: @tournament.received_requests} %>
+        </div>
+      <% end %>
+
+      <!--Play/Sponsor/Organize options-->
+        <div class="row tourn-btn-row">
+
+          <div class="col-sm-4 text-center">
+            <% if current_user.nil? || !current_user.played_in?(@tournament) %>
+                <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => @tournament.id}, :method=> :get}, {:class=>"btn btn-lg button_new button btn-long"} %>
+            <% else %>
+              <!-- Trigger the modal with a button -->
+              <button type="button" class="btn btn-lg button_new_stop button btn-long" data-toggle="modal" data-target="#myModalply">Stop Playing</button>
+                <div class="modal fade" id="myModalply" role="dialog">
+                  <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Are you sure you want to stop playing?</h4>
+                      </div>
+                      <div class="modal-footer">
+                      <div class="form-inline">  
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <%= link_to "Stop playing", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, :class=>"btn btn-primary" %>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="col-sm-4 text-center">
+            <% if current_user.nil? || !current_user.organized_a?(@tournament) %>
+                <%= button_to "Request to Organize", {:controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 1}}, {:class=>"btn btn-lg button_new button btn-long"} %>
+            <% else %>
+                <button type="button" class="btn btn-lg button_new_stop button btn-long" data-toggle="modal" data-target="#myModalorg">Stop Organizing</button>
+                <div class="modal fade" id="myModalorg" role="dialog">
+                  <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Are you sure you want to stop organizing?</h4>
+
+                      </div>
+                      <div class="modal-footer">
+                      <div class="form-inline">  
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      <%= link_to "Stop organizing", join_path(:params => {:event_id => @tournament.id, :join => 1}), :method=> :delete, :class=>"btn btn-primary" %>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+            <% end %>
+          </div>
+
+          <div class="col-sm-4 text-center">
+              <%= form_tag({:controller=> "join", :action => "create", :params=> {event_id: @tournament.id, join: 2, name: @tournament.name}}) do %>
+                  <div class="input-group input-group-lg">
+                    <div class="input-group-addon green-add-on">CAD</div>
+                    <%= text_field_tag :sponsor_amount, nil, placeholder: "Donation amount", class: "form-control", :pattern => "\\d*.+\\d+\\d+" %>
+                    <span class="input-group-btn">
+                      <%= submit_tag "Sponsor", :class=>"btn btn-sponsor" %>
+                    </span>
+                  </div>
+              <% end %>
+          </div>
+
+        </div>
+      <!--End of Play/Organize/Sponsor Section-->
+
+      <h2>Players</h2>
+      <% if @is_organizer %>
+          <%= button_to "Create Group", {:controller => "tournaments", :action => "create_group"}, {:class => "button_new button"} %>
+      <% end %>
+      <p class="text-muted">Note: Only organizers can put players into groups. In golf games, there can be at most 4 members in every group.</p>
+
+
+      <% if @tournament.players.any? %>
+
+          <!--Players with group-->
+          <% i=0%>
+          <% @group_of_groups.each do |pg| %>
+              <b><i><%= "Player Group (ID #{@group_id[i]})" %></i></b>
+              <% if !current_user.nil? && @is_organizer %>
+                  <%= button_to "Delete Group", :controller => "tournaments", :action => "delete_group", :params => {:group_id => pg[:id]}, :class => "button_new_stop button" %>
+              <% end %>
+
+              <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Player Group (ID #{@group_id[i]})", :@persons => pg[:players], :@player_subgroup => true, :@is_player_group => true} %>
+
+              <% if pg[:players].length<4 && @is_organizer && !@unassigned_players.empty? %>
+                  <%= form_tag :controller => "tournaments", :action => "add_member", :params => {:group_id => pg[:id], :tournament_id => @tournament.id}  do %>
+                      <%= select_tag :added_member, options_for_select(@unassigned_dump), :prompt => "<select a player to add to group>", :include_blank => false %>
+                      <%= submit_tag "Add Member to Group" %>
+                  <% end %>
+              <% elsif pg[:players].length==4 && @is_organizer %>
+                  <i>4 members in group already (group <%=@group_id[i]%> is full)</i><br><br>
+              <% end %>
+              <% i+=1 %>
+          <% end %>
+
+          <!--Show players without group-->
+          <% if !@unassigned_players.empty? %>
+              <hr />
+              <b><i><%= "Players without group" %></i></b>
+              <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Players without Group", :@persons => @unassigned_players, :@player_subgroup => true, :@is_player_group => false, :is_organizer => @is_organizer} %>
+          <% end %>
+      <% else %>
+          <div>No players</div>
+      <% end %>
+
+      <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Organizers", :@persons => @tournament.organizers, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
+
+      <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Sponsors", :@persons => @tournament.sponsors, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
+
+      <!-- Social media sharing -->
+      <%= render_shareable %>
+    </div> <!--End of container-->
+
+    <div id="push"></div>
+  </div><!-- End of wrap -->
+
+  <%= render "footer" %>
+</body>
+</html>

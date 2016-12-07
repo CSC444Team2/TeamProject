@@ -1,0 +1,25 @@
+<html>
+<head>
+  <title>GolfStuff - New Golf Course</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+<div id="wrap">
+  <%=render "header_menu"%>
+
+  <div class="container">
+
+    <div class="col-sm-6 col-sm-offset-3">
+      <h1>New Golf Course</h1>
+			<%= render 'form' %>
+			<%= link_to 'Cancel', "/golf_courses", :class => "button button_new_stop btn" %>
+    </div>
+  </div> <!--End of container-->
+  <div id="push"></div>
+</div><!-- End of wrap -->
+
+<%= render "footer" %>
+
+</body>
+</html>

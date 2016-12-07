@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>GolfStuff - Golf Courses</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div id="wrap">
+    <%=render "header_menu"%>
+    <%= image_tag("ball.jpg", :alt => "golf ball", :class => "img-banner") %>
+
+      <div class="container">
+
+        <h1>Current Golf Courses</h1>
+
+          <table class="table main-table">
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th></th>
+              </tr>
+              <% @golf_courses.each do |g| %>
+                <tr>
+                    <td><%= g.id %></td>
+                    <td><%= g.name %></td>
+                    <td>
+                      <%= link_to "Details", golf_course_path(g), :class=>"button button_new btn-table btn-sm" %>
+                    </td>
+                </tr>
+              <% end %>
+            </table>
+            <%= link_to 'New Golf Course', "/golf_courses/new", :class => "button button_new btn" %>
+
+      </div> <!--End of container-->
+
+      <div id="push"></div>
+    </div><!-- End of wrap -->
+
+    <%= render "footer" %>
+
+</body>
+</html>

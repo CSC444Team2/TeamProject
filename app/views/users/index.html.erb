@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Golf Stuff - All Users</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+<div id="wrap">
+  <%=render "header_menu"%>
+  <%= image_tag("ball.jpg", :alt => "golf ball", :class => "img-banner") %>
+
+  <div class="container">
+
+    <h1>All Users</h1>
+    <div class="tourn-btn-row">
+      <%= link_to 'New user', new_user_path, class: "button button_new btn btn-add" %>
+    </div>
+
+    <table class="table main-table">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= link_to 'Show', user_path(user),  class: "button button_new btn-table" %></td>
+          <td><%= link_to 'Edit', edit_user_path(user), class: "button button_new btn-table" %></td>
+          <td>
+            <%= link_to 'Destroy', user_path(user),
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            class: "button button_new_stop btn-table" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div> <!--End of container-->
+
+  <div id="push"></div>
+</div><!-- End of wrap -->
+
+<%= render "footer" %>
+
+</body>
+</html>
