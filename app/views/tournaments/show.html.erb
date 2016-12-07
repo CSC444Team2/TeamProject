@@ -12,13 +12,6 @@
 
       <h1 class="tournament-title"><%= @tournament.name %></h1>
 
-      <% if @is_organizer%>
-        <div class="container editing-link-box">
-          <%= link_to 'Edit Tournament Details', edit_tournament_path(@tournament), :class=>"button-small button button_new"%>
-          <%= link_to 'Delete Tournament', tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"button-small button button_new_stop"  %>
-        </div>
-      <% end %>
-
       <!--Show Details-->
       <div class="container">
         <table class="table-info">
@@ -91,6 +84,17 @@
         </table>
       </div>
 
+      <% if @is_organizer%>
+          <div class="row editing-link-box">
+            <div class="col-sm-3">
+              <%= link_to 'Edit Details', edit_tournament_path(@tournament), :class=>"btn-small button button_new"%>
+            </div>
+            <div class="col-sm-3">
+              <%= link_to 'Delete Tournament', tournament_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn-small button button_new_stop"  %>
+            </div>
+          </div>
+      <% end %>
+
       <% if !@golf_course.nil? %>
         <iframe class="course-map" src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe>
       <% else %>
@@ -109,30 +113,30 @@
 
           <div class="col-sm-4 text-center">
             <% if current_user.nil? || !current_user.played_in?(@tournament) %>
-                <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => @tournament.id}, :method=> :get}, {:class=>"button_new button"} %>
+                <%= link_to "PLAY!", {:controller => "tickets", :action => "new", :params => {:event_id => @tournament.id}, :method=> :get}, {:class=>"btn btn-lg button_new button btn-long"} %>
             <% else %>
-                <%= button_to "Stop playing", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure you want to stop playing?' }, :class=>"button_new_stop button" %>
+                <%= button_to "Stop playing", join_path(:params => {:event_id => @tournament.id, :join => 0}), :method=> :delete, data: { confirm: 'Are you sure you want to stop playing?' }, :class=>"btn btn-lg button_new_stop button btn-long" %>
             <% end %>
           </div>
 
           <div class="col-sm-4 text-center">
             <% if current_user.nil? || !current_user.organized_a?(@tournament) %>
-                <%= button_to "Request to Organize", {:controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 1}}, {:class=>"button_new button"} %>
+                <%= button_to "Request to Organize", {:controller => "join", :action => "create", :method=> :post, :params=> {event_id: @tournament.id, join: 1}}, {:class=>"btn btn-lg button_new button btn-long"} %>
             <% else %>
-                <%= button_to "Stop organizing", join_path(:params => {:event_id => @tournament.id, :join => 1}), :method=> :delete, data: { confirm: 'Are you sure you want to stop organizing?' }, :class=>"button_new_stop button" %>
+                <%= button_to "Stop organizing", join_path(:params => {:event_id => @tournament.id, :join => 1}), :method=> :delete, data: { confirm: 'Are you sure you want to stop organizing?' }, :class=>"btn btn-lg button_new_stop button btn-long" %>
             <% end %>
           </div>
 
           <div class="col-sm-4 text-center">
-              <%= form_tag({:controller=> "join", :action => "create", :params=> {event_id: @tournament.id, join: 2, name: @tournament.name}}) do %>
-                  <div class="input-group input-group-lg">
-                    <div class="input-group-addon green-add-on">CAD</div>
-                    <%= text_field_tag :sponsor_amount, nil, placeholder: "Donation amount", class: "form-control" %>
-                    <span class="input-group-btn">
-                      <%= submit_tag "Sponsor", :class=>"btn btn-sponsor" %>
-                    </span>
-                  </div>
-              <% end %>
+            <%= form_tag({:controller=> "join", :action => "create", :params=> {event_id: @tournament.id, join: 2, name: @tournament.name}}) do %>
+                <div class="input-group input-group-lg">
+                  <div class="input-group-addon green-add-on">CAD</div>
+                  <%= text_field_tag :sponsor_amount, nil, placeholder: "Donation amount", class: "form-control" %>
+                  <span class="input-group-btn">
+                    <%= submit_tag "Sponsor", :class=>"btn btn-sponsor" %>
+                  </span>
+                </div>
+            <% end %>
           </div>
 
         </div>
