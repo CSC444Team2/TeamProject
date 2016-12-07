@@ -176,15 +176,15 @@ class User < ActiveRecord::Base
 		end
 
 		values = {
-				business: "csc444.toronto-merchant@gmail.com", #created an account on PayPal Developer and fake Sandbox email addresses
-				cmd: "_xclick",
-	    return: return_path, #"#{root}hook",
+			business: "csc444.toronto-merchant@gmail.com", #created an account on PayPal Developer and fake Sandbox email addresses
+			cmd: "_xclick",
+	    return: return_path,
 	    rm: 2,
-				amount: amount,
-				item_name: "#{name} Tournament Ticket",
+			amount: amount,
+			item_name: "#{name} Tournament Ticket",
 	    item_number: event_id,
 	    currency_code: "CAD",
-	    notify_url: return_path #"#{root}hook"
+	    notify_url: return_path
 		}
 		"#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
 	end
