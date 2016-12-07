@@ -89,6 +89,10 @@
         <iframe class="course-map" src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @tournament.location %>" allowfullscreen></iframe>
       <% end %>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 823b3dbddef06fe3f7f0c7153365d58162fd3ba1
       <!--Show requests-->
       <% if @is_organizer%>
         <div class="requests-box">
@@ -174,6 +178,8 @@
 
       <%= render partial: "show_persons_for_one_event", :locals => { :@title => "Sponsors", :@persons => @tournament.sponsors, :@player_subgroup => false, :@is_player_group => false, :is_organizer => @is_organizer} %>
 
+      <!-- Social media sharing -->
+      <%= render_shareable %>
     </div> <!--End of container-->
 
     <div id="push"></div>
