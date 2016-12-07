@@ -171,10 +171,15 @@ class TournamentsController < ApplicationController
     def hook_play
       params.permit! # Permit all Paypal input params
       status = params[:payment_status]
+      amount = params[:mc_gross]
       if status == "Completed"
         @tournament = Tournament.find(params[:item_number])
         current_user.play_in(@tournament)
-        @ticket = Ticket.create(user_id: current_user.id, tournament_id: @tournament.id, tickets_type: 'Player')
+        if amount == @tournament.price
+            @ticket = Ticket.create(user_id: current_user.id, tournament_id: @tournament.id, tickets_type: 'Play')
+        else
+            @ticket = Ticket.create(user_id: current_user.id, tournament_id: @tournament.id, tickets_type: 'Play & Eat')
+        end
         redirect_to controller: "tickets", action: "show", id: @ticket.id
       else
         render nothing: true
