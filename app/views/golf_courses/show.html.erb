@@ -62,11 +62,12 @@
       <!--Show requests-->
       <% if @is_admin%>
         <div class="requests-box">
-          <%= render partial: "show_requests", locals: {title: "Pending Admin Requests for This Golf Course", requests: @golf_course.received_admin_requests} %>
-          <%= render partial: "show_requests", locals: {title: "Pending CSR Requests for This Golf Course", requests: @golf_course.received_csr_requests} %>
+          <%= render partial: "show_requests", locals: {title: "Pending Admin Requests for This Golf Course", requests: @golf_course.received_admin_requests, admin_req: true} %>
+          <%= render partial: "show_requests", locals: {title: "Pending CSR Requests for This Golf Course", requests: @golf_course.received_csr_requests, admin_req: false} %>
         </div>
       <% end %>
 
+      <i>To become CSR & Admin you need to send a request that may be approved/rejected by admins. However, if you are an admin for this golf course, no request message is needed</i>
       <div class="row">
         <div class="col-sm-6 text-center">
               <% if current_user.nil? || !current_user.dealt_a_course?(@golf_course, 0) %>
@@ -100,9 +101,9 @@
         <div class="row tourn-btn-row">
             <%= render partial: "users/show_events_for_one_person", locals: { :@title => nil, :@events => @hosted_tournaments } %>
         </div>
-
+        <%= render_shareable %>
     </div> <!--End of container-->
-
+    
     <div id="push"></div>
   </div><!-- End of wrap -->
 

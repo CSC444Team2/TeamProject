@@ -57,13 +57,18 @@ class GolfCoursesController < ApplicationController
 	def operate_course
 		@golf_course = GolfCourse.find(params[:golf_course_id])
 		@joinType = params[:join].to_i
-		if !current_user.nil? && !@joinType.nil? && @joinType >= 0 && @joinType <= 1
+		if !current_user.nil? && current_user.dealt_a_course?(@golf_course, 0) && @joinType==1
+			current_user.deal_course(@golf_course, 1)
+			redirect_to golf_course_path(@golf_course)
+		elsif !current_user.nil? && !@joinType.nil? && @joinType >= 0 && @joinType <= 1
 			if !current_user.dealt_a_course?(@golf_course, @joinType)
-				current_user.deal_course(@golf_course, @joinType)
-                redirect_to golf_course_path(@golf_course)
+				redirect_to new_golf_request_path(selected_course: @golf_course.id, golf_request_type: @joinType)
+				#current_user.deal_course(@golf_course, @joinType)
+                #redirect_to golf_course_path(@golf_course)
 			end
     	end
 	end
+	
 	def stop_operate
 		@golf_course = GolfCourse.find(params[:golf_course_id])
 		@joinType = params[:join].to_i
