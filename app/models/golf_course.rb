@@ -25,4 +25,25 @@ class GolfCourse < ApplicationRecord
 	def got_manager?(some_manager)
 		managers.include?(some_manager)
 	end
+
+	def received_admin_requests
+		@admin_requests = []
+		GolfRequest.all.each do |req|
+			if req.receiver_id == id && req.golf_request_type == 0
+				@admin_requests << req
+			end
+		end
+		return @admin_requests
+		#return GolfRequest.all
+	end
+
+	def received_csr_requests
+		@csr_requests = []
+		GolfRequest.all.each do |req|
+			if req.receiver_id == id && req.golf_request_type == 1
+				@csr_requests << req
+			end
+		end
+		return @csr_requests
+	end
 end

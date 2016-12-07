@@ -42,6 +42,7 @@ ul.nav li:hover {
     width: 100%;
     margin: 5px;
     color: white;
+    display: block;
 }
 
 .tourn-btn-row {
@@ -197,3 +198,9 @@ nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium siz
 .fb-like{display:inline-block}
 * html .fb-like{display:inline}/* ie6 inline block fix*/
 *+html .fb-like{display:inline}/* ie7 inline block fix*/
+
+a.button:hover {
+    text-decoration: none;
+    color: white;
+    white-space: nowrap;
+}

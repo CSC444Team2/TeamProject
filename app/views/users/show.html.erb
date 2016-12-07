@@ -20,8 +20,10 @@
         <h2>Welcome to your personal profile, <%= @user.first_name %></h2>
 
         <div class="requests-box">
-          <%= render partial: "tournaments/show_requests", locals: {title: "Sent Requests", requests: @user.sent_requests} %>
-          <%= render partial: "tournaments/show_requests", locals: {title: "Received Requests", requests: @user.received_requests} %>
+          <%= render partial: "tournaments/show_requests", locals: {title: "Sent Tournament Organization Requests", requests: @user.sent_requests} %>
+          <%= render partial: "tournaments/show_requests", locals: {title: "Received Tournament Organization Requests", requests: @user.received_requests} %>
+          <%= render partial: "tournaments/show_requests", locals: {title: "Received Golf Course Admin Requests", requests: @user.received_golf_admin_requests} %>
+          <%= render partial: "tournaments/show_requests", locals: {title: "Received Golf Course CSR Requests", requests: @user.received_golf_csr_requests} %>
         </div>
       
       <% else %>

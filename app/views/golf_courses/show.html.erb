@@ -58,6 +58,15 @@
           <iframe class="course-map" src="https://www.google.com/maps/embed/v1/place?key=<%= @google_api_key %>&q=+<%= @golf_course.name %>" allowfullscreen></iframe>
         <% end %>
 
+      
+      <!--Show requests-->
+      <% if @is_admin%>
+        <div class="requests-box">
+          <%= render partial: "show_requests", locals: {title: "Pending Admin Requests for This Golf Course", requests: @golf_course.received_admin_requests} %>
+          <%= render partial: "show_requests", locals: {title: "Pending CSR Requests for This Golf Course", requests: @golf_course.received_csr_requests} %>
+        </div>
+      <% end %>
+
       <div class="row">
         <div class="col-sm-6 text-center">
               <% if current_user.nil? || !current_user.dealt_a_course?(@golf_course, 0) %>

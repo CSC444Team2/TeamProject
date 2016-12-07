@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205043249) do
+ActiveRecord::Schema.define(version: 20161206224705) do
 
   create_table "course_admins", force: :cascade do |t|
     t.integer  "golf_course_id"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20161205043249) do
     t.text     "contact_info"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "golf_requests", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "golf_request_type"
+    t.string   "message"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "organizes", force: :cascade do |t|
@@ -95,13 +104,13 @@ ActiveRecord::Schema.define(version: 20161205043249) do
     t.text     "name"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "is_private"
     t.integer  "golf_course_id"
     t.string   "location"
     t.datetime "date"
     t.string   "contact_email"
     t.string   "contact_name"
     t.text     "description",    limit: 500
-    t.integer  "is_private"
   end
 
   create_table "users", force: :cascade do |t|
